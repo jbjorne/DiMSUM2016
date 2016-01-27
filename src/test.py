@@ -5,6 +5,6 @@ def readData(inPath):
     with open(inPath) as csvfile:
         reader = csv.DictReader(csvfile, fieldnames=columns,  delimiter="\t")
         for row in reader:
-            print row
+            pass #print row
             
 readData("../data/dimsum-data-1.5/dimsum16.train")
