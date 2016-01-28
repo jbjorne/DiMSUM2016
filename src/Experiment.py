@@ -160,12 +160,16 @@ class Experiment(object):
             numTotal = 0
             for j in range(i + maxSize, i, -1):
                 tokens = sentence[i:j]
+                numCombination = 0
                 supersenses = self.getSuperSenses("_".join([x["lemma"] for x in tokens]))
                 for supersense in supersenses:
                     if self.buildExample(tokens, supersense, sentence, supersenses, setName):
                         numPos += 1
                     numTotal += 1
+                    numCombination += 1
                     self.exampleCount += 1
+                if numCombination == 0 and self.isExact(tokens, sentence):
+                    self.buildExample(tokens, supersense, sentence, supersenses, setName)
                 if numTotal > 0:
                     break
             self.meta.insert("token", dict(sentence[i], token_id=self._getTokenId(sentence[i]), num_examples=len(supersenses), num_pos=numPos))
@@ -180,20 +184,21 @@ class Experiment(object):
             for token in tokens[1:]: # Check tokens after the beginning one
                 if token["MWE"] != "I": # Tokens must extend the MWE
                     return False
-            if token != sentence[-1]: # Check the token after the last one
-                if sentence[token["index"] + 1]["MWE"] != "O": # The token after the last one must close the MWE
+            if tokens[-1] != sentence[-1]: # Check the token after the last one
+                if sentence[tokens[-1]["index"] + 1]["MWE"] in ("I", "i", "o", "b"): # The token after the last one must close the MWE
                     return False
-            return True
-        return False
+            return True # MWE is a B + n * I series
+        return False # MWE begins with a token other than B
     
-#     def getAnnotatedSense(self, tokens, sentence):
-#         if tokens[0]["MWE"] in ("O", "o"):
-#             return tokens[0]["supersense"]
-#         elif tokens[0] == "B"
+    def getAnnotatedSense(self, tokens, sentence):
+        if self.isExact(tokens):
+            return tokens[0]["supersense"]
+        else:
+            return None
     
     def buildExample(self, tokens, supersense, sentence, supersenses, setName):
         exampleId = self._getExampleId(tokens)
-        realSense = tokens[0]["supersense"]
+        realSense = self.getAnnotatedSense(tokens, sentence)
         label = True if supersense == realSense else False
         classId = self.getClassId(label)
         features = {}
