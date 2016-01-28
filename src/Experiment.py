@@ -33,42 +33,23 @@ class Experiment(object):
         return self._connection
     
     def __init__(self):
-        # Processing
-        #self.debug = False
-        # Database
-        self.databasePath = None
-        self._connection = None
+        self.dataPath = None
+        self.corpusFiles = {"train":"dimsum16.train", "test":"dimsum16.test.blind"}
         # Id sets
         self.featureIds = {}
         self.classIds = {'True':1, 'False':-1}
-        # General
-        self.projects = None
-        self.balanceBy = None
         
-        self.query = None
-        self.exampleTable = "clinical"
-        self.exampleFields = "icgc_donor_id,icgc_specimen_id,project_code,donor_vital_status,disease_status_last_followup,specimen_type,donor_interval_of_last_followup"
-        self.exampleWhere = None
         self.featureGroups = None
-        #self.filter = None
-        self.hiddenCutoff = 0.3
-        self.includeSets = ("train", "hidden")
-        # Generated data
-        #self.examples = None
+        self.includeSets = ("train",)
         self.meta = None
-        #self.unique = None
         self.baseClassVars = None
         self.baseClassVars = set(vars(self).keys())
-
     
     def getClassId(self, value):
-        if self.classIds != None:
-            value = str(value)
-            if value not in self.classIds:
-                self.classIds[value] = len(self.classIds)
-            return self.classIds[value]
-        else:
-            return value
+        value = str(value)
+        if value not in self.classIds:
+            self.classIds[value] = len(self.classIds)
+        return self.classIds[value]
         
     def _buildFeatures(self, example):
         features = {}
@@ -104,7 +85,7 @@ class Experiment(object):
         self.meta.flush()
         self.meta.initCache("feature", 100000)
         # Initialize examples
-        examples = self._queryExamples()
+        examples = self.readExamples(filePath)
         self._defineLabels(examples)
         #numHidden = hidden.setHiddenValuesByFraction(self.examples, self.hiddenCutoff)
         self._defineSets(examples)
