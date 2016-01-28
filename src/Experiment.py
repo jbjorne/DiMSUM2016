@@ -180,7 +180,7 @@ class Experiment(object):
     
     def isExact(self, tokens, sentence):
         if tokens[0]["MWE"] in ("O", "o"): # This is a single-word expression
-            return True
+            return len(tokens) == 1
         elif tokens[0] == "B": # The first token begins a multi-word expression
             if len(tokens) == 1: # A MWE must have more than one token
                 return False
