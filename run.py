@@ -60,7 +60,7 @@ if __name__ == "__main__":
         featureGroups = e.featureGroups if e.featureGroups != None else [] + options.features.split(",")
         print "Using feature groups:", featureGroups
         e.featureGroups = getFeatureGroups(featureGroups)
-        e.writeExamples(options.output)
+        e.run(options.output)
         e = None
     
     resultPath = os.path.join(options.output, "classification.json")

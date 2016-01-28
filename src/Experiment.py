@@ -92,54 +92,67 @@ class Experiment(object):
 #             combined.update(featureSet)
 #             groups[groupName] = combined            
     
-    def analysePOS(self):
-        d = {}
-        for sentence in self.corpus["train"]:
-            for example in sentence:
-                if example["POS"] not in d:
-                    d[example["POS"]] = set()
-                d[example["POS"]].add(example["supersense"])
-        for key in sorted(d.keys()):
-            self.meta.insert("pos_group", {"pos":key, "senses":",".join(sorted(d[key]))})
-        self.meta.flush()
+#     def analysePOS(self):
+#         d = {}
+#         for sentence in self.corpus["train"]:
+#             for example in sentence:
+#                 if example["POS"] not in d:
+#                     d[example["POS"]] = set()
+#                 d[example["POS"]].add(example["supersense"])
+#         for key in sorted(d.keys()):
+#             self.meta.insert("pos_group", {"pos":key, "senses":",".join(sorted(d[key]))})
+#         self.meta.flush()
     
     def getSuperSenses(self, lemma):
         lexnames = sorted(set([x.lexname() for x in wordnet.synsets(lemma)]))
         return [x.replace("noun.", "n.").replace("verb.", "v.") for x in lexnames if x.startswith("noun.") or x.startswith("verb.")]
     
-    def processSentences(self, metaDataFileName=None, exampleWriter=None, setNames=None):
+    def run(self, outDir, fileStem=None, exampleIO=None):
+        self.outDir = outDir
+        self.fileStem = fileStem if fileStem else "examples"
+        self.exampleIO = exampleIO
+        self.processCorpus()
+        self._closeExampleIO()
+    
+    def processCorpus(self, metaDataFileName=None, setNames=None):
+        if metaDataFileName == None:
+            metaDataFileName = os.path.join(self.outDir, self.fileStem + ".meta.sqlite")
         self.beginExperiment(metaDataFileName)
         if setNames == None:
             setNames = self.includeSets
         self.readCorpus(setNames)
         #self.analysePOS()
-        sentenceCount = 0
-        exampleCount = 0
-        classCounts = defaultdict(int)
-        numSentences = sum([len(self.corpus.get(setName, [])) for setName in setNames])
+        self.sentenceCount = 0
+        self.exampleCount = 0
+        self.classCounts = defaultdict(int)
+        self.numSentences = sum([len(self.corpus.get(setName, [])) for setName in setNames])
         for setName in setNames:
-            for sentence in self.corpus[setName]:
-                if sentenceCount % 100 == 0:
-                    print "Processing sentence", str(sentenceCount + 1) + "/" + str(numSentences)
-                for token in sentence:
-                    supersenses = self.getSuperSenses(token["lemma"])
-                    numPos = 0
-                    for supersense in supersenses:
-                        if self.buildExample([token], supersense, sentence, supersenses, setName, exampleWriter):
-                            numPos += 1
-                        exampleCount += 1
-                    self.meta.insert("token", dict(token, token_id=self._getTokenId(token), num_examples=len(supersenses), num_pos=numPos))
-                    #print (token["lemma"], token["supersense"], token["POS"]), self.getSuperSenses(token["lemma"])                        
-                sentenceCount += 1
-                #sys.exit()
-
+            self.processSentences(self.corpus[setName])
         for classId in self.classIds:
-            self.meta.insert("class", {"label":classId, "id":self.classIds[classId], "instances":classCounts[classId]})
+            self.meta.insert("class", {"label":classId, "id":self.classIds[classId], "instances":self.classCounts[classId]})
         self.meta.flush()
-        print "Built", exampleCount, "examples with", len(self.featureIds), "unique features"
+        print "Built", self.exampleCount, "examples with", len(self.featureIds), "unique features"
         #print "Counts:", dict(classCounts)
     
-    def buildExample(self, tokens, supersense, sentence, supersenses, setName, exampleWriter):
+    def processSentences(self, sentences, setName):
+        for sentence in sentences:
+            if self.sentenceCount % 100 == 0:
+                print "Processing sentence", str(self.sentenceCount + 1) + "/" + str(self.numSentences)
+            self.processSentence(sentence, setName)
+            self.sentenceCount += 1
+            
+    def processSentence(self, sentence, setName):
+        for token in sentence:
+            supersenses = self.getSuperSenses(token["lemma"])
+            numPos = 0
+            for supersense in supersenses:
+                if self.buildExample([token], supersense, sentence, supersenses, setName):
+                    numPos += 1
+                self.exampleCount += 1
+            self.meta.insert("token", dict(token, token_id=self._getTokenId(token), num_examples=len(supersenses), num_pos=numPos))
+            #print (token["lemma"], token["supersense"], token["POS"]), self.getSuperSenses(token["lemma"])                        
+    
+    def buildExample(self, tokens, supersense, sentence, supersenses, setName):
         exampleId = self._getExampleId(tokens)
         realSense = tokens[0]["supersense"]
         label = True if supersense == realSense else False
@@ -148,7 +161,7 @@ class Experiment(object):
         for featureGroup in self.featureGroups:
             features.update(featureGroup.processExample(tokens, supersense, sentence, supersenses, self.featureIds, self.meta))
         self.meta.insert("example", dict(label=label, supersense=supersense, real_sense=realSense, text=" ".join([x["word"] for x in tokens]), set_name=setName, example_id=exampleId, num_features=len(features)))
-        exampleWriter.writeExample(classId, features)
+        self._getExampleIO().writeExample(classId, features)
         return label
     
     def beginExperiment(self, metaDataFileName=None):
@@ -161,12 +174,14 @@ class Experiment(object):
         self.meta.flush()
         self.meta.initCache("feature", 100000)        
     
-    def writeExamples(self, outDir, fileStem=None, exampleIO=None):
-        if fileStem == None:
-            fileStem = "examples"
-        if exampleIO == None:
-            exampleIO = SVMLightExampleIO(os.path.join(outDir, fileStem))
-        
-        exampleIO.newFiles()
-        self.processSentences(os.path.join(outDir, fileStem + ".meta.sqlite"), exampleIO)
-        exampleIO.closeFiles()  
+    def _getExampleIO(self):
+        if self.exampleIO:
+            return self.exampleIO
+        if self.exampleIO == None:
+            self.exampleIO = SVMLightExampleIO(os.path.join(self.outDir, self.fileStem))
+        self.exampleIO.newFiles()
+        return self.exampleIO
+    
+    def _closeExampleIO(self):
+        if self.exampleIO:
+            self.exampleIO.closeFiles()
