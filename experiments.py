@@ -9,7 +9,9 @@ class TestFeatureGroup(FeatureGroup):
     def __init__(self):
         super(TestFeatureGroup, self).__init__("TEST")
     def buildFeatures(self, tokens, supersense, sentence, supersenses):
+        lemmas = [x["lemma"] for x in tokens]
         features = [x["lemma"] for x in tokens]
+        features.append("EXACT:" + "_".join(lemmas))
         features.append(supersense)
         return features, None
 
