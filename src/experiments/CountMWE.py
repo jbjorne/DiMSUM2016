@@ -14,10 +14,10 @@ class CountMWE(Experiment):
             tag = token["MWE"]
             mwe = lowerMWE if tag.islower() else upperMWE
             if tag in ("B", "b"):
-                assert len(mwe) == 0
+                assert len(mwe) == 0, self.printSentence(sentence)
                 mwe.append(tag)
             elif tag in ("I", "i"):
-                assert len(mwe) > 0
+                assert len(mwe) > 0, self.printSentence(sentence)
                 mwe.append(tag)
             elif tag == "o":
                 if len(upperMWE) > 0:
@@ -25,10 +25,10 @@ class CountMWE(Experiment):
                 if len(lowerMWE) > 0:
                     lowerMWE.append(tag)
             else:
-                assert tag == "O"
+                assert tag == "O", self.printSentence(sentence)
                 if upperMWE:
                     self.closeMWE(upperMWE, sentence)
-                    upperMWE = None
+                    upperMWE = []
                 if lowerMWE:
                     self.closeMWE(lowerMWE, sentence)
-                    lowerMWE = None
+                    lowerMWE = []

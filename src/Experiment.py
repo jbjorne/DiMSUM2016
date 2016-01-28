@@ -9,10 +9,9 @@ from nltk.corpus import wordnet
 
 class Experiment(object):
     def readExamples(self, filePath):
-        columns = ["index", "word", "lemma", "POS", "MWE", "parent", "strength", "supersense", "sentence"]
         MWETags = set(["O", "o", "B", "b", "I", "i"])
         with open(filePath) as csvfile:
-            reader = csv.DictReader(csvfile, fieldnames=columns,  delimiter="\t", quoting=csv.QUOTE_NONE)
+            reader = csv.DictReader(csvfile, fieldnames=self.corpusColumns,  delimiter="\t", quoting=csv.QUOTE_NONE)
             examples = [row for row in reader]
             for example in examples:
                 example["index"] = int(example["index"])
@@ -20,6 +19,10 @@ class Experiment(object):
                 example["supersense"] = example["supersense"] if example["supersense"] != "" else None
                 assert example["MWE"] in MWETags, example
             return examples
+    
+    def printSentence(self, sentence):
+        for token in sentence:
+            print "\t".join(str(token[x]) for x in self.corpusColumns) 
     
     def readSentences(self, filePath):
         examples = self.readExamples(filePath)
@@ -43,6 +46,7 @@ class Experiment(object):
     def __init__(self):
         self.dataPath = None
         self.corpusFiles = {"train":"dimsum-data-1.5/dimsum16.train", "test":"dimsum-data-1.5/dimsum16.test.blind"}
+        self.corpusColumns = ["index", "word", "lemma", "POS", "MWE", "parent", "strength", "supersense", "sentence"]
         # Id sets
         self.featureIds = {}
         self.classIds = {'True':1, 'False':-1}
