@@ -1,6 +1,12 @@
 import sys, os
 import dataset
-from utils import openDB
+
+def openDB(dbPath, clear=False):
+    if clear and os.path.exists(dbPath):
+        os.remove(dbPath)
+    dbPath = "sqlite:///" + os.path.abspath(dbPath)
+    print "Opening DB at", dbPath, "(clear:" + str(clear) + ")"
+    return dataset.connect(dbPath)
 
 wordnetDB = openDB(os.path.expanduser("~/data/WikiNames/wordnet-sqlite-31.db"))
 

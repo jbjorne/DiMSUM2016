@@ -109,7 +109,12 @@ class Experiment(object):
         for setName in setNames:
             for sentence in self.corpus[setName]:
                 for token in sentence:
-                    print wordnet.synsets(token["lemma"],  )
+                    for synset in wordnet.synsets(token["lemma"]):
+                        print (token["lemma"], token["supersense"]), synset, synset.lexname()
+#                 for i in range(len(sentence)):
+#                     for j in range(i+1, len(sentence)):
+#                         text = " ".join(x["word"].lower() for x in sentence[i:j])
+                        
                 sentenceCount += 1
                 sys.exit()
 
