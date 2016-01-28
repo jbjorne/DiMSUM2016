@@ -1,15 +1,8 @@
 import sys, os
-from learn.HiddenSet import HiddenSet
-from utils.common import getOptions
-from _collections import defaultdict
 from collections import OrderedDict
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-import sqlite3
-import math
-import time
-#import data.hidden as hidden
 from Meta import Meta
 from ExampleIO import SVMLightExampleIO
+from __main__ import time
 
 class Experiment(object):
     def readExamples(self, filePath):
@@ -87,9 +80,10 @@ class Experiment(object):
     def processSentences(self, metaDataFileName=None, exampleWriter=None, setNames=None):
         self.beginExperiment(metaDataFileName)
         if setNames == None:
-            setNames = ["train", "test"]
+            setNames = self.includeSets
         self.corpus = self.readCorpus(setNames)
         sentenceCount = 0
+        exampleCount = 0
         numSentences = sum([len(self.corpus[setName]) for setName in setNames])
         for setName in setNames:
             for sentence in self.corpus[setName]:
@@ -99,23 +93,24 @@ class Experiment(object):
                 for example in sentence:
                     exampleId = self._getExampleId(example)
                     exampleLabels[exampleId] = self.getClassId(self.getLabel(example))
-                print "Processing sentence", str(count) + "/" + str(numSentences)
+                print "Processing sentence", str(sentenceCount) + "/" + str(numSentences)
                 for featureGroup in self.featureGroups:
                     for example in sentence:
                         exampleId = self._getExampleId(example)
                         exampleIds.append(exampleId)
-                        featureSet = featureGroup.processExample(connection, example, features, self.featureIds, self.meta)
+                        featureSet = featureGroup.processExample(example, sentence, self.featureIds, self.meta)
                         self._addToSentence(exampleId, featureGroup.name, featureSet, exampleFeatures)
                         self._addToSentence(exampleId, "ALL_FEATURES", featureSet, exampleFeatures, False)
                 for exampleId in exampleIds:
-                    self.meta.insert("example", dict(example, example_id=numBuilt, num_features=len(features)))
+                    self.meta.insert("example", dict(example, example_id=exampleId, num_features=len(exampleFeatures[exampleId])))
                     exampleWriter.writeExample(exampleLabels[exampleId], exampleFeatures[exampleId])
                     #setCounts[example["set"]] += 1
+                    exampleCount += 1
 
         for classId in self.classIds:
             self.meta.insert("class", {"label":classId, "id":self.classIds[classId]})
         self.meta.flush()
-        print "Built", numBuilt, "examples (" + str(dict(setCounts)) + ") with", len(self.featureIds), "unique features"
+        print "Built", exampleCount, "examples with", len(self.featureIds), "unique features"
     
     def beginExperiment(self, metaDataFileName=None):
         print "Experiment:", self.__class__.__name__
@@ -134,5 +129,5 @@ class Experiment(object):
             exampleIO = SVMLightExampleIO(os.path.join(outDir, fileStem))
         
         exampleIO.newFiles()
-        self.buildExamples(os.path.join(outDir, fileStem + ".meta.sqlite"), exampleIO)
+        self.processSentences(os.path.join(outDir, fileStem + ".meta.sqlite"), exampleIO)
         exampleIO.closeFiles()  

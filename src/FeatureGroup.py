@@ -4,7 +4,7 @@ class FeatureGroup(object):
         self.name = name
     
     def initialize(self, dataPath):
-        pass
+        self.dataPath = dataPath
     
     def processExample(self, example, sentence, featureIds, meta):
         features, values = self.buildFeatures(example, sentence)

@@ -1,23 +1,18 @@
 import os
 import inspect
 from experiments import *
-from learn.Classification import Classification
-from learn.SubsetClassification import SubsetClassification
-import utils.Stream as Stream
-from utils.common import splitOptions, getOptions
-from learn.analyse import mapping
+#from src.Classification import Classification
+import src.utils.Stream as Stream
+from src.utils.common import splitOptions, getOptions
 
-DATA_PATH = os.path.expanduser("~/data/CAMDA2015-data-local/")
-mapping.DATA_PATH = DATA_PATH
-DB_PATH = os.path.join(DATA_PATH, "database/ICGC-18-150514.sqlite")
+DATA_PATH = os.path.expanduser("data")
 
 def getFeatureGroups(names, dummy=False):
     global DATA_PATH
-    groups = [eval(x) for x in names]
+    groups = [eval(x) if isinstance(x, basestring) else x for x in names]
     for i in range(len(groups)): # Initialize classes
         if inspect.isclass(groups[i]):
             groups[i] = groups[i]()
-        groups[i].dummy = dummy
         groups[i].initialize(DATA_PATH)
     return groups
 
@@ -60,25 +55,24 @@ if __name__ == "__main__":
             e = ExperimentClass(**getOptions(options.extra))
         else:
             e = ExperimentClass()
+        e.dataPath = DATA_PATH
         e.includeSets = ("train", "hidden") if options.hidden else ("train",)
-        e.projects = options.projects
         if options.features != None:
             print "Using feature groups:", options.features
-            e.featureGroups = getFeatureGroups(options.features.split(","))
-        e.databasePath = options.icgcDB
+            e.featureGroups = getFeatureGroups(e.featureGroups if e.featureGroups != None else [] + options.features.split(","))
         e.writeExamples(options.output)
         e = None
     
-    resultPath = os.path.join(options.output, "classification.json")
-    if "classify" in actions:
-        print "======================================================"
-        print "Classifying"
-        print "======================================================"
-        ClassificationClass = eval(options.classification)
-        classification = ClassificationClass(options.classifier, options.classifierArguments, options.numFolds, options.parallel, options.metric, classifyHidden=options.hidden)
-        classification.readExamples(options.output)
-        classification.classify()
-        classification = None
+#     resultPath = os.path.join(options.output, "classification.json")
+#     if "classify" in actions:
+#         print "======================================================"
+#         print "Classifying"
+#         print "======================================================"
+#         ClassificationClass = eval(options.classification)
+#         classification = ClassificationClass(options.classifier, options.classifierArguments, options.numFolds, options.parallel, options.metric, classifyHidden=options.hidden)
+#         classification.readExamples(options.output)
+#         classification.classify()
+#         classification = None
     
 #     if "analyse" in actions and options.analyses is not None:
 #         meta = resultPath
