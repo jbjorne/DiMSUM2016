@@ -171,8 +171,10 @@ class Experiment(object):
                     numCombination += 1
                     self.exampleCount += 1
                 if numCombination == 0 and self.isExact(tokens, sentence):
-                    self.insertExampleMeta(None, None, self.getAnnotatedSense(tokens, sentence), tokens, {}, setName)
-                    self.missedExampleCount += 1
+                    missedSense = self.getAnnotatedSense(tokens, sentence)
+                    if missedSense != None:
+                        self.insertExampleMeta(None, None, missedSense, tokens, {}, setName)
+                        self.missedExampleCount += 1
                 if numTotal > 0:
                     break
             self.meta.insert("token", dict(sentence[i], token_id=self._getTokenId(sentence[i]), num_examples=len(supersenses), num_pos=numPos))
@@ -181,7 +183,7 @@ class Experiment(object):
     def isExact(self, tokens, sentence):
         if tokens[0]["MWE"] in ("O", "o"): # This is a single-word expression
             return len(tokens) == 1
-        elif tokens[0] == "B": # The first token begins a multi-word expression
+        elif tokens[0]["MWE"] == "B": # The first token begins a multi-word expression
             if len(tokens) == 1: # A MWE must have more than one token
                 return False
             for token in tokens[1:]: # Check tokens after the beginning one
