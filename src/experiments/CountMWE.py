@@ -5,7 +5,7 @@ class CountMWE(Experiment):
         super(CountMWE, self).__init__()
     
     def closeMWE(self, mwe, sentence):
-        self.meta.insert("mwe", {"mwe":"".join(mwe), "sentence":sentence[0]["sentence"], "size":len(mwe)})
+        self.meta.insert("mwe", {"mwe":"".join(mwe), "sentence":sentence[0]["sentence"], "num_tokens":len(mwe)})
         assert mwe in (self.lowerMWE, self.upperMWE)
         if mwe == self.lowerMWE:
             self.lowerMWE = []
@@ -23,28 +23,19 @@ class CountMWE(Experiment):
             mwe = self.lowerMWE if tag.islower() else self.upperMWE
             if tag in ("B", "b"):
                 if len(mwe) > 0:
-                    self.closeMWE(mwe, sentence)
-                    if tag.islower():
-                        lowerMWE = []
-                        mwe = lowerMWE
-                    else:
-                        upperMWE = []
-                        mwe = lowerMWE
-                assert len(mwe) == 0, token
+                    mwe = self.closeMWE(mwe, sentence)
                 mwe.append(tag)
             elif tag in ("I", "i"):
                 assert len(mwe) > 0, token
                 mwe.append(tag)
             elif tag == "o":
-                if len(upperMWE) > 0:
-                    upperMWE.append(tag)
-                if len(lowerMWE) > 0:
-                    lowerMWE.append(tag)
+                if len(self.upperMWE) > 0:
+                    self.upperMWE.append(tag)
+                if len(self.lowerMWE) > 0:
+                    self.lowerMWE.append(tag)
             else:
                 assert tag == "O", token
-                if upperMWE:
-                    self.closeMWE(upperMWE, sentence)
-                    upperMWE = []
-                if lowerMWE:
-                    self.closeMWE(lowerMWE, sentence)
-                    lowerMWE = []
+                if self.upperMWE:
+                    self.closeMWE(self.upperMWE, sentence)
+                if self.lowerMWE:
+                    self.closeMWE(self.lowerMWE, sentence)
