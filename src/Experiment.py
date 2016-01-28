@@ -17,24 +17,33 @@ class Experiment(object):
         with open(filePath) as csvfile:
             reader = csv.DictReader(csvfile, fieldnames=columns,  delimiter="\t")
             examples = [row for row in reader]
+            for example in examples:
+                example["index"] = int(example["index"])
+                example["parent"] = int(example["parent"])
             return examples
+    
+    def readSentences(self, filePath):
+        examples = self.readExamples(filePath)
+        sentences = OrderedDict()
+        for example in examples:
+            if example["sentence"] not in sentences:
+                sentences[example["sentence"]] = []
+            sentences[example["sentence"]].append(example)
+        return sentences
+    
+    def readCorpus(self, setNames):
+        self.corpus = {}
+        for setName in setNames:
+            filePath = os.path.join(self.dataPath, self.corpusFiles[setName])
+            print "Reading set", setName, "from", filePath
+            self.corpus[setName] = self.readSentences(filePath) 
     
     def getLabel(self, example):
         raise NotImplementedError
     
-    def getConnection(self):
-        if self._connection == None:
-            if not os.path.exists(self.databasePath):
-                raise Exception("No database at " + str(self.databasePath))
-            print "Using database at", self.databasePath
-            self._connection = sqlite3.connect(self.databasePath) # @UndefinedVariable
-            self._connection.row_factory = sqlite3.Row # @UndefinedVariable
-            self._connection.create_function("log", 1, math.log)
-        return self._connection
-    
     def __init__(self):
         self.dataPath = None
-        self.corpusFiles = {"train":"dimsum16.train", "test":"dimsum16.test.blind"}
+        self.corpusFiles = {"train":"dimsum-data-1.5/dimsum16.train", "test":"dimsum-data-1.5/dimsum16.test.blind"}
         # Id sets
         self.featureIds = {}
         self.classIds = {'True':1, 'False':-1}
@@ -50,18 +59,6 @@ class Experiment(object):
         if value not in self.classIds:
             self.classIds[value] = len(self.classIds)
         return self.classIds[value]
-        
-    def _buildFeatures(self, example):
-        features = {}
-        connection = self.getConnection()
-        for featureGroup in self.featureGroups:
-            featureGroup.processExample(connection, example, features, self.featureIds, self.meta)
-        return features
-
-    def _defineLabels(self, examples):
-        for example in examples:
-            assert "label" not in example
-            example["label"] = self.getClassId(self.getLabel(example))
     
     def _getChildVars(self):
         members = vars(self)
@@ -72,50 +69,63 @@ class Experiment(object):
                 childVars[name] = members[name]
         return childVars
     
-    def buildExamples(self, metaDataFileName=None, exampleWriter=None):
-        print "Experiment:", self.__class__.__name__
-        self.meta = Meta(metaDataFileName, clear=True)
-        childVars = self._getChildVars()
-        self.meta.insert("experiment", {"name":self.__class__.__name__, 
-                                        "query":self.query,
-                                        "vars":";".join([x+"="+str(childVars[x]) for x in childVars]),
-                                        "time":time.strftime("%c"), 
-                                        "dbFile":self.databasePath, 
-                                        "dbModified":time.strftime("%c", time.localtime(os.path.getmtime(self.databasePath)))})
-        self.meta.flush()
-        self.meta.initCache("feature", 100000)
-        # Initialize examples
-        examples = self.readExamples(filePath)
-        self._defineLabels(examples)
-        #numHidden = hidden.setHiddenValuesByFraction(self.examples, self.hiddenCutoff)
-        self._defineSets(examples)
-        numExamples = len(examples)
-        print "Examples " +  str(numExamples)
-        # Build examples and features
-        setCounts = defaultdict(int)
-        count = 0
-        numBuilt = 0
-        for example in examples:
-            count += 1
-            if example["set"] not in self.includeSets:
-                print "Skipping", example["icgc_donor_id"], "from set", example["set"]
-                continue
+    def _getExampleId(self, example):
+        return example["sentence"] + ":" + str(example["index"])
+    
+    def _addToSentence(self, exampleId, groupName, featureSet, exampleFeatures, unique=True):
+        if groupName not in exampleFeatures:
+            exampleFeatures[groupName] = {}
+        if unique or exampleId not in exampleFeatures[groupName]:
+            assert exampleId not in exampleFeatures[groupName]
+            exampleFeatures[groupName][exampleId] = featureSet
+        elif exampleId in exampleFeatures[groupName]:
+            combined = {}
+            combined.update(exampleFeatures[groupName][exampleId])
+            combined.update(featureSet)
+            exampleFeatures[groupName] = combined            
+    
+    def processSentences(self, metaDataFileName=None, exampleWriter=None, setNames=None):
+        self.beginExperiment(metaDataFileName)
+        if setNames == None:
+            setNames = ["train", "test"]
+        self.corpus = self.readCorpus(setNames)
+        sentenceCount = 0
+        numSentences = sum([len(self.corpus[setName]) for setName in setNames])
+        for setName in setNames:
+            for sentence in self.corpus[setName]:
+                exampleIds = []
+                exampleFeatures = {}
+                exampleLabels = {}
+                for example in sentence:
+                    exampleId = self._getExampleId(example)
+                    exampleLabels[exampleId] = self.getClassId(self.getLabel(example))
+                print "Processing sentence", str(count) + "/" + str(numSentences)
+                for featureGroup in self.featureGroups:
+                    for example in sentence:
+                        exampleId = self._getExampleId(example)
+                        exampleIds.append(exampleId)
+                        featureSet = featureGroup.processExample(connection, example, features, self.featureIds, self.meta)
+                        self._addToSentence(exampleId, featureGroup.name, featureSet, exampleFeatures)
+                        self._addToSentence(exampleId, "ALL_FEATURES", featureSet, exampleFeatures, False)
+                for exampleId in exampleIds:
+                    self.meta.insert("example", dict(example, example_id=numBuilt, num_features=len(features)))
+                    exampleWriter.writeExample(exampleLabels[exampleId], exampleFeatures[exampleId])
+                    #setCounts[example["set"]] += 1
 
-            print "Processing example", example
-            
-            features = self._buildFeatures(example)
-            print example["label"], str(len(features)), str(count) + "/" + str(numExamples)
-            if self.filter(example, features):
-                continue
-            self.meta.insert("example", dict(example, id=numBuilt, features=len(features)))
-            exampleWriter.writeExample(example["label"], features)
-            setCounts[example["set"]] += 1
-            numBuilt += 1
-        
         for classId in self.classIds:
             self.meta.insert("class", {"label":classId, "id":self.classIds[classId]})
         self.meta.flush()
         print "Built", numBuilt, "examples (" + str(dict(setCounts)) + ") with", len(self.featureIds), "unique features"
+    
+    def beginExperiment(self, metaDataFileName=None):
+        print "Experiment:", self.__class__.__name__
+        self.meta = Meta(metaDataFileName, clear=True)
+        childVars = self._getChildVars()
+        self.meta.insert("experiment", {"name":self.__class__.__name__,
+                                        "vars":";".join([x+"="+str(childVars[x]) for x in childVars]),
+                                        "time":time.strftime("%c")})
+        self.meta.flush()
+        self.meta.initCache("feature", 100000)        
     
     def writeExamples(self, outDir, fileStem=None, exampleIO=None):
         if fileStem == None:
