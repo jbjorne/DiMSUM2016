@@ -72,22 +72,35 @@ class Experiment(object):
         return example["sentence"] + ":" + str(example["index"])
     
     def _addToSentence(self, exampleId, groupName, featureSet, exampleFeatures, unique=True):
-        if groupName not in exampleFeatures:
-            exampleFeatures[groupName] = {}
-        if unique or exampleId not in exampleFeatures[groupName]:
-            assert exampleId not in exampleFeatures[groupName]
-            exampleFeatures[groupName][exampleId] = featureSet
-        elif exampleId in exampleFeatures[groupName]:
+        if exampleId not in exampleFeatures:
+            exampleFeatures[exampleId] = {}
+        groups = exampleFeatures[exampleId]
+        if unique or groupName not in groups:
+            assert groupName not in groups
+            groups[groupName] = featureSet
+        else:
             combined = {}
-            combined.update(exampleFeatures[groupName][exampleId])
+            combined.update(groups[groupName])
             combined.update(featureSet)
-            exampleFeatures[groupName] = combined            
+            groups[groupName] = combined            
     
+    def analysePOS(self):
+        d = {}
+        for sentence in self.corpus["train"]:
+            for example in sentence:
+                if example["POS"] not in d:
+                    d[example["POS"]] = set()
+                d[example["POS"]].add(example["supersense"])
+        for key in sorted(d.keys()):
+            self.meta.insert("pos_group", {"pos":key, "senses":",".join(sorted(d[key]))})
+        self.meta.flush()
+        
     def processSentences(self, metaDataFileName=None, exampleWriter=None, setNames=None):
         self.beginExperiment(metaDataFileName)
         if setNames == None:
             setNames = self.includeSets
         self.readCorpus(setNames)
+        #self.analysePOS()
         sentenceCount = 0
         exampleCount = 0
         classCounts = defaultdict(int)
@@ -103,25 +116,30 @@ class Experiment(object):
                     exampleLabels[exampleId] = self.getClassId(self.getLabel(example))
                 if sentenceCount % 100 == 0:
                     print "Processing sentence", str(sentenceCount + 1) + "/" + str(numSentences)
+                #groupCounts = defaultdict(int)
                 for featureGroup in self.featureGroups:
                     for example in sentence:
                         exampleId = self._getExampleId(example)
                         exampleIds.append(exampleId)
                         featureSet = featureGroup.processExample(example, sentence, self.featureIds, self.meta)
+                        #groupCounts[featureGroup.name] += len(featureSet)
                         self._addToSentence(exampleId, featureGroup.name, featureSet, exampleFeatures)
                         self._addToSentence(exampleId, "ALL_FEATURES", featureSet, exampleFeatures, False)
+                #print dict(groupCounts)
                 for exampleId in exampleIds:
-                    self.meta.insert("example", dict(example, example_id=exampleId, num_features=len(exampleFeatures.get(exampleId, []))))
-                    exampleWriter.writeExample(exampleLabels[exampleId], exampleFeatures.get(exampleId, {}))
-                    classCounts[self.classNames[exampleLabels[exampleId]]] += 1
+                    if exampleId not in exampleFeatures:
+                        print "No features for example", exampleId
+                    self.meta.insert("example", dict(example, set_name=setName, example_id=exampleId, num_features=len(exampleFeatures[exampleId])))
+                    exampleWriter.writeExample(exampleLabels[exampleId], exampleFeatures[exampleId]["ALL_FEATURES"])
+                    classCounts[exampleLabels[exampleId]] += 1
                     exampleCount += 1
                 sentenceCount += 1
 
         for classId in self.classIds:
-            self.meta.insert("class", {"label":classId, "id":self.classIds[classId]})
+            self.meta.insert("class", {"label":classId, "id":self.classIds[classId], "instances":classCounts[classId]})
         self.meta.flush()
         print "Built", exampleCount, "examples with", len(self.featureIds), "unique features"
-        print "Counts:", dict(classCounts)
+        #print "Counts:", dict(classCounts)
     
     def beginExperiment(self, metaDataFileName=None):
         print "Experiment:", self.__class__.__name__

@@ -6,7 +6,6 @@ from sklearn.cross_validation import StratifiedKFold
 from skext.gridSearch import ExtendedGridSearchCV
 from sklearn.metrics import classification_report
 from collections import defaultdict, OrderedDict
-from HiddenSet import splitData
 from ExampleIO import SVMLightExampleIO
 from Meta import Meta
 import numpy as np
@@ -35,6 +34,26 @@ def countUnique(values):
     for value in values:
         counts[value] += 1
     return dict(counts)
+
+def splitArray(array, setNames):
+    assert array.shape[0] == len(setNames)
+    indices = {}
+    for i in range(len(setNames)):
+        setName = setNames[i]
+        if setName == None: # skip this example
+            continue
+        if setName not in indices:
+            indices[setName] = []
+        indices[setName].append(i)
+    divided = {}
+    for setName in indices:
+        divided[setName] = array[indices[setName]]
+    return divided, indices
+    
+def splitData(examples, labels, setNames):
+    e, indices = splitArray(examples, setNames)
+    l, indices = splitArray(labels, setNames)
+    return indices, e.get("train", np.array([])), e.get("hidden", np.array([])), l.get("train", np.array([])), l.get("hidden", np.array([]))   
 
 class Classification(object):
     def __init__(self, classifierName, classifierArgs, numFolds=10, parallel=1, metric='roc_auc', getCV=None, preDispatch='2*n_jobs', classifyHidden=False):
@@ -65,7 +84,6 @@ class Classification(object):
         self.X, self.y = exampleIO.readFiles()
         # Read metadata
         self.meta = Meta(os.path.join(inDir, fileStem + ".meta.sqlite"))
-        self.groups = {row["id"]:row["project_code"] for row in self.meta.db.query("SELECT id, project_code FROM example")}
         self.classes = None
         if "class" in self.meta.db.tables:
             self.classes = [int(x["id"]) for x in self.meta.db["class"].all()]
@@ -88,13 +106,12 @@ class Classification(object):
         if self.classes:
             print "Class distribution = ", countUnique(self.y)
         if setNames == None:
-            setNames = [x["set"] for x in self.meta.db["example"].all()]
+            setNames = [x["set_name"] for x in self.meta.db["example"].all()]
         indices, X_train, X_hidden, y_train, y_hidden = splitData(self.X, self.y, setNames) #hidden.split(self.X, self.y, meta=self.meta.db["example"].all())
         print "Sizes", [X_train.shape[0], y_train.shape[0]], [X_hidden.shape[0], y_hidden.shape[0]]
         if self.classes:
             print "Classes y_train = ", countUnique(y_train)
             print "Classes y_hidden = ", countUnique(y_hidden)
-            print "MCB(y_train) =", majorityBaseline(y_train, [self.groups[i] for i in indices["train"]], self.metric), "(" + self.metric + ")"
         return indices, X_train, X_hidden, y_train, y_hidden
                 
     def classify(self):
@@ -126,8 +143,6 @@ class Classification(object):
         #cv = BalancedIteratorCV(y_train, n_folds=self.numFolds, shuffle=True, random_state=1, examples=[x for x in self.meta.db.query("SELECT * from example WHERE [set] == 'train';")], groupBy="project_code")
         classifier, classifierArgs = self._getClassifier()
         metric = self.metric
-        if metric == "bas":
-            metric = make_scorer(balanced_accuracy_score)
         search = ExtendedGridSearchCV(classifier(), classifierArgs, refit=refit, cv=cv, 
                                       scoring=metric, verbose=self.verbose, n_jobs=self.parallel, 
                                       pre_dispatch=int(self.preDispatch) if self.preDispatch.isdigit() else self.preDispatch)
@@ -150,8 +165,8 @@ class Classification(object):
                     for key in search.extras_[index][fold].get("counts", {}).keys():
                         result[key + "_size"] = search.extras_[index][fold]["counts"][key]
                 results.append(result)
-            if hasattr(search, "extras_") and self.classes and len(self.classes) == 2:
-                print ["%0.8f" % x for x in self._validateExtras(search.extras_[index], y_train)], "(eval:auc)"
+#             if hasattr(search, "extras_") and self.classes and len(self.classes) == 2:
+#                 print ["%0.8f" % x for x in self._validateExtras(search.extras_[index], y_train)], "(eval:auc)"
             print scores, "(" + self.metric + ")"
             print "%0.3f (+/-%0.03f) for %r" % (mean_score, scores.std() / 2, params)                    
             index += 1
@@ -169,30 +184,19 @@ class Classification(object):
         self.meta.flush() 
         return search
     
-    def _calculateBaseline(self, cv, labels):
-        exampleGroups = [self.groups[i] for i in self.indices["train"]]
-        baselines = []
-        for trainIndices, testIndices in cv:
-            foldLabels = [labels[i] for i in testIndices]
-            foldGroups = [exampleGroups[i] for i in testIndices]
-            #print len(foldLabels)
-            baselines.append(majorityBaseline(foldLabels, foldGroups, self.metric))
-        return baselines
-    
-    def _validateExtras(self, folds, labels):
-        validationScores = []
-        for fold in range(len(folds)):
-            if self.classes and len(self.classes) == 2 and "probabilities" in folds[fold]:
-                probabilityByIndex = folds[fold]["probabilities"]
-                foldIndices = sorted(probabilityByIndex.keys())
-                foldLabels = [labels[i] for i in foldIndices]
-                foldProbabilities = [probabilityByIndex[i] for i in foldIndices]
-                foldPredictions = getClassPredictions(foldProbabilities, self.classes)
-                #print fold, foldProbabilities
-                #print len(foldLabels)
-                folds[fold]["predictions"] = {i:x for i,x in zip(foldIndices, foldPredictions)}
-                validationScores.append(aucForPredictions(foldLabels, foldPredictions))
-        return validationScores   
+#     def _validateExtras(self, folds, labels):
+#         validationScores = []
+#         for fold in range(len(folds)):
+#             if self.classes and len(self.classes) == 2 and "probabilities" in folds[fold]:
+#                 probabilityByIndex = folds[fold]["probabilities"]
+#                 foldIndices = sorted(probabilityByIndex.keys())
+#                 foldLabels = [labels[i] for i in foldIndices]
+#                 foldProbabilities = [probabilityByIndex[i] for i in foldIndices]
+#                 foldPredictions = getClassPredictions(foldProbabilities, self.classes)
+#                 #print fold, foldProbabilities
+#                 #print len(foldLabels)
+#                 folds[fold]["predictions"] = {i:x for i,x in zip(foldIndices, foldPredictions)}
+#         return validationScores   
     
     def _saveExtras(self, folds, setName, noFold=False):
         if folds == None or not self.saveExtra:
@@ -225,17 +229,15 @@ class Classification(object):
             #    hiddenExtra = {"predictions":{i:x for i,x in enumerate(y_hidden_pred)}}
             #else:
             hiddenExtra = {"probabilities":{i:x for i,x in enumerate(y_hidden_proba)}}
-            print "AUC =", self._validateExtras([hiddenExtra], y_hidden)[0]
-            print "MCB =", majorityBaseline(y_hidden, [self.groups[i] for i in self.indices["hidden"]], self.metric), "(" + self.metric + ")"
             if hasattr(search.best_estimator_, "feature_importances_"):
                 hiddenExtra["importances"] = search.best_estimator_.feature_importances_
             print "Saving results"
             self._insert("result", [hiddenResult])
             self._saveExtras([hiddenExtra], "hidden", True)
             self.meta.flush()
-            if "predictions" in hiddenExtra:
-                try:
-                    print classification_report(y_hidden, getClassPredictions(y_hidden_proba, self.classes))
-                except ValueError, e:
-                    print "ValueError in classification_report:", e
+#             if "predictions" in hiddenExtra:
+#                 try:
+#                     print classification_report(y_hidden, getClassPredictions(y_hidden_proba, self.classes))
+#                 except ValueError, e:
+#                     print "ValueError in classification_report:", e
         print "--------------------------------------------------------------------------------"

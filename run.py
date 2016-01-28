@@ -1,7 +1,7 @@
 import os
 import inspect
 from experiments import *
-#from src.Classification import Classification
+from src.Classification import Classification
 import src.utils.Stream as Stream
 from src.utils.common import splitOptions, getOptions
 
@@ -63,16 +63,16 @@ if __name__ == "__main__":
         e.writeExamples(options.output)
         e = None
     
-#     resultPath = os.path.join(options.output, "classification.json")
-#     if "classify" in actions:
-#         print "======================================================"
-#         print "Classifying"
-#         print "======================================================"
-#         ClassificationClass = eval(options.classification)
-#         classification = ClassificationClass(options.classifier, options.classifierArguments, options.numFolds, options.parallel, options.metric, classifyHidden=options.hidden)
-#         classification.readExamples(options.output)
-#         classification.classify()
-#         classification = None
+    resultPath = os.path.join(options.output, "classification.json")
+    if "classify" in actions:
+        print "======================================================"
+        print "Classifying"
+        print "======================================================"
+        ClassificationClass = eval(options.classification)
+        classification = ClassificationClass(options.classifier, options.classifierArguments, options.numFolds, options.parallel, options.metric, classifyHidden=options.hidden)
+        classification.readExamples(options.output)
+        classification.classify()
+        classification = None
     
 #     if "analyse" in actions and options.analyses is not None:
 #         meta = resultPath
