@@ -106,7 +106,7 @@ class Classification(object):
         if self.classes:
             print "Class distribution = ", countUnique(self.y)
         if setNames == None:
-            setNames = [x["set_name"] for x in self.meta.db["example"].all()]
+            setNames = [x["set_name"] for x in self.meta.db["example"].all() if x["label"] is not None]
         indices, X_train, X_hidden, y_train, y_hidden = splitData(self.X, self.y, setNames) #hidden.split(self.X, self.y, meta=self.meta.db["example"].all())
         print "Sizes", [X_train.shape[0], y_train.shape[0]], [X_hidden.shape[0], y_hidden.shape[0]]
         if self.classes:
