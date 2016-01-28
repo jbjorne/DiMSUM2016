@@ -5,6 +5,7 @@ from ExampleIO import SVMLightExampleIO
 import time
 import csv
 from _collections import defaultdict
+from nltk.corpus import wordnet
 
 class Experiment(object):
     def readExamples(self, filePath):
@@ -94,8 +95,31 @@ class Experiment(object):
         for key in sorted(d.keys()):
             self.meta.insert("pos_group", {"pos":key, "senses":",".join(sorted(d[key]))})
         self.meta.flush()
-        
+
     def processSentences(self, metaDataFileName=None, exampleWriter=None, setNames=None):
+        self.beginExperiment(metaDataFileName)
+        if setNames == None:
+            setNames = self.includeSets
+        self.readCorpus(setNames)
+        #self.analysePOS()
+        sentenceCount = 0
+        exampleCount = 0
+        classCounts = defaultdict(int)
+        #numSentences = sum([len(:self.corpus.get(setName, [])) for setName in setNames])
+        for setName in setNames:
+            for sentence in self.corpus[setName]:
+                for token in sentence:
+                    print wordnet.synsets(token["lemma"],  )
+                sentenceCount += 1
+                sys.exit()
+
+        for classId in self.classIds:
+            self.meta.insert("class", {"label":classId, "id":self.classIds[classId], "instances":classCounts[classId]})
+        self.meta.flush()
+        print "Built", exampleCount, "examples with", len(self.featureIds), "unique features"
+        #print "Counts:", dict(classCounts)
+        
+    def processSentencesOld(self, metaDataFileName=None, exampleWriter=None, setNames=None):
         self.beginExperiment(metaDataFileName)
         if setNames == None:
             setNames = self.includeSets
