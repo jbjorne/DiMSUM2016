@@ -8,12 +8,14 @@ import csv
 class Experiment(object):
     def readExamples(self, filePath):
         columns = ["index", "word", "lemma", "POS", "MWE", "parent", "strength", "supersense", "sentence"]
+        MWETags = set(["O", "o", "B", "b", "I", "i"])
         with open(filePath) as csvfile:
-            reader = csv.DictReader(csvfile, fieldnames=columns,  delimiter="\t")
+            reader = csv.DictReader(csvfile, fieldnames=columns,  delimiter="\t", quoting=csv.QUOTE_NONE)
             examples = [row for row in reader]
             for example in examples:
                 example["index"] = int(example["index"])
                 example["parent"] = int(example["parent"]) if example["parent"] != "" else None
+                assert example["MWE"] in MWETags, example
             return examples
     
     def readSentences(self, filePath):
@@ -92,7 +94,7 @@ class Experiment(object):
                 exampleFeatures = {}
                 exampleLabels = {}
                 for example in sentence:
-                    print example
+                    #print example
                     exampleId = self._getExampleId(example)
                     exampleLabels[exampleId] = self.getClassId(self.getLabel(example))
                 print "Processing sentence", str(sentenceCount + 1) + "/" + str(numSentences)
