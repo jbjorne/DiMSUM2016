@@ -138,12 +138,12 @@ class Experiment(object):
             self.meta.insert("class", {"label":classId, "id":self.classIds[classId], "instances":self.classCounts[classId]})
         self.meta.flush()
         print "Built", self.exampleCount, "examples with", len(self.featureIds), "unique features"
-        #print "Counts:", dict(classCounts)
+        print "Counts:", dict(self.classCounts)
     
     def processSentences(self, sentences, setName):
         try:
             for sentence in sentences:
-                if self.sentenceCount % 100 == 0:
+                if (self.sentenceCount - 1) % 100 == 0:
                     print "Processing sentence", str(self.sentenceCount + 1) + "/" + str(self.numSentences)
                 self.processSentence(sentence, setName)
                 self.sentenceCount += 1
@@ -153,15 +153,23 @@ class Experiment(object):
             sys.exit()
  
     def processSentence(self, sentence, setName):
-        for token in sentence:
-            supersenses = self.getSuperSenses(token["lemma"])
+        numTokens = len(sentence)
+        maxSize = 6
+        for i in range(numTokens):
             numPos = 0
-            for supersense in supersenses:
-                if self.buildExample([token], supersense, sentence, supersenses, setName):
-                    numPos += 1
-                self.exampleCount += 1
-            self.meta.insert("token", dict(token, token_id=self._getTokenId(token), num_examples=len(supersenses), num_pos=numPos))
-            #print (token["lemma"], token["supersense"], token["POS"]), self.getSuperSenses(token["lemma"])                        
+            numTotal = 0
+            for j in range(i + maxSize, i, -1):
+                tokens = sentence[i:j]
+                supersenses = self.getSuperSenses("_".join([x["lemma"] for x in tokens]))
+                for supersense in supersenses:
+                    if self.buildExample(tokens, supersense, sentence, supersenses, setName):
+                        numPos += 1
+                    numTotal += 1
+                    self.exampleCount += 1
+                if numTotal > 0:
+                    break
+            self.meta.insert("token", dict(sentence[i], token_id=self._getTokenId(sentence[i]), num_examples=len(supersenses), num_pos=numPos))
+                #print (token["lemma"], token["supersense"], token["POS"]), self.getSuperSenses(token["lemma"])                        
     
     def buildExample(self, tokens, supersense, sentence, supersenses, setName):
         exampleId = self._getExampleId(tokens)
@@ -171,8 +179,16 @@ class Experiment(object):
         features = {}
         for featureGroup in self.featureGroups:
             features.update(featureGroup.processExample(tokens, supersense, sentence, supersenses, self.featureIds, self.meta))
-        self.meta.insert("example", dict(label=label, supersense=supersense, real_sense=realSense, text=" ".join([x["word"] for x in tokens]), set_name=setName, example_id=exampleId, num_features=len(features)))
+        self.meta.insert("example", {"label":label, 
+                                     "supersense":supersense, 
+                                     "real_sense":realSense, 
+                                     "text":" ".join([x["word"] for x in tokens]), 
+                                     "set_name":setName, 
+                                     "example_id":exampleId, 
+                                     "num_features":len(features),
+                                     "num_tokens":len(tokens)})
         self._getExampleIO().writeExample(classId, features)
+        self.classCounts[label] += 1
         return label
     
     def beginExperiment(self, metaDataFileName=None):
