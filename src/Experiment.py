@@ -4,6 +4,7 @@ from Meta import Meta
 from ExampleIO import SVMLightExampleIO
 import time
 import csv
+from _collections import defaultdict
 
 class Experiment(object):
     def readExamples(self, filePath):
@@ -42,7 +43,8 @@ class Experiment(object):
         self.corpusFiles = {"train":"dimsum-data-1.5/dimsum16.train", "test":"dimsum-data-1.5/dimsum16.test.blind"}
         # Id sets
         self.featureIds = {}
-        self.classIds = {'True':1, 'False':-1}
+        self.classIds = {} #{'True':1, 'False':-1}
+        self.classNames = {}
         
         self.featureGroups = None
         self.includeSets = ("train",)
@@ -54,6 +56,7 @@ class Experiment(object):
         value = str(value)
         if value not in self.classIds:
             self.classIds[value] = len(self.classIds)
+            self.classNames[self.classIds[value]] = value
         return self.classIds[value]
     
     def _getChildVars(self):
@@ -87,6 +90,7 @@ class Experiment(object):
         self.readCorpus(setNames)
         sentenceCount = 0
         exampleCount = 0
+        classCounts = defaultdict(int)
         numSentences = sum([len(self.corpus.get(setName, [])) for setName in setNames])
         for setName in setNames:
             for sentence in self.corpus[setName]:
@@ -97,7 +101,8 @@ class Experiment(object):
                     #print example
                     exampleId = self._getExampleId(example)
                     exampleLabels[exampleId] = self.getClassId(self.getLabel(example))
-                print "Processing sentence", str(sentenceCount + 1) + "/" + str(numSentences)
+                if sentenceCount % 100 == 0:
+                    print "Processing sentence", str(sentenceCount + 1) + "/" + str(numSentences)
                 for featureGroup in self.featureGroups:
                     for example in sentence:
                         exampleId = self._getExampleId(example)
@@ -108,7 +113,7 @@ class Experiment(object):
                 for exampleId in exampleIds:
                     self.meta.insert("example", dict(example, example_id=exampleId, num_features=len(exampleFeatures.get(exampleId, []))))
                     exampleWriter.writeExample(exampleLabels[exampleId], exampleFeatures.get(exampleId, {}))
-                    #setCounts[example["set"]] += 1
+                    classCounts[self.classNames[exampleLabels[exampleId]]] += 1
                     exampleCount += 1
                 sentenceCount += 1
 
@@ -116,6 +121,7 @@ class Experiment(object):
             self.meta.insert("class", {"label":classId, "id":self.classIds[classId]})
         self.meta.flush()
         print "Built", exampleCount, "examples with", len(self.featureIds), "unique features"
+        print "Counts:", dict(classCounts)
     
     def beginExperiment(self, metaDataFileName=None):
         print "Experiment:", self.__class__.__name__

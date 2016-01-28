@@ -1,11 +1,6 @@
 import sys, os
-from learn.evaluation import aucForPredictions, aucForProbabilites, getClassPredictions,\
-    majorityBaseline
-from learn.skext.DisjointStratifiedKFold import DisjointStratifiedKFold
 from utils.common import getOptions
-from learn.skext.metrics import balanced_accuracy_score
 from sklearn.metrics.scorer import make_scorer
-from learn.skext.BalancedIteratorCV import BalancedIteratorCV
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from sklearn.cross_validation import StratifiedKFold
 from skext.gridSearch import ExtendedGridSearchCV
