@@ -123,10 +123,12 @@ class Experiment(object):
                     print "Processing sentence", str(sentenceCount + 1) + "/" + str(numSentences)
                 for token in sentence:
                     supersenses = self.getSuperSenses(token["lemma"])
+                    numPos = 0
                     for supersense in supersenses:
-                        self.buildExample([token], supersense, sentence, supersenses, setName, exampleWriter)
+                        if self.buildExample([token], supersense, sentence, supersenses, setName, exampleWriter):
+                            numPos += 1
                         exampleCount += 1
-                    self.meta.insert("token", dict(token, token_id=self._getTokenId(token), num_examples=len(supersenses)))
+                    self.meta.insert("token", dict(token, token_id=self._getTokenId(token), num_examples=len(supersenses), num_pos=numPos))
                     #print (token["lemma"], token["supersense"], token["POS"]), self.getSuperSenses(token["lemma"])                        
                 sentenceCount += 1
                 #sys.exit()
@@ -147,6 +149,7 @@ class Experiment(object):
             features.update(featureGroup.processExample(tokens, supersense, sentence, supersenses, self.featureIds, self.meta))
         self.meta.insert("example", dict(label=label, supersense=supersense, real_sense=realSense, text=" ".join([x["word"] for x in tokens]), set_name=setName, example_id=exampleId, num_features=len(features)))
         exampleWriter.writeExample(classId, features)
+        return label
     
     def beginExperiment(self, metaDataFileName=None):
         print "Experiment:", self.__class__.__name__
