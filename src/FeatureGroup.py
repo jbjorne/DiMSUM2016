@@ -6,11 +6,11 @@ class FeatureGroup(object):
     def initialize(self, dataPath):
         self.dataPath = dataPath
     
-    def processExample(self, example, sentence, featureIds, meta):
-        features, values = self.buildFeatures(example, sentence)
+    def processExample(self, tokens, supersense, sentence, supersenses, featureIds, meta):
+        features, values = self.buildFeatures(tokens, supersense, sentence, supersenses)
         return self._buildVector(features, values, featureIds, meta)
     
-    def buildFeatures(self, example, sentence):
+    def buildFeatures(self, tokens, supersense, sentence, supersenses):
         raise NotImplementedError
     
     def _getFeatureNameAsString(self, featureNameParts):

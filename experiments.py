@@ -8,8 +8,8 @@ from src.FeatureGroup import FeatureGroup
 class TestFeatureGroup(FeatureGroup):
     def __init__(self):
         super(TestFeatureGroup, self).__init__("TEST")
-    def buildFeatures(self, example, sentence):
-        return [example["word"]], None
+    def buildFeatures(self, tokens, supersense, sentence, supersenses):
+        return [x["lemma"] for x in tokens], None
 
 ###############################################################################
 # Experiments
@@ -28,5 +28,5 @@ class SuperSenseTest(Experiment):
         super(SuperSenseTest, self).__init__()
         self.featureGroups = [TestFeatureGroup]
     
-    def getLabel(self, example):
-        return example["supersense"]
+#     def getLabel(self, example):
+#         return example["supersense"]
