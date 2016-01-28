@@ -171,6 +171,26 @@ class Experiment(object):
             self.meta.insert("token", dict(sentence[i], token_id=self._getTokenId(sentence[i]), num_examples=len(supersenses), num_pos=numPos))
                 #print (token["lemma"], token["supersense"], token["POS"]), self.getSuperSenses(token["lemma"])                        
     
+    def isExact(self, tokens, sentence):
+        if tokens[0]["MWE"] in ("O", "o"): # This is a single-word expression
+            return True
+        elif tokens[0] == "B": # The first token begins a multi-word expression
+            if len(tokens) == 1: # A MWE must have more than one token
+                return False
+            for token in tokens[1:]: # Check tokens after the beginning one
+                if token["MWE"] != "I": # Tokens must extend the MWE
+                    return False
+            if token != sentence[-1]: # Check the token after the last one
+                if sentence[token["index"] + 1]["MWE"] != "O": # The token after the last one must close the MWE
+                    return False
+            return True
+        return False
+    
+#     def getAnnotatedSense(self, tokens, sentence):
+#         if tokens[0]["MWE"] in ("O", "o"):
+#             return tokens[0]["supersense"]
+#         elif tokens[0] == "B"
+    
     def buildExample(self, tokens, supersense, sentence, supersenses, setName):
         exampleId = self._getExampleId(tokens)
         realSense = tokens[0]["supersense"]
