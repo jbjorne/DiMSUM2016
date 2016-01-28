@@ -3,20 +3,32 @@ from src.Experiment import Experiment
 class CountMWE(Experiment):
     def __init__(self):
         super(CountMWE, self).__init__()
+    
+    def closeMWE(self, mwe, sentence):
+        self.meta.insert("mwe", {"mwe":"".join(mwe), "sentence":sentence[0]["sentence"], "size":len(mwe)})
+    
     def processSentence(self, sentence, setName):
         upperMWE = []
         lowerMWE = []
         for token in sentence:
-            mwe = lowerMWE if token["MWE"].islower() else upperMWE
-            if token["MWE"] in ("B", "b"):
+            tag = token["MWE"]
+            mwe = lowerMWE if tag.islower() else upperMWE
+            if tag in ("B", "b"):
                 assert len(mwe) == 0
-                mwe.append(token["MWE"])
-            elif token["MWE"] in ("I", "i"):
+                mwe.append(tag)
+            elif tag in ("I", "i"):
                 assert len(mwe) > 0
-                mwe.append(token["MWE"])
-            elif token["MWE"] == "o":
+                mwe.append(tag)
+            elif tag == "o":
                 if len(upperMWE) > 0:
-                    upperMWE.append()
-                
-
-            self.meta.insert("bwe", dict(token, token_id=self._getTokenId(token), num_examples=len(supersenses), num_pos=numPos))
+                    upperMWE.append(tag)
+                if len(lowerMWE) > 0:
+                    lowerMWE.append(tag)
+            else:
+                assert tag == "O"
+                if upperMWE:
+                    self.closeMWE(upperMWE, sentence)
+                    upperMWE = None
+                if lowerMWE:
+                    self.closeMWE(lowerMWE, sentence)
+                    lowerMWE = None

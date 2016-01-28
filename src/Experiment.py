@@ -127,7 +127,7 @@ class Experiment(object):
         self.classCounts = defaultdict(int)
         self.numSentences = sum([len(self.corpus.get(setName, [])) for setName in setNames])
         for setName in setNames:
-            self.processSentences(self.corpus[setName])
+            self.processSentences(self.corpus[setName], setName)
         for classId in self.classIds:
             self.meta.insert("class", {"label":classId, "id":self.classIds[classId], "instances":self.classCounts[classId]})
         self.meta.flush()

@@ -17,18 +17,8 @@ class TestFeatureGroup(FeatureGroup):
 # Experiments
 ###############################################################################
 
-class MWETest(Experiment):
-    def __init__(self):
-        super(MWETest, self).__init__()
-        self.featureGroups = [TestFeatureGroup]
-    
-    def getLabel(self, example):
-        return example["MWE"]
 
 class SuperSenseTest(Experiment):
     def __init__(self):
         super(SuperSenseTest, self).__init__()
         self.featureGroups = [TestFeatureGroup]
-    
-#     def getLabel(self, example):
-#         return example["supersense"]

@@ -1,6 +1,7 @@
 import os
 import inspect
 from experiments import *
+from src.experiments.CountMWE import CountMWE
 from src.Classification import Classification
 import src.utils.Stream as Stream
 from src.utils.common import splitOptions, getOptions
@@ -57,7 +58,7 @@ if __name__ == "__main__":
             e = ExperimentClass()
         e.dataPath = DATA_PATH
         e.includeSets = ("train", "hidden") if options.hidden else ("train",)
-        featureGroups = e.featureGroups if e.featureGroups != None else [] + options.features.split(",")
+        featureGroups = (e.featureGroups if e.featureGroups != None else []) + (options.features.split(",") if options.features else [])
         print "Using feature groups:", featureGroups
         e.featureGroups = getFeatureGroups(featureGroups)
         e.run(options.output)
