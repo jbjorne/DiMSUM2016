@@ -17,6 +17,7 @@ class Experiment(object):
             for example in examples:
                 example["index"] = int(example["index"])
                 example["parent"] = int(example["parent"]) if example["parent"] != "" else None
+                example["supersense"] = example["supersense"] if example["supersense"] != "" else None
                 assert example["MWE"] in MWETags, example
             return examples
     
@@ -68,6 +69,9 @@ class Experiment(object):
             if name not in self.baseClassVars:
                 childVars[name] = members[name]
         return childVars
+    
+    def _getTokenId(self, token):
+        return token["sentence"] + ":" + str(token["index"])
     
     def _getExampleId(self, tokens):
         sentenceId = tokens[0]["sentence"]
@@ -122,6 +126,7 @@ class Experiment(object):
                     for supersense in supersenses:
                         self.buildExample([token], supersense, sentence, supersenses, setName, exampleWriter)
                         exampleCount += 1
+                    self.meta.insert("token", dict(token, token_id=self._getTokenId(token), num_examples=len(supersenses)))
                     #print (token["lemma"], token["supersense"], token["POS"]), self.getSuperSenses(token["lemma"])                        
                 sentenceCount += 1
                 #sys.exit()
@@ -140,7 +145,7 @@ class Experiment(object):
         features = {}
         for featureGroup in self.featureGroups:
             features.update(featureGroup.processExample(tokens, supersense, sentence, supersenses, self.featureIds, self.meta))
-        self.meta.insert("example", dict(label=label, supersense=tokens[0]["supersense"], real_sense=realSense, text=" ".join([x["word"] for x in tokens]), set_name=setName, example_id=exampleId, num_features=len(features)))
+        self.meta.insert("example", dict(label=label, supersense=supersense, real_sense=realSense, text=" ".join([x["word"] for x in tokens]), set_name=setName, example_id=exampleId, num_features=len(features)))
         exampleWriter.writeExample(classId, features)
     
     def beginExperiment(self, metaDataFileName=None):
