@@ -15,7 +15,8 @@ class Experiment(object):
             reader = csv.DictReader(csvfile, fieldnames=self.corpusColumns,  delimiter="\t", quoting=csv.QUOTE_NONE)
             examples = [row for row in reader]
             for example in examples:
-                example["index"] = int(example["index"])
+                example["index"] = int(example["index"]) - 1
+                assert example["index"] >= 0
                 example["parent"] = int(example["parent"]) if example["parent"] != "" else None
                 example["supersense"] = example["supersense"] if example["supersense"] != "" else None
                 assert example["MWE"] in MWETags, example
@@ -150,7 +151,7 @@ class Experiment(object):
             self.printSentence(sentence)
             traceback.print_exc()
             sys.exit()
-            
+ 
     def processSentence(self, sentence, setName):
         for token in sentence:
             supersenses = self.getSuperSenses(token["lemma"])

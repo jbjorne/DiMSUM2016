@@ -91,7 +91,7 @@ class Meta():
         self.filePath = filePath
         self.verbose = True
         self.db = self._openDB(filePath, copyFrom=copyFrom, clear=clear)
-        self.defaultCacheSize = 10000
+        self.defaultCacheSize = 100000
         self.cacheSize = {}
         self.cache = {}
         self.dbPath = None

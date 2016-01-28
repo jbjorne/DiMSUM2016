@@ -4,8 +4,17 @@ class CountMWE(Experiment):
     def __init__(self):
         super(CountMWE, self).__init__()
     
+    def getTokenValue(self, sentence, key, index):
+        if index < 0 or index > len(sentence):
+            return None
+        else:
+            return sentence[index][key]
+    
     def closeMWE(self, mwe, sentence):
-        self.meta.insert("mwe", {"mwe":"".join([x["MWE"] for x in mwe]), 
+        self.meta.insert("mwe", {"mwe":"".join([x["MWE"] for x in mwe]),
+                                 "supersense":mwe[0]["supersense"],
+                                 "before":self.getTokenValue(sentence, "word", mwe[0]["index"] - 1),
+                                 "after":self.getTokenValue(sentence, "word", mwe[-1]["index"] + 1), 
                                  "sentence":sentence[0]["sentence"], 
                                  "num_tokens":len(mwe),
                                  "span":" ".join([x["word"] for x in mwe]),
@@ -24,6 +33,8 @@ class CountMWE(Experiment):
         self.upperMWE = []
         self.lowerMWE = []
         for token in sentence:
+            self.meta.insert("token", dict(token, token_id=self._getTokenId(token)))
+            
             tag = token["MWE"]
             mwe = self.lowerMWE if tag.islower() else self.upperMWE
             if tag in ("B", "b"):
