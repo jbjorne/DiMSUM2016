@@ -6,6 +6,7 @@ import time
 import csv
 from _collections import defaultdict
 from nltk.corpus import wordnet
+import traceback
 
 class Experiment(object):
     def readExamples(self, filePath):
@@ -139,11 +140,16 @@ class Experiment(object):
         #print "Counts:", dict(classCounts)
     
     def processSentences(self, sentences, setName):
-        for sentence in sentences:
-            if self.sentenceCount % 100 == 0:
-                print "Processing sentence", str(self.sentenceCount + 1) + "/" + str(self.numSentences)
-            self.processSentence(sentence, setName)
-            self.sentenceCount += 1
+        try:
+            for sentence in sentences:
+                if self.sentenceCount % 100 == 0:
+                    print "Processing sentence", str(self.sentenceCount + 1) + "/" + str(self.numSentences)
+                self.processSentence(sentence, setName)
+                self.sentenceCount += 1
+        except Exception, err:
+            self.printSentence(sentence)
+            traceback.print_exc()
+            sys.exit()
             
     def processSentence(self, sentence, setName):
         for token in sentence:
