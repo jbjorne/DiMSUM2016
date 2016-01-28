@@ -69,8 +69,11 @@ class Experiment(object):
                 childVars[name] = members[name]
         return childVars
     
-    def _getExampleId(self, example):
-        return example["sentence"] + ":" + str(example["index"])
+    def _getExampleId(self, tokens):
+        sentenceId = tokens[0]["sentence"]
+        for token in tokens:
+            assert token["sentence"] == sentenceId
+        return sentenceId + ":" + ",".join([str(x) for x in sorted([token["index"] for token in tokens])])
     
     def _addToSentence(self, exampleId, groupName, featureSet, exampleFeatures, unique=True):
         if exampleId not in exampleFeatures:
@@ -95,7 +98,10 @@ class Experiment(object):
         for key in sorted(d.keys()):
             self.meta.insert("pos_group", {"pos":key, "senses":",".join(sorted(d[key]))})
         self.meta.flush()
-
+    
+    def getSuperSenses(self, lemma):
+        return sorted(set([x.lexname() for x in wordnet.synsets(lemma)]))   
+    
     def processSentences(self, metaDataFileName=None, exampleWriter=None, setNames=None):
         self.beginExperiment(metaDataFileName)
         if setNames == None:
@@ -109,12 +115,10 @@ class Experiment(object):
         for setName in setNames:
             for sentence in self.corpus[setName]:
                 for token in sentence:
-                    for synset in wordnet.synsets(token["lemma"]):
-                        print (token["lemma"], token["supersense"]), synset, synset.lexname()
-#                 for i in range(len(sentence)):
-#                     for j in range(i+1, len(sentence)):
-#                         text = " ".join(x["word"].lower() for x in sentence[i:j])
-                        
+                    supersenses = self.getSuperSenses(token["lemma"])
+                    for supersense in supersenses:
+                        self.buildExamples([token], supersense, sentence, supersenses)
+                    print (token["lemma"], token["supersense"], token["POS"]), self.getSuperSenses(token["lemma"])                        
                 sentenceCount += 1
                 sys.exit()
 
@@ -123,6 +127,16 @@ class Experiment(object):
         self.meta.flush()
         print "Built", exampleCount, "examples with", len(self.featureIds), "unique features"
         #print "Counts:", dict(classCounts)
+    
+    def buildExample(self, tokens, supersense, sentence, supersenses):
+        exampleId = self._getExampleId(tokens)
+        label = 1 if supersense == tokens[0]["supersense"] else -1
+        for featureGroup in self.featureGroups:
+            featureSet = featureGroup.processExample(tokens, sentence, self.featureIds, self.meta)
+            self._addToSentence(exampleId, featureGroup.name, featureSet, exampleFeatures)
+            self._addToSentence(exampleId, "ALL_FEATURES", featureSet, exampleFeatures, False)
+        self.meta.insert("example", dict(example, set_name=setName, example_id=exampleId, num_features=len(exampleFeatures[exampleId])))
+        self.exampleWriter.writeExample(label, exampleFeatures[exampleId]["ALL_FEATURES"])
         
     def processSentencesOld(self, metaDataFileName=None, exampleWriter=None, setNames=None):
         self.beginExperiment(metaDataFileName)
