@@ -53,6 +53,7 @@ class Experiment(object):
         self.featureIds = {}
         self.classIds = {'True':1, 'False':-1}
         self.classNames = {}
+        self.maxExampleTokens = 6
         
         self.featureGroups = None
         self.includeSets = ("train",)
@@ -130,6 +131,7 @@ class Experiment(object):
         #self.analysePOS()
         self.sentenceCount = 0
         self.exampleCount = 0
+        self.missedExampleCount = 0
         self.classCounts = defaultdict(int)
         self.numSentences = sum([len(self.corpus.get(setName, [])) for setName in setNames])
         for setName in setNames:
@@ -138,12 +140,13 @@ class Experiment(object):
             self.meta.insert("class", {"label":classId, "id":self.classIds[classId], "instances":self.classCounts[classId]})
         self.meta.flush()
         print "Built", self.exampleCount, "examples with", len(self.featureIds), "unique features"
+        print "Missed", self.missedExampleCount, "positive examples with window size", self.maxExampleTokens
         print "Counts:", dict(self.classCounts)
     
     def processSentences(self, sentences, setName):
         try:
             for sentence in sentences:
-                if (self.sentenceCount - 1) % 100 == 0:
+                if (self.sentenceCount + 1) % 100 == 0:
                     print "Processing sentence", str(self.sentenceCount + 1) + "/" + str(self.numSentences)
                 self.processSentence(sentence, setName)
                 self.sentenceCount += 1
@@ -154,11 +157,10 @@ class Experiment(object):
  
     def processSentence(self, sentence, setName):
         numTokens = len(sentence)
-        maxSize = 6
         for i in range(numTokens):
             numPos = 0
             numTotal = 0
-            for j in range(i + maxSize, i, -1):
+            for j in range(i + self.maxExampleTokens, i, -1):
                 tokens = sentence[i:j]
                 numCombination = 0
                 supersenses = self.getSuperSenses("_".join([x["lemma"] for x in tokens]))
@@ -169,7 +171,8 @@ class Experiment(object):
                     numCombination += 1
                     self.exampleCount += 1
                 if numCombination == 0 and self.isExact(tokens, sentence):
-                    self.buildExample(tokens, supersense, sentence, supersenses, setName)
+                    self.insertExampleMeta(None, None, self.getAnnotatedSense(tokens, sentence), tokens, {}, setName)
+                    self.missedExampleCount += 1
                 if numTotal > 0:
                     break
             self.meta.insert("token", dict(sentence[i], token_id=self._getTokenId(sentence[i]), num_examples=len(supersenses), num_pos=numPos))
@@ -191,19 +194,13 @@ class Experiment(object):
         return False # MWE begins with a token other than B
     
     def getAnnotatedSense(self, tokens, sentence):
-        if self.isExact(tokens):
+        if self.isExact(tokens, sentence):
             return tokens[0]["supersense"]
         else:
             return None
     
-    def buildExample(self, tokens, supersense, sentence, supersenses, setName):
+    def insertExampleMeta(self, label, supersense, realSense, tokens, features, setName):
         exampleId = self._getExampleId(tokens)
-        realSense = self.getAnnotatedSense(tokens, sentence)
-        label = True if supersense == realSense else False
-        classId = self.getClassId(label)
-        features = {}
-        for featureGroup in self.featureGroups:
-            features.update(featureGroup.processExample(tokens, supersense, sentence, supersenses, self.featureIds, self.meta))
         self.meta.insert("example", {"label":label, 
                                      "supersense":supersense, 
                                      "real_sense":realSense, 
@@ -212,6 +209,15 @@ class Experiment(object):
                                      "example_id":exampleId, 
                                      "num_features":len(features),
                                      "num_tokens":len(tokens)})
+    
+    def buildExample(self, tokens, supersense, sentence, supersenses, setName):
+        realSense = self.getAnnotatedSense(tokens, sentence)
+        label = True if supersense == realSense else False
+        classId = self.getClassId(label)
+        features = {}
+        for featureGroup in self.featureGroups:
+            features.update(featureGroup.processExample(tokens, supersense, sentence, supersenses, self.featureIds, self.meta))
+        self.insertExampleMeta(label, supersense, realSense, tokens, features, setName)
         self._getExampleIO().writeExample(classId, features)
         self.classCounts[label] += 1
         return label
