@@ -22,11 +22,11 @@ class FeatureGroup(object):
             meta.insert("feature", {"name":featureName, "id":featureIds[featureName]})
         return featureIds[featureName]
     
-    def _buildVector(self, features, values, exampleFeatures, featureIds, meta):
+    def _buildVector(self, features, values, featureIds, meta):
         if values == None:
             values = [1] * len(features) # Use default weight for all features
         assert len(features) == len(values)
-        featureSet = OrderedDict
+        featureSet = OrderedDict()
         for feature, value in zip(features, values):
             if not isinstance(feature, basestring):
                 feature = self._getFeatureNameAsString(feature)

@@ -2,7 +2,8 @@ import sys, os
 from collections import OrderedDict
 from Meta import Meta
 from ExampleIO import SVMLightExampleIO
-from __main__ import time
+import time
+import csv
 
 class Experiment(object):
     def readExamples(self, filePath):
@@ -12,17 +13,17 @@ class Experiment(object):
             examples = [row for row in reader]
             for example in examples:
                 example["index"] = int(example["index"])
-                example["parent"] = int(example["parent"])
+                example["parent"] = int(example["parent"]) if example["parent"] != "" else None
             return examples
     
     def readSentences(self, filePath):
         examples = self.readExamples(filePath)
-        sentences = OrderedDict()
+        sentenceDict = OrderedDict()
         for example in examples:
-            if example["sentence"] not in sentences:
-                sentences[example["sentence"]] = []
-            sentences[example["sentence"]].append(example)
-        return sentences
+            if example["sentence"] not in sentenceDict:
+                sentenceDict[example["sentence"]] = []
+            sentenceDict[example["sentence"]].append(example)
+        return [sentenceDict[x] for x in sentenceDict]
     
     def readCorpus(self, setNames):
         self.corpus = {}
@@ -81,19 +82,20 @@ class Experiment(object):
         self.beginExperiment(metaDataFileName)
         if setNames == None:
             setNames = self.includeSets
-        self.corpus = self.readCorpus(setNames)
+        self.readCorpus(setNames)
         sentenceCount = 0
         exampleCount = 0
-        numSentences = sum([len(self.corpus[setName]) for setName in setNames])
+        numSentences = sum([len(self.corpus.get(setName, [])) for setName in setNames])
         for setName in setNames:
             for sentence in self.corpus[setName]:
                 exampleIds = []
                 exampleFeatures = {}
                 exampleLabels = {}
                 for example in sentence:
+                    print example
                     exampleId = self._getExampleId(example)
                     exampleLabels[exampleId] = self.getClassId(self.getLabel(example))
-                print "Processing sentence", str(sentenceCount) + "/" + str(numSentences)
+                print "Processing sentence", str(sentenceCount + 1) + "/" + str(numSentences)
                 for featureGroup in self.featureGroups:
                     for example in sentence:
                         exampleId = self._getExampleId(example)
@@ -102,10 +104,11 @@ class Experiment(object):
                         self._addToSentence(exampleId, featureGroup.name, featureSet, exampleFeatures)
                         self._addToSentence(exampleId, "ALL_FEATURES", featureSet, exampleFeatures, False)
                 for exampleId in exampleIds:
-                    self.meta.insert("example", dict(example, example_id=exampleId, num_features=len(exampleFeatures[exampleId])))
-                    exampleWriter.writeExample(exampleLabels[exampleId], exampleFeatures[exampleId])
+                    self.meta.insert("example", dict(example, example_id=exampleId, num_features=len(exampleFeatures.get(exampleId, []))))
+                    exampleWriter.writeExample(exampleLabels[exampleId], exampleFeatures.get(exampleId, {}))
                     #setCounts[example["set"]] += 1
                     exampleCount += 1
+                sentenceCount += 1
 
         for classId in self.classIds:
             self.meta.insert("class", {"label":classId, "id":self.classIds[classId]})
