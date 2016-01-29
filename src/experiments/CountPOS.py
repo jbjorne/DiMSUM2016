@@ -7,6 +7,7 @@ class CountPOS(Experiment):
         super(CountPOS, self).__init__()
         self.posCounts = {}
         self.goldCounts = {}
+        self.common = {}
     
     def processSentence(self, sentence, setName):
         for i in range(len(sentence)):
@@ -14,6 +15,16 @@ class CountPOS(Experiment):
             self.meta.insert("token", dict(token, token_id=self._getTokenId(token)))
             self.countPOS(token)
             self.countGoldPOS(i, sentence, setName)
+            self.countCommon(token)
+    
+    def countCommon(self, token):
+        lemma = token["lemma"]
+        if token["lemma"] not in self.common:
+            self.common[lemma] = {"pos":0, "neg":0, "lemma":lemma}
+        if token["supersense"] != None:
+            self.common[lemma]["pos"] += 1
+        elif token["MWE"] in ("O", "o"):
+            self.common[lemma]["neg"] += 1
     
     def countGoldPOS(self, i, sentence, setName):       
         goldTokens = self.getGoldExample(i, sentence, includeGaps=False)
@@ -56,10 +67,14 @@ class CountPOS(Experiment):
             self.posCounts[pos][mwe] += 1
     
     def endExperiment(self):
+        # Save POS counts
         rows = [self.posCounts[key] for key in sorted(self.posCounts.keys())]
         self.meta.insert_many("pos_count", rows, True)
-        
+        # Save gold counts
         self.meta.insert_many("gold_count", [{"POS":key, "total":self.goldCounts[key]} for key in sorted(self.goldCounts.keys())], True)
+        # Save common words
+        rows = [x for x in self.common.values()]
+        self.meta.insert_many("common", rows, True)
         
         super(CountPOS, self).endExperiment()
             
