@@ -189,7 +189,7 @@ class Experiment(object):
             self.meta.insert("token", dict(sentence[i], token_id=self._getTokenId(sentence[i]), num_examples=len(supersenses), num_pos=numPos))
             #print (token["lemma"], token["supersense"], token["POS"]), self.getSuperSenses(token["lemma"])                        
     
-    def getGoldExample(self, beginIndex, sentence):
+    def getGoldExample(self, beginIndex, sentence, includeGaps=False):
         """
         For each token in a sentence there can be only one expression,
         which can have one or more words. A new expression begins with
@@ -199,19 +199,27 @@ class Experiment(object):
             return None
         tokens = [sentence[beginIndex]]
         mweType = tokens[0]["MWE"]
-        assert mweType in ("O", "B", "b")
-        if mweType == "O":
+        assert mweType in ("O", "o", "B", "b"), tokens[0]
+        if mweType in ("O", "o"):
             return tokens
         for i in range(beginIndex + 1, len(sentence)):
             mwe = sentence[i]["MWE"]
-            if mwe == "O":
+            if mwe in ("B", "O"):
                 break
-            elif mweType == "B" and mwe == "I":
-                tokens.append(sentence[i])
-            elif mweType == "b" and mwe == "i":
-                tokens.append(sentence[i])
+            elif mwe == "I":
+                if mweType == "B":
+                    tokens.append(sentence[i])
+                elif includeGaps: tokens.append(sentence[i])
+            elif mwe == "i":
+                if mweType == "b":
+                    tokens.append(sentence[i])
+                elif includeGaps: tokens.append(sentence[i])
+            elif mwe == "b":
+                assert mweType == "B"
+                if includeGaps: tokens.append(sentence[i])
             else:
-                assert mwe == "o"
+                assert mwe == "o", sentence[i]
+                if includeGaps: tokens.append(sentence[i])
         return tokens   
     
 #     def isExact(self, tokens, sentence):
