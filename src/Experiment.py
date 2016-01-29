@@ -185,9 +185,20 @@ class Experiment(object):
         if sentence[beginIndex]["supersense"] == None:
             return None
         tokens = [sentence[beginIndex]]
+        mweType = tokens[0]["MWE"]
+        assert mweType in ("O", "B", "b")
+        if mweType == "O":
+            return tokens
         for i in range(beginIndex + 1, len(sentence)):
-            if sentence[i]["supersense"] not in ("B", "O"):
+            mwe = sentence[i]["MWE"]
+            if mwe == "O":
+                break
+            elif mweType == "B" and mwe == "I":
                 tokens.append(sentence[i])
+            elif mweType == "b" and mwe == "i":
+                tokens.append(sentence[i])
+            else:
+                assert mwe == "o"
         return tokens   
     
     def isExact(self, tokens, sentence):
