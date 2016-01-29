@@ -11,19 +11,24 @@ class CountPOS(Experiment):
             self.meta.insert("token", dict(token, token_id=self._getTokenId(token)))
             pos = str(token["POS"])
             if pos not in self.posCounts:
-                self.posCounts[pos] = defaultdict(int) #{c:0 for c in list("BIObio") + ["None"]}
+                self.posCounts[pos] = {} #{c:0 for c in list("BIObio") + ["None"]}
                 self.posCounts[pos]["POS"] = pos
-                self.posCounts[pos]["None"] = 0
+                self.posCounts[pos]["not_O"] = 0
+                self.posCounts[pos]["total"] = 0
                 for char in "bio":
                     self.posCounts[pos][char + "_low"] = 0
                     self.posCounts[pos][char.upper() + "_up"] = 0
-                    
-            mwe = token["MWE"]
-            if mwe.islower():
-                mwe += "_low"
-            else:
-                mwe += "_up"
-            self.posCounts[pos][mwe] += 1
+            
+            self.posCounts[pos]["total"] += 1      
+            if token["supersense"] != None or token["MWE"] != "O":
+                mwe = token["MWE"]
+                if mwe not in ("O", "o"):
+                    self.posCounts[pos]["not_O"] += 1
+                if mwe.islower():
+                    mwe += "_low"
+                else:
+                    mwe += "_up"
+                self.posCounts[pos][mwe] += 1
     
     def endExperiment(self):
         rows = [self.posCounts[key] for key in sorted(self.posCounts.keys())]
