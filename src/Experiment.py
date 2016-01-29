@@ -157,31 +157,40 @@ class Experiment(object):
  
     def processSentence(self, sentence, setName):
         numTokens = len(sentence)
+        mappedTokens = [False] * len(sentence)
         for i in range(numTokens):
             numPos = 0
             numTotal = 0
-            goldExample = self.getGoldExample(i, sentence)
-            for j in range(i + self.maxExampleTokens, i, -1):
-                tokens = sentence[i:j]
-                numCombination = 0
-                supersenses = self.getSuperSenses("_".join([x["lemma"] for x in tokens]))
-                for supersense in supersenses:
-                    if self.buildExample(tokens, supersense, sentence, supersenses, setName):
-                        numPos += 1
-                    numTotal += 1
-                    numCombination += 1
-                    self.exampleCount += 1
-                if numCombination == 0 and self.isExact(tokens, sentence):
-                    missedSense = self.getAnnotatedSense(tokens, sentence)
-                    if missedSense != None:
-                        self.insertExampleMeta(None, None, missedSense, tokens, {}, setName)
-                        self.missedExampleCount += 1
-                if numTotal > 0:
-                    break
+            goldTokens = self.getGoldExample(i, sentence)
+            skipNested = mappedTokens[i]
+            if not skipNested:
+                for j in range(i + self.maxExampleTokens, i, -1):
+                    tokens = sentence[i:j]
+                    supersenses = self.getSuperSenses("_".join([x["lemma"] for x in tokens]))
+                    goldSupersense = None
+                    if tokens == goldTokens:
+                        goldSupersense = goldTokens[0]["supersense"]
+                    for supersense in supersenses:
+                        if self.buildExample(tokens, sentence, supersense, supersenses, goldSupersense, setName):
+                            numPos += 1
+                        numTotal += 1
+                        self.exampleCount += 1
+                    if numTotal > 0:
+                        for mappedIndex in range(i, j):
+                            mappedTokens[mappedIndex] = True
+                        break
+            if goldTokens != None and numPos == 0:
+                self.insertExampleMeta(None, None, goldSupersense, tokens, {}, setName, numTotal > 0, skipNested)
+                self.missedExampleCount += 1
             self.meta.insert("token", dict(sentence[i], token_id=self._getTokenId(sentence[i]), num_examples=len(supersenses), num_pos=numPos))
-                #print (token["lemma"], token["supersense"], token["POS"]), self.getSuperSenses(token["lemma"])                        
+            #print (token["lemma"], token["supersense"], token["POS"]), self.getSuperSenses(token["lemma"])                        
     
     def getGoldExample(self, beginIndex, sentence):
+        """
+        For each token in a sentence there can be only one expression,
+        which can have one or more words. A new expression begins with
+        one of the MWE tags 'O', 'B' or 'b'.
+        """
         if sentence[beginIndex]["supersense"] == None:
             return None
         tokens = [sentence[beginIndex]]
@@ -201,46 +210,50 @@ class Experiment(object):
                 assert mwe == "o"
         return tokens   
     
-    def isExact(self, tokens, sentence):
-        if tokens[0]["MWE"] in ("O", "o"): # This is a single-word expression
-            return len(tokens) == 1
-        elif tokens[0]["MWE"] == "B": # The first token begins a multi-word expression
-            if len(tokens) == 1: # A MWE must have more than one token
-                return False
-            for token in tokens[1:]: # Check tokens after the beginning one
-                if token["MWE"] != "I": # Tokens must extend the MWE
-                    return False
-            if tokens[-1] != sentence[-1]: # Check the token after the last one
-                if sentence[tokens[-1]["index"] + 1]["MWE"] in ("I", "i", "o", "b"): # The token after the last one must close the MWE
-                    return False
-            return True # MWE is a B + n * I series
-        return False # MWE begins with a token other than B
+#     def isExact(self, tokens, sentence):
+#         if tokens[0]["MWE"] in ("O", "o"): # This is a single-word expression
+#             return len(tokens) == 1
+#         elif tokens[0]["MWE"] == "B": # The first token begins a multi-word expression
+#             if len(tokens) == 1: # A MWE must have more than one token
+#                 return False
+#             for token in tokens[1:]: # Check tokens after the beginning one
+#                 if token["MWE"] != "I": # Tokens must extend the MWE
+#                     return False
+#             if tokens[-1] != sentence[-1]: # Check the token after the last one
+#                 if sentence[tokens[-1]["index"] + 1]["MWE"] in ("I", "i", "o", "b"): # The token after the last one must close the MWE
+#                     return False
+#             return True # MWE is a B + n * I series
+#         return False # MWE begins with a token other than B
+#     
+#     def getAnnotatedSense(self, tokens, sentence):
+#         if self.isExact(tokens, sentence):
+#             return tokens[0]["supersense"]
+#         else:
+#             return None
     
-    def getAnnotatedSense(self, tokens, sentence):
-        if self.isExact(tokens, sentence):
-            return tokens[0]["supersense"]
-        else:
-            return None
-    
-    def insertExampleMeta(self, label, supersense, realSense, tokens, features, setName):
+    def insertExampleMeta(self, label, supersense, goldSupersense, tokens, features, setName, textDetected, isNested):
         exampleId = self._getExampleId(tokens)
         self.meta.insert("example", {"label":label, 
                                      "supersense":supersense, 
-                                     "real_sense":realSense, 
+                                     "gold_sense":goldSupersense, 
                                      "text":" ".join([x["word"] for x in tokens]), 
                                      "set_name":setName, 
                                      "example_id":exampleId, 
                                      "num_features":len(features),
-                                     "num_tokens":len(tokens)})
+                                     "num_tokens":len(tokens),
+                                     "mwe_type":"".join([x["MWE"] for x in tokens]),
+                                     "text_detected":textDetected,
+                                     "nested":isNested})
     
-    def buildExample(self, tokens, supersense, sentence, supersenses, setName):
-        realSense = self.getAnnotatedSense(tokens, sentence)
-        label = True if supersense == realSense else False
+    def buildExample(self, tokens, sentence, supersense, supersenses, goldSupersense, setName):
+        #realSense = self.getAnnotatedSense(tokens, sentence)
+        #label = True if supersense == realSense else False
+        label = True if supersense == goldSupersense else False
         classId = self.getClassId(label)
         features = {}
         for featureGroup in self.featureGroups:
             features.update(featureGroup.processExample(tokens, supersense, sentence, supersenses, self.featureIds, self.meta))
-        self.insertExampleMeta(label, supersense, realSense, tokens, features, setName)
+        self.insertExampleMeta(label, supersense, goldSupersense, tokens, features, setName, True)
         self._getExampleIO().writeExample(classId, features)
         self.classCounts[label] += 1
         return label
