@@ -160,6 +160,7 @@ class Experiment(object):
         for i in range(numTokens):
             numPos = 0
             numTotal = 0
+            goldExample = self.getGoldExample(i, sentence)
             for j in range(i + self.maxExampleTokens, i, -1):
                 tokens = sentence[i:j]
                 numCombination = 0
@@ -179,6 +180,15 @@ class Experiment(object):
                     break
             self.meta.insert("token", dict(sentence[i], token_id=self._getTokenId(sentence[i]), num_examples=len(supersenses), num_pos=numPos))
                 #print (token["lemma"], token["supersense"], token["POS"]), self.getSuperSenses(token["lemma"])                        
+    
+    def getGoldExample(self, beginIndex, sentence):
+        if sentence[beginIndex]["supersense"] == None:
+            return None
+        tokens = [sentence[beginIndex]]
+        for i in range(beginIndex + 1, len(sentence)):
+            if sentence[i]["supersense"] not in ("B", "O"):
+                tokens.append(sentence[i])
+        return tokens   
     
     def isExact(self, tokens, sentence):
         if tokens[0]["MWE"] in ("O", "o"): # This is a single-word expression
