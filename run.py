@@ -2,6 +2,7 @@ import os
 import inspect
 from experiments import *
 from src.experiments.CountMWE import CountMWE
+from src.experiments.CountPOS import CountPOS
 from src.Classification import Classification
 import src.utils.Stream as Stream
 from src.utils.common import splitOptions, getOptions
