@@ -243,17 +243,19 @@ class Experiment(object):
 #         else:
 #             return None
     
-    def insertExampleMeta(self, label, supersense, goldSupersense, tokens, features, setName, textDetected, isNested):
+    def insertExampleMeta(self, label, supersense, goldSupersense, tokens, features, setName, textDetected, isNested, tableName="examples"):
         exampleId = self._getExampleId(tokens)
-        self.meta.insert("example", {"label":label, 
+        self.meta.insert(tableName, {"label":label, 
                                      "supersense":supersense, 
                                      "gold_sense":goldSupersense, 
-                                     "text":" ".join([x["word"] for x in tokens]), 
+                                     "text":" ".join([x["word"] for x in tokens]),
+                                     "lemma":" ".join([x["lemma"] for x in tokens]), 
                                      "set_name":setName, 
                                      "example_id":exampleId, 
                                      "num_features":len(features),
                                      "num_tokens":len(tokens),
                                      "mwe_type":"".join([x["MWE"] for x in tokens]),
+                                     "POS":":".join([x["POS"] for x in tokens]),
                                      "text_detected":textDetected,
                                      "nested":isNested})
     

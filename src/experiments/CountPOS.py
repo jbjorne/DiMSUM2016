@@ -13,11 +13,19 @@ class CountPOS(Experiment):
             token = sentence[i]
             self.meta.insert("token", dict(token, token_id=self._getTokenId(token)))
             self.countPOS(token)
-            self.countGoldPOS(i, sentence)
+            self.countGoldPOS(i, sentence, setName)
     
-    def countGoldPOS(self, i, sentence):       
-        goldTokens = self.getGoldExample(i, sentence, includeGaps=True)
+    def countGoldPOS(self, i, sentence, setName):       
+        goldTokens = self.getGoldExample(i, sentence, includeGaps=False)
         if goldTokens:
+            self.insertExampleMeta(label=None, 
+                                   supersense=None, 
+                                   goldSupersense=goldTokens[0]["supersense"], 
+                                   tokens=goldTokens, 
+                                   features={}, 
+                                   setName=setName, 
+                                   textDetected=False, 
+                                   isNested=False)
             goldPOS = [x["POS"] for x in goldTokens]
             goldPOS = [x[0] for x in groupby(goldPOS)]
             goldPOS = ":".join(goldPOS)
