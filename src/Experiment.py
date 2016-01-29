@@ -178,6 +178,7 @@ class Experiment(object):
                     if numTotal > 0:
                         for mappedIndex in range(i, j):
                             mappedTokens[mappedIndex] = True
+                        skipNested = True
                         break
             if goldTokens != None and numPos == 0:
                 self.insertExampleMeta(None, None, goldSupersense, tokens, {}, setName, numTotal > 0, skipNested)
