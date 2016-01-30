@@ -64,7 +64,8 @@ class ResultAnalysis(Analysis):
         print "Processing sentences"
         sentence = []
         sentenceCount = 0
-        outFile = open(os.path.join(self.inDir, "dimsum16." + setName + ".pred"), "wt")
+        predFile = open(os.path.join(self.inDir, "dimsum16." + setName + ".pred"), "wt")
+        debugFile = open(os.path.join(self.inDir, "debug." + setName + ".pred"), "wt")
         prevSentence = None
         for token in tokens:
             if prevSentence != None and prevSentence != token["sentence"]:
@@ -74,8 +75,16 @@ class ResultAnalysis(Analysis):
                 for sentenceToken in sentence:
                     sentenceToken = sentenceToken.copy()
                     sentenceToken["index"] = sentenceToken["index"] + 1
-                    outFile.write("\t".join([(str(sentenceToken[column]) if sentenceToken[column] != None else "") for column in self.columns]) + "\n")
-                outFile.write("\n")
+                    for column in self.columns:
+                        if sentenceToken[column] == None:
+                            sentenceToken[column] = ""
+                        else:
+                            sentenceToken[column] = str(sentenceToken[column])
+                    debugFile.write("\t".join([sentenceToken[column] for column in self.columns]) + "\n")
+                    sentenceToken["lemma"] = "-"
+                    predFile.write("\t".join([sentenceToken[column] for column in self.columns]) + "\n")
+                debugFile.write("\n")
+                predFile.write("\n")
                 sentenceCount += 1
                 sentence = []
             prevSentence = token["sentence"]
@@ -86,14 +95,15 @@ class ResultAnalysis(Analysis):
             outToken["MWE"] = "O"
             sentence.append(outToken)
             
-        outFile.close()
+        predFile.close()
+        debugFile.close()
         print "Finished processing dataset '" + setName + "'", counts
         
     def analyse(self, inDir, fileStem=None, hidden=False, clear=True):
         self.inDir = inDir
         self.meta = self._getMeta(inDir, fileStem)
         for filename in os.listdir(inDir):
-            if filename.startswith("dimsum16.") and filename.endswith(".pred"):
+            if filename.endswith(".pred"):
                 os.remove(os.path.join(inDir, filename))
         #if clear:
         #    meta.drop("project_analysis")
