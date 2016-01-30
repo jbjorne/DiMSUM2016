@@ -119,40 +119,41 @@ class Experiment(object):
     def processSentence(self, sentence, setName):
         numTokens = len(sentence)
         matchedUntil = 0
-        for i in range(numTokens):
+        for i in range(numTokens): # There can be max one example per each token
+            numExamples = 0
             numPos = 0
             goldTokens = getGoldExample(i, sentence)
             goldSupersense = goldTokens[0]["supersense"]
-            supersenses = None
-            if i >= matchedUntil - 1:
+            if i >= matchedUntil:
+                matchLength = 0
                 for j in range(i + self.maxExampleTokens, i, -1):
                     tokens = sentence[i:j]
                     exampleGoldSupersense = None
-                    if tokens == goldTokens: # Make a positive exaple only for the exact match
+                    if tokens == goldTokens: # Make a positive example only for the exact match
                         exampleGoldSupersense = goldTokens[0]["supersense"]
                     supersenses = self.taggers[0].tag(tokens)
                     if supersenses:
                         for supersense in supersenses:
                             if self.buildExample(tokens, sentence, supersense, supersenses, exampleGoldSupersense, setName):
                                 numPos += 1
+                            numExamples += 1
                         matchedUntil = j
+                        matchLength = j - i
                         break # Ignore nested matches
             if goldTokens != None and numPos == 0:
                 if hasGaps(goldTokens):
                     skipReason = "gaps"
                 elif len(goldTokens) > self.maxExampleTokens:
                     skipReason = "too long"
-                elif i < matchedUntil - 1:
+                elif i < matchedUntil:
                     skipReason = "nested"
-                elif len(goldTokens) < matchedUntil - i:
-                    skipReason = "nested"
-                elif (len(goldTokens) == matchedUntil - i) and (supersenses != None):
+                elif len(goldTokens) == matchLength:
                     skipReason = "type"
                 else:
                     skipReason = "unknown"
                 self.insertExampleMeta(None, None, goldSupersense, tokens, {}, setName, skipReason)
                 self.missedExampleCount += 1
-            self.meta.insert("token", dict(sentence[i], token_id=getTokenId(sentence[i]), num_examples=len(supersenses), num_pos=numPos))
+            self.meta.insert("token", dict(sentence[i], token_id=getTokenId(sentence[i]), num_examples=numExamples, num_pos=numPos))
 
     ###########################################################################
     # Example Generation
