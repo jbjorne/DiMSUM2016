@@ -150,7 +150,7 @@ class Experiment(object):
                     skipReason = "no match"
                 else:
                     skipReason = "unknown"
-                self.insertExampleMeta(None, None, goldTokens[0]["supersense"], tokens, {}, setName, skipReason)
+                self.insertExampleMeta(None, None, goldTokens[0]["supersense"], goldTokens, {}, setName, skipReason)
             # Save the token
             self.meta.insert("token", dict(sentence[i], token_id=getTokenId(sentence[i]), num_neg=exampleCounts["neg"], num_pos=exampleCounts["pos"]))
 

@@ -50,6 +50,7 @@ def hasGaps(tokens):
         assert token["index"] > index, tokens
         if token["index"] - index > 1:
             return True
+        index = token["index"]
     return False
 
 class Corpus():
