@@ -15,6 +15,7 @@ class Resources:
     def validate(self, key):
         if key not in self.__resources:
             raise Exception("Unknown resource key '" + str(key) + "'")
+        return key
         
     def __add(self, level, key, name, details=None):
         assert level in (1, 2, 3)
