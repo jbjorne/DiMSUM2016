@@ -36,7 +36,7 @@ if __name__ == "__main__":
     groupC.add_argument('-m','--metric', help='', default="roc_auc")
     #groupC.add_argument('-i','--iteratorCV', help='', default='getStratifiedKFoldCV')
     groupC.add_argument('-n','--numFolds', help='Number of folds in cross-validation', type=int, default=10)
-    groupC.add_argument('-v','--verbose', help='Cross-validation verbosity', type=int, default=3)
+    groupC.add_argument('-v','--verbose', help='Cross-validation verbosity', type=int, default=4)
     groupC.add_argument('-l', '--parallel', help='Cross-validation parallel jobs', type=int, default=1)
     groupC.add_argument("--hidden", default=False, action="store_true", dest="hidden")
     groupC.add_argument('--preDispatch', help='', default='2*n_jobs')

@@ -1,6 +1,7 @@
 import sys, os
 from utils.common import getOptions
 from sklearn.metrics.scorer import make_scorer
+from src.utils.evaluation import getClassPredictions, aucForPredictions
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from sklearn.cross_validation import StratifiedKFold, LeaveOneLabelOut
 from skext.gridSearch import ExtendedGridSearchCV
@@ -185,8 +186,8 @@ class Classification(object):
                     for key in search.extras_[index][fold].get("counts", {}).keys():
                         result[key + "_size"] = search.extras_[index][fold]["counts"][key]
                 results.append(result)
-#             if hasattr(search, "extras_") and self.classes and len(self.classes) == 2:
-#                 print ["%0.8f" % x for x in self._validateExtras(search.extras_[index], y_train)], "(eval:auc)"
+            if hasattr(search, "extras_") and self.classes and len(self.classes) == 2:
+                print ["%0.8f" % x for x in self._validateExtras(search.extras_[index], y_train)], "(eval:auc)"
             print scores, "(" + self.metric + ")"
             print "%0.3f (+/-%0.03f) for %r" % (mean_score, scores.std() / 2, params)                    
             index += 1
@@ -202,19 +203,20 @@ class Classification(object):
         self.meta.flush() 
         return search
     
-#     def _validateExtras(self, folds, labels):
-#         validationScores = []
-#         for fold in range(len(folds)):
-#             if self.classes and len(self.classes) == 2 and "probabilities" in folds[fold]:
-#                 probabilityByIndex = folds[fold]["probabilities"]
-#                 foldIndices = sorted(probabilityByIndex.keys())
-#                 foldLabels = [labels[i] for i in foldIndices]
-#                 foldProbabilities = [probabilityByIndex[i] for i in foldIndices]
-#                 foldPredictions = getClassPredictions(foldProbabilities, self.classes)
-#                 #print fold, foldProbabilities
-#                 #print len(foldLabels)
-#                 folds[fold]["predictions"] = {i:x for i,x in zip(foldIndices, foldPredictions)}
-#         return validationScores   
+    def _validateExtras(self, folds, labels):
+        validationScores = []
+        for fold in range(len(folds)):
+            if self.classes and len(self.classes) == 2 and "probabilities" in folds[fold]:
+                probabilityByIndex = folds[fold]["probabilities"]
+                foldIndices = sorted(probabilityByIndex.keys())
+                foldLabels = [labels[i] for i in foldIndices]
+                foldProbabilities = [probabilityByIndex[i] for i in foldIndices]
+                foldPredictions = getClassPredictions(foldProbabilities, self.classes)
+                #print fold, foldProbabilities
+                #print len(foldLabels)
+                folds[fold]["predictions"] = {i:x for i,x in zip(foldIndices, foldPredictions)}
+                validationScores.append(aucForPredictions(foldLabels, foldPredictions))
+        return validationScores    
     
     def _saveExtras(self, folds, setName, noFold=False):
         if folds == None or not self.saveExtra:
@@ -223,7 +225,10 @@ class Classification(object):
             extras = folds[fold]
             foldIndex = None if noFold else fold
             if "predictions" in extras:
-                rows = [OrderedDict([("example",self.indices[setName][setIndex]), ("fold",foldIndex), ("set",setName), ("predicted", extras["predictions"][setIndex])]) for setIndex in sorted(extras["predictions"].keys())]
+                rows = []
+                for setIndex in sorted(extras["predictions"].keys()):
+                    example = self.examples[self.indices[setName][setIndex]]
+                    rows.append( OrderedDict( [("example",example["id"]), ("fold",foldIndex), ("set",setName), ("predicted", extras["predictions"][setIndex])] ) )
                 self._insert("prediction", rows)
             if "importances" in extras:
                 importances = extras["importances"]
