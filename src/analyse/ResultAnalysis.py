@@ -22,14 +22,16 @@ class ResultAnalysis(Analysis):
             maxExample = None
             maxPrediction = None
             for example in examples:
-                prediction = self.predictions[example["id"]]
-                if maxPrediction == None or float(prediction["predicted"]) > maxPrediction:
-                    maxExample = example
-            if float(maxPrediction["predicted"]) > 0.0:
+                if example["id"] in self.predictions:
+                    prediction = self.predictions[example["id"]]
+                    if maxPrediction == None or prediction > maxPrediction:
+                        maxExample = example
+                        maxPrediction = prediction
+            if maxExample != None and maxPrediction > 0.0:
                 token["supersense"] = maxExample["supersense"]
                 span = sorted([int(x) for x in str(maxExample["tokens"]).split(",")])
                 assert span[0] == index
-                if len(span) == 0:
+                if len(span) == 1:
                     token["MWE"] = "O"
                     counts["pred-O"] += 1
                 else:
@@ -40,7 +42,7 @@ class ResultAnalysis(Analysis):
                         assert spanIndex >= index
                         if spanIndex > index:
                             sentence[spanIndex]["MWE"] = "I"
-                            sentence[spanIndex]["parent"] = spanIndex - 1
+                            sentence[spanIndex]["parent"] = spanIndex - 1 + 1
                             counts["pred-I"] += 1
                         else:
                             token["MWE"] = "B"
@@ -70,6 +72,8 @@ class ResultAnalysis(Analysis):
                     print "Processing sentence", str(sentenceCount + 1) + "/" + str(counts["sentences"])
                 self.processSentence(sentence, counts)
                 for sentenceToken in sentence:
+                    sentenceToken = sentenceToken.copy()
+                    sentenceToken["index"] = sentenceToken["index"] + 1
                     outFile.write("\t".join([(str(sentenceToken[column]) if sentenceToken[column] != None else "") for column in self.columns]) + "\n")
                 outFile.write("\n")
                 sentenceCount += 1
@@ -95,8 +99,10 @@ class ResultAnalysis(Analysis):
         #    meta.drop("project_analysis")
         print "Reading examples"
         self.examples = [x for x in self.meta.db.query("SELECT id,supersense,sentence,root_token,tokens FROM example WHERE skipped IS NULL;")] # [x for x in self.meta.db["example"].all() if x["label"] is not None]
+        for example in self.examples:
+            example["root_token"] = int(example["root_token"])
         print "Reading predictions"
-        self.predictions = [x for x in self.meta.db.query("SELECT * FROM prediction WHERE predicted > 0;")] #{x["example"]:x["predicted"] for x in self.meta.db["prediction"].all()}
+        self.predictions = {x["example"]:float(x["predicted"]) for x in self.meta.db.query("SELECT * FROM prediction WHERE predicted > 0;")} #{x["example"]:x["predicted"] for x in self.meta.db["prediction"].all()}
         #print "Checking predictions"
         #for example in self.examples:
         #    assert example["id"] in self.predictions
@@ -113,6 +119,8 @@ class ResultAnalysis(Analysis):
         
         print "Reading tokens"
         self.tokens = [x for x in self.meta.db["token"].all()]
+        for token in self.tokens:
+            token["index"] = int(token["index"])
         print "Processing datasets"
         self.writeTokens(self.tokens, "train")
         if hidden:
