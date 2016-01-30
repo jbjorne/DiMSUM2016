@@ -54,12 +54,13 @@ class Experiment(object):
         self.meta.initCache("feature", 100000)        
 
     def endExperiment(self):
-        for classId in self.classIds:
-            self.meta.insert("class", {"label":classId, "id":self.classIds[classId], "instances":self.classCounts[classId]})
+        for label in self.classIds:
+            self.meta.insert("class", {"label":label, "id":self.classIds[label], "instances":self.exampleCounts.get(label, 0)})
         self.meta.flush()
-        print "Built", self.exampleCount, "examples with", len(self.featureIds), "unique features"
-        print "Missed", self.missedExampleCount, "positive examples with window size", self.maxExampleTokens
-        print "Counts:", dict(self.classCounts)
+        print "Built", sum(self.exampleCounts.values()), "examples with", len(self.featureIds), "unique features"
+        print "Missed", sum(self.missedExampleCounts.values()), "positive examples with window size", self.maxExampleTokens
+        print "Examples:", dict(self.exampleCounts)
+        print "Missed:", dict(self.missedExampleCounts)
 
     def _getChildVars(self):
         members = vars(self)
@@ -96,9 +97,8 @@ class Experiment(object):
         self.corpus.readCorpus(setNames) #self.readCorpus(setNames)
         #self.analysePOS()
         self.sentenceCount = 0
-        self.exampleCount = 0
-        self.missedExampleCount = 0
-        self.classCounts = defaultdict(int)
+        self.exampleCounts = defaultdict(int)
+        self.missedExampleCounts = defaultdict(int)
         self.numSentences = sum([len(self.corpus.getSentences(setName)) for setName in setNames])
         for setName in setNames:
             self.processSentences(self.corpus.getSentences(setName), setName)
@@ -122,7 +122,6 @@ class Experiment(object):
         for i in range(numTokens): # There can be max one example per each token
             tokenCounts = {"pos":0, "neg":0} # Number of examples
             goldTokens = getGoldExample(i, sentence)
-            goldSupersense = goldTokens[0]["supersense"]
             matchLength = -1
             if i >= matchedUntil:
                 for j in range(i + self.maxExampleTokens, i, -1):
@@ -132,6 +131,7 @@ class Experiment(object):
                         matchLength = len(tokens)
                         matchedUntil = j
                         break
+            # If no positive example is generated record the reason
             if goldTokens != None and tokenCounts["pos"] == 0:
                 if hasGaps(goldTokens):
                     skipReason = "gaps"
@@ -143,8 +143,8 @@ class Experiment(object):
                     skipReason = "type"
                 else:
                     skipReason = "unknown"
-                self.insertExampleMeta(None, None, goldSupersense, tokens, {}, setName, skipReason)
-                self.missedExampleCount += 1
+                self.insertExampleMeta(None, None, goldTokens[0]["supersense"], tokens, {}, setName, skipReason)
+            # Save the token
             self.meta.insert("token", dict(sentence[i], token_id=getTokenId(sentence[i]), num_neg=tokenCounts["neg"], num_pos=tokenCounts["pos"]))
 
     def buildExamples(self, tokens, goldTokens, sentence, setName):
@@ -182,6 +182,10 @@ class Experiment(object):
                                      "POS":":".join([x["POS"] for x in tokens]),
                                      "tagger":taggerName,
                                      "skipped":skipReason})
+        if label == None:
+            self.missedExampleCounts[skipReason] += 1
+        else:
+            self.exampleCounts[label] += 1
     
     def buildExample(self, tokens, sentence, supersense, supersenses, goldSupersense, setName, taggerName):
         #realSense = self.getAnnotatedSense(tokens, sentence)
@@ -193,6 +197,4 @@ class Experiment(object):
             features.update(featureGroup.processExample(tokens, supersense, sentence, supersenses, self.featureIds, self.meta))
         self.insertExampleMeta(label, supersense, goldSupersense, tokens, features, setName, None, taggerName)
         self._getExampleIO().writeExample(classId, features)
-        self.classCounts[label] += 1
-        self.exampleCount += 1
         return label

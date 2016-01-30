@@ -46,8 +46,8 @@ def getGoldExample(beginIndex, sentence, includeGaps=False):
 
 def hasGaps(tokens):
     index = tokens[0]["index"]
-    for token in tokens:
-        assert token["index"] > index
+    for token in tokens[1:]:
+        assert token["index"] > index, tokens
         if token["index"] - index > 1:
             return True
     return False
