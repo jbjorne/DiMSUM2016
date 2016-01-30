@@ -19,6 +19,7 @@ class Resources:
     
     def __addToReport(self, used, level, report):
         assert level in (1, 2, 3)
+        report += "GROUP " + level * "I" + ",,"
         for name in self.__resources:
             resource = self.__resources[name]
             if resource["level"] == level:
@@ -34,6 +35,9 @@ class Resources:
     def buildReport(self, used):
         report = "Resource,Used?,Details if used\n"
         report += ",,"
-        report += "GROUP I,,"
-        for name in self.__resources:
-            if
+        for level in (1,2,3):
+            report = self.__addToReport(used, level, report)
+        report += "\"RULES: If you put Y for any resource in Group III, the system will be counted under the Open condition.\",,\n"
+        report += "\"Otherwise, if you put Y for the resource in Group II, the system will be counted under the Semi-supervised Closed condition.\",,\n"
+        report += "\"Otherwise, the system will be counted under the Supervised Closed condition.\",,"
+        return report
