@@ -1,8 +1,14 @@
 from collections import OrderedDict
 
 class Resources:
+    __resources = None
+    
     def __init__(self):
-        self.__resources = OrderedDict()
+        if Resources.__resources == None:
+            self.__initResources()
+    
+    def __initResources(self):
+        Resources.__resources = OrderedDict()
         # Group 1
         self.__add(1, "corpus", "labeled training data", "v. 1.5")
         self.__add(1, "WordNet", "English WordNet")
@@ -19,13 +25,13 @@ class Resources:
         
     def __add(self, level, key, name, details=None):
         assert level in (1, 2, 3)
-        assert key not in self.__resources
-        self.__resources[key] = {"level":level, "name":name, "details":details}
+        assert key not in Resources.__resources
+        Resources.__resources[key] = {"level":level, "name":name, "details":details}
     
     def __addToReport(self, used, level, report):
         assert level in (1, 2, 3)
         report += "GROUP " + level * "I" + ",,"
-        for key in self.__resources:
+        for key in Resources.__resources:
             resource = self.__resources[key]
             if resource["level"] == level:
                 s = resource["name"] + ","
