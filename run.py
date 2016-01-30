@@ -62,6 +62,9 @@ if __name__ == "__main__":
         featureGroups = (e.featureGroups if e.featureGroups != None else []) + (options.features.split(",") if options.features else [])
         print "Using feature groups:", featureGroups
         e.featureGroups = getFeatureGroups(featureGroups)
+        taggers = e.taggers
+        print "Using taggers:", taggers
+        e.taggers = getFeatureGroups(taggers)
         e.run(options.output)
         e = None
     

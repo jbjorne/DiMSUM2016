@@ -44,6 +44,14 @@ def getGoldExample(beginIndex, sentence, includeGaps=False):
             if includeGaps: tokens.append(sentence[i])
     return tokens
 
+def hasGaps(tokens):
+    index = tokens[0]["index"]
+    for token in tokens:
+        assert token["index"] > index
+        if token["index"] - index > 1:
+            return True
+    return False
+
 class Corpus():
     def __init__(self, dataPath):
         self.dataPath = dataPath

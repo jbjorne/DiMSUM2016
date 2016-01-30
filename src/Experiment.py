@@ -18,6 +18,7 @@ class Experiment(object):
         self.classNames = {}
         self.maxExampleTokens = 6
         
+        self.taggers = None
         self.featureGroups = None
         self.includeSets = ("train",)
         self.meta = None
@@ -114,14 +115,6 @@ class Experiment(object):
             self.corpus.printSentence(sentence)
             traceback.print_exc()
             sys.exit()
-    
-    def hasGaps(self, tokens):
-        index = tokens[0]["index"]
-        for token in tokens:
-            assert token["index"] > index
-            if token["index"] - index > 1:
-                return True
-        return False
      
     def processSentence(self, sentence, setName):
         numTokens = len(sentence)
@@ -134,10 +127,11 @@ class Experiment(object):
             #if not skipNested:
             for j in range(i + self.maxExampleTokens, i, -1):
                 tokens = sentence[i:j]
-                supersenses = self.getSuperSenses("_".join([x["lemma"] for x in tokens]))
                 goldSupersense = None
                 if tokens == goldTokens:
                     goldSupersense = goldTokens[0]["supersense"]
+                #supersenses = self.getSuperSenses("_".join([x["lemma"] for x in tokens]))
+                supersenses = self.taggers[0].tag(tokens)
                 for supersense in supersenses:
                     if self.buildExample(tokens, sentence, supersense, supersenses, goldSupersense, setName):
                         numPos += 1
@@ -186,7 +180,3 @@ class Experiment(object):
         self._getExampleIO().writeExample(classId, features)
         self.classCounts[label] += 1
         return label
-    
-    def getSuperSenses(self, lemma):
-        lexnames = sorted(set([x.lexname() for x in wordnet.synsets(lemma)])) #
-        return [x.replace("noun.", "n.").replace("verb.", "v.") for x in lexnames if x.startswith("noun.") or x.startswith("verb.")]
