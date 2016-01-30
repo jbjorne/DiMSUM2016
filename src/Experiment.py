@@ -65,6 +65,7 @@ class Experiment(object):
         print "Positives (built and missed):", totalPositives
         print "Examples:", dict(self.exampleCounts)
         print "Missed:", dict(self.missedExampleCounts)
+        print "Taggers:", self.taggerCounts
 
     def _getChildVars(self):
         members = vars(self)
@@ -103,6 +104,9 @@ class Experiment(object):
         self.sentenceCount = 0
         self.exampleCounts = defaultdict(int)
         self.missedExampleCounts = defaultdict(int)
+        self.taggerCounts = {}
+        for tagger in self.taggers:
+            self.taggerCounts[tagger.name] = {"pos":0, "neg":0}
         self.numSentences = sum([len(self.corpus.getSentences(setName)) for setName in setNames])
         for setName in setNames:
             self.processSentences(self.corpus.getSentences(setName), setName)
@@ -166,7 +170,9 @@ class Experiment(object):
             if supersenses:
                 for supersense in supersenses:
                     label = self.buildExample(tokens, sentence, supersense, supersenses, exampleGoldSupersense, setName, tagger.name)
-                    counts["pos" if label else "neg"] += 1
+                    category = "pos" if label else "neg"
+                    counts[category] += 1
+                    self.taggerCounts[tagger.name][category] += 1
                 break # Skip subsequent taggers
         return counts
 

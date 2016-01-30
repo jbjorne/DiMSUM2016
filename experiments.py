@@ -1,7 +1,7 @@
 from src.Experiment import Experiment
 from src.FeatureGroup import FeatureGroup
 from src.taggers.WordNetTagger import WordNetTagger
-from src.taggers import OutOfVocabularyTagger
+from src.taggers.OutOfVocabularyTagger import OutOfVocabularyTagger
 
 ###############################################################################
 # Features
