@@ -2,7 +2,7 @@ import sys, os
 from utils.common import getOptions
 from sklearn.metrics.scorer import make_scorer
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from sklearn.cross_validation import StratifiedKFold
+from sklearn.cross_validation import StratifiedKFold, LeaveOneLabelOut
 from skext.gridSearch import ExtendedGridSearchCV
 from sklearn.metrics import classification_report
 from collections import defaultdict, OrderedDict
@@ -84,6 +84,7 @@ class Classification(object):
         self.X, self.y = exampleIO.readFiles()
         # Read metadata
         self.meta = Meta(os.path.join(inDir, fileStem + ".meta.sqlite"))
+        self.examples = [x for x in self.meta.db["example"].all() if x["label"] is not None]
         self.classes = None
         if "class" in self.meta.db.tables:
             self.classes = [int(x["id"]) for x in self.meta.db["class"].all()]
@@ -106,13 +107,30 @@ class Classification(object):
         if self.classes:
             print "Class distribution = ", countUnique(self.y)
         if setNames == None:
-            setNames = [x["set_name"] for x in self.meta.db["example"].all() if x["label"] is not None]
+            setNames = [x["set_name"] for x in self.examples]
         indices, X_train, X_hidden, y_train, y_hidden = splitData(self.X, self.y, setNames) #hidden.split(self.X, self.y, meta=self.meta.db["example"].all())
         print "Sizes", [X_train.shape[0], y_train.shape[0]], [X_hidden.shape[0], y_hidden.shape[0]]
         if self.classes:
             print "Classes y_train = ", countUnique(y_train)
             print "Classes y_hidden = ", countUnique(y_hidden)
         return indices, X_train, X_hidden, y_train, y_hidden
+    
+    def _getTrainGroups(self):
+        examples = [self.examples[i] for i in self.indices["train"]]
+        groups = []
+        groupNames = set()
+        for example in examples:
+            sentenceId = example["sentence"]
+            if "-" in sentenceId:
+                group = sentenceId.rsplit("-", 1)[0]
+            else:
+                group = sentenceId.split(".")[0]
+            assert group in ("lowlands", "ritter", "ewtb"), example
+            groupNames.add(group)
+            groups.append(group)
+        if len(groupNames) == 1 and groupNames[0] != "ewtb":
+            raise Exception("Training group '" + str(groupNames[0]) + "' cannot be used alone.")
+        return groups
                 
     def classify(self):
         self.meta.dropTables(["result", "prediction", "importance"], 100000)
@@ -139,7 +157,8 @@ class Classification(object):
         # Run the grid search
         print "Cross-validating for", self.numFolds, "folds"
         print "Args", self.classifierArgs
-        cv = StratifiedKFold(y_train, n_folds=self.numFolds, shuffle=True, random_state=1) #self.getCV(y_train, self.meta.meta, numFolds=self.numFolds)
+        cv = LeaveOneLabelOut(self._getTrainGroups())
+        #cv = StratifiedKFold(y_train, n_folds=self.numFolds, shuffle=True, random_state=1) #self.getCV(y_train, self.meta.meta, numFolds=self.numFolds)
         #cv = BalancedIteratorCV(y_train, n_folds=self.numFolds, shuffle=True, random_state=1, examples=[x for x in self.meta.db.query("SELECT * from example WHERE [set] == 'train';")], groupBy="project_code")
         classifier, classifierArgs = self._getClassifier()
         metric = self.metric
@@ -174,8 +193,6 @@ class Classification(object):
         params, mean_score, scores = bestScores
         print scores
         print "%0.3f (+/-%0.03f) for %r" % (mean_score, scores.std() / 2, params)
-        baselines = self._calculateBaseline(cv, y_train)
-        print "MCB = %0.3f (+/-%0.03f) for" % (np.mean(baselines), np.std(baselines) / 2), ["%0.3f" % x for x in baselines], "(" + self.metric + ")"
         print "--------------------------------------------------------------------------------"
         # Save the grid search results
         print "Saving results"
