@@ -1,6 +1,7 @@
 from src.Experiment import Experiment
 from src.FeatureGroup import FeatureGroup
 from src.taggers.WordNetTagger import WordNetTagger
+from src.taggers import OutOfVocabularyTagger
 
 ###############################################################################
 # Features
@@ -25,4 +26,4 @@ class SuperSenseTest(Experiment):
     def __init__(self):
         super(SuperSenseTest, self).__init__()
         self.featureGroups = [TestFeatureGroup]
-        self.taggers = [WordNetTagger]
+        self.taggers = [WordNetTagger, OutOfVocabularyTagger]
