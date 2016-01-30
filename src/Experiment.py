@@ -128,10 +128,12 @@ class Experiment(object):
                 for j in range(i + self.maxExampleTokens, i, -1):
                     tokens = sentence[i:j]
                     spanCounts = self.buildExamples(tokens, goldTokens, sentence, setName)
-                    if sum(spanCounts.values()) > 0: # Ignore nested matches
+                    if sum(spanCounts.values()) > 0: # At least one example was generated
+                        tokenCounts["pos"] += spanCounts["pos"]
+                        tokenCounts["neg"] += spanCounts["neg"]
                         matchLength = len(tokens)
                         matchedUntil = j
-                        break
+                        break # Ignore nested matches
             # If no positive example is generated record the reason
             if goldTokens != None and tokenCounts["pos"] == 0:
                 if hasGaps(goldTokens):
