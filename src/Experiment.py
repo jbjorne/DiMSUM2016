@@ -6,7 +6,7 @@ import time
 from _collections import defaultdict
 from nltk.corpus import wordnet
 import traceback
-from src.Corpus import Corpus
+from src.Corpus import Corpus, getGoldExample, getExampleId, getTokenId
 
 class Experiment(object):    
     def __init__(self):
@@ -23,25 +23,13 @@ class Experiment(object):
         self.meta = None
         self.baseClassVars = None
         self.baseClassVars = set(vars(self).keys())
-    
-    ###########################################################################
-    # ID Generation
-    ###########################################################################
+
     def getClassId(self, value):
         value = str(value)
         if value not in self.classIds:
             self.classIds[value] = len(self.classIds)
             self.classNames[self.classIds[value]] = value
         return self.classIds[value]
-    
-    def _getTokenId(self, token):
-        return token["sentence"] + ":" + str(token["index"])
-    
-    def _getExampleId(self, tokens):
-        sentenceId = tokens[0]["sentence"]
-        for token in tokens:
-            assert token["sentence"] == sentenceId
-        return sentenceId + ":" + ",".join([str(x) for x in sorted([token["index"] for token in tokens])])
 
     ###########################################################################
     # Running the Experiment
@@ -96,11 +84,7 @@ class Experiment(object):
     ###########################################################################
     # Sentence processing
     ###########################################################################
-    
-    def getSuperSenses(self, lemma):
-        lexnames = sorted(set([x.lexname() for x in wordnet.synsets(lemma)]))
-        return [x.replace("noun.", "n.").replace("verb.", "v.") for x in lexnames if x.startswith("noun.") or x.startswith("verb.")]
-    
+        
     def processCorpus(self, metaDataFileName=None, setNames=None):
         if metaDataFileName == None:
             metaDataFileName = os.path.join(self.outDir, self.fileStem + ".meta.sqlite")
@@ -130,14 +114,22 @@ class Experiment(object):
             self.corpus.printSentence(sentence)
             traceback.print_exc()
             sys.exit()
- 
+    
+    def hasGaps(self, tokens):
+        index = tokens[0]["index"]
+        for token in tokens:
+            assert token["index"] > index
+            if token["index"] - index > 1:
+                return True
+        return False
+     
     def processSentence(self, sentence, setName):
         numTokens = len(sentence)
-        mappedTokens = [False] * len(sentence)
+        #mappedTokens = [False] * len(sentence)
         for i in range(numTokens):
             numPos = 0
             numTotal = 0
-            goldTokens = self.getGoldExample(i, sentence)
+            goldTokens = getGoldExample(i, sentence)
             #skipNested = mappedTokens[i]
             #if not skipNested:
             for j in range(i + self.maxExampleTokens, i, -1):
@@ -159,48 +151,15 @@ class Experiment(object):
             if goldTokens != None and numPos == 0:
                 self.insertExampleMeta(None, None, goldSupersense, tokens, {}, setName, numTotal > 0)
                 self.missedExampleCount += 1
-            self.meta.insert("token", dict(sentence[i], token_id=self._getTokenId(sentence[i]), num_examples=len(supersenses), num_pos=numPos))
+            self.meta.insert("token", dict(sentence[i], token_id=getTokenId(sentence[i]), num_examples=len(supersenses), num_pos=numPos))
             #print (token["lemma"], token["supersense"], token["POS"]), self.getSuperSenses(token["lemma"])                        
-    
-    def getGoldExample(self, beginIndex, sentence, includeGaps=False):
-        """
-        For each token in a sentence there can be only one expression,
-        which can have one or more words. A new expression begins with
-        one of the MWE tags 'O', 'B' or 'b'.
-        """
-        if sentence[beginIndex]["supersense"] == None:
-            return None
-        tokens = [sentence[beginIndex]]
-        mweType = tokens[0]["MWE"]
-        assert mweType in ("O", "o", "B", "b"), tokens[0]
-        if mweType in ("O", "o"):
-            return tokens
-        for i in range(beginIndex + 1, len(sentence)):
-            mwe = sentence[i]["MWE"]
-            if mwe in ("B", "O"):
-                break
-            elif mwe == "I":
-                if mweType == "B":
-                    tokens.append(sentence[i])
-                elif includeGaps: tokens.append(sentence[i])
-            elif mwe == "i":
-                if mweType == "b":
-                    tokens.append(sentence[i])
-                elif includeGaps: tokens.append(sentence[i])
-            elif mwe == "b":
-                assert mweType == "B"
-                if includeGaps: tokens.append(sentence[i])
-            else:
-                assert mwe == "o", sentence[i]
-                if includeGaps: tokens.append(sentence[i])
-        return tokens   
 
     ###########################################################################
     # Example Generation
     ###########################################################################
     
     def insertExampleMeta(self, label, supersense, goldSupersense, tokens, features, setName, textDetected=False, isNested=False, tableName="examples"):
-        exampleId = self._getExampleId(tokens)
+        exampleId = getExampleId(tokens) #self._getExampleId(tokens)
         self.meta.insert(tableName, {"label":label, 
                                      "supersense":supersense, 
                                      "gold_sense":goldSupersense, 
@@ -227,3 +186,7 @@ class Experiment(object):
         self._getExampleIO().writeExample(classId, features)
         self.classCounts[label] += 1
         return label
+    
+    def getSuperSenses(self, lemma):
+        lexnames = sorted(set([x.lexname() for x in wordnet.synsets(lemma)])) #
+        return [x.replace("noun.", "n.").replace("verb.", "v.") for x in lexnames if x.startswith("noun.") or x.startswith("verb.")]

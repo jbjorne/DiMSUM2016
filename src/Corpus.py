@@ -2,6 +2,48 @@ import os
 import csv
 from collections import OrderedDict
 
+def getTokenId(token):
+    return token["sentence"] + ":" + str(token["index"])
+
+def getExampleId(tokens):
+    sentenceId = tokens[0]["sentence"]
+    for token in tokens:
+        assert token["sentence"] == sentenceId
+    return sentenceId + ":" + ",".join([str(x) for x in sorted([token["index"] for token in tokens])])
+
+def getGoldExample(beginIndex, sentence, includeGaps=False):
+    """
+    For each token in a sentence there can be only one expression,
+    which can have one or more words. A new expression begins with
+    one of the MWE tags 'O', 'B' or 'b'.
+    """
+    if sentence[beginIndex]["supersense"] == None:
+        return None
+    tokens = [sentence[beginIndex]]
+    mweType = tokens[0]["MWE"]
+    assert mweType in ("O", "o", "B", "b"), tokens[0]
+    if mweType in ("O", "o"):
+        return tokens
+    for i in range(beginIndex + 1, len(sentence)):
+        mwe = sentence[i]["MWE"]
+        if mwe in ("B", "O"):
+            break
+        elif mwe == "I":
+            if mweType == "B":
+                tokens.append(sentence[i])
+            elif includeGaps: tokens.append(sentence[i])
+        elif mwe == "i":
+            if mweType == "b":
+                tokens.append(sentence[i])
+            elif includeGaps: tokens.append(sentence[i])
+        elif mwe == "b":
+            assert mweType == "B"
+            if includeGaps: tokens.append(sentence[i])
+        else:
+            assert mwe == "o", sentence[i]
+            if includeGaps: tokens.append(sentence[i])
+    return tokens
+
 class Corpus():
     def __init__(self, dataPath):
         self.dataPath = dataPath
