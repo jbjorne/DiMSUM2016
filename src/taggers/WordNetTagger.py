@@ -5,6 +5,8 @@ class WordNetTagger(Tagger):
     def __init__(self):
         super(WordNetTagger, self).__init__("WN", ["WordNet"])
         self.lexnames = wordnet._lexnames
+        self.nounPOS = set(["NOUN", "PROPN"])
+        self.verbPOS = set(["VERB"])
         assert len(self.lexnames) > 0
     
     def getSuperSenses(self, lemma, tokens):
@@ -18,14 +20,16 @@ class WordNetTagger(Tagger):
         return lexnames
     
     def filterByPOS(self, lexnames, tokens):
-        pos = tokens[0]["POS"]
+        firstPOS = tokens[0]["POS"]
+        lastPOS = tokens[0]["POS"]
+        noun
         if pos in ("NOUN", "PROPN"):
-            keep = "n."
-        elif pos in ("VERB"):
-            keep = "v."
+            keep = ("n.",)
+        elif firstPOS in self.verbPOS:
+            keep = "v." if lastPOS not in self.nounPOS else ".n"
         else: # no filtering
             return lexnames
-        return [x for x in lexnames if x.startswith(keep)]
+        return [x for x in lexnames if x[0:2] not in keep]
     
     def tag(self, tokens):
         for key, useLowerCase in [("lemma", False), ("word", True)]:
