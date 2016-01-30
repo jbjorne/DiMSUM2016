@@ -44,7 +44,7 @@ if __name__ == "__main__":
     groupA.add_argument("-y", "--analyses", default="ResultAnalysis")
     options = parser.parse_args()
     
-    actions = splitOptions(options.action, ["build", "classify"]) #, "analyse"])
+    actions = splitOptions(options.action, ["build", "classify", "analyse"])
     Stream.openLog(os.path.join(options.output, "log.txt"), clear = "build" in actions)
     print "Options:", options.__dict__
     
@@ -80,12 +80,11 @@ if __name__ == "__main__":
         classification = None
     
     if "analyse" in actions and options.analyses is not None:
-        meta = resultPath
         for analysisName in options.analyses.split(","):
             print "======================================================"
             print "Analysing", analysisName
             print "======================================================"
-            exec "from learn.analyse." + analysisName + " import " + analysisName
+            exec "from src.analyse." + analysisName + " import " + analysisName
             analysisClass = eval(analysisName)
             analysisObj = analysisClass(dataPath=DATA_PATH)
             analysisObj.analyse(options.output, hidden=options.hidden)

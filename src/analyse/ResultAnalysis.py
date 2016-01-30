@@ -39,19 +39,30 @@ class ResultAnalysis(Analysis):
                             prevIndex = spanIndex
     
     def writeTokens(self, tokens, setName):
+        print "Processing tokens for dataset '" + setName + "'"
         tokens = [x for x in tokens if x["set_name"] == setName]
         if len(tokens) == 0:
             print "Zero tokens for set", setName
             return
         outFile = open(os.path.join(self.inDir, "dimsum16." + setName + ".pred"))
         prevSentence = None
+        print "Counting sentences"
+        sentenceIds = set()
+        for token in tokens:
+            sentenceIds.add(token["sentence"])
+        numSentences = len(sentenceIds)
+        print "Processing sentences"
         sentence = []
+        sentenceCount = 0
         for token in tokens:
             if prevSentence != None and prevSentence != token["sentence"]:
+                if (sentenceCount + 1) % 100 == 0:
+                    print "Processing sentence", str(sentenceCount + 1) + "/" + str(numSentences)
                 self.processSentence(sentence)
                 for sentenceToken in sentence:
                     outFile.write("\t".join([sentenceToken[column] for column in self.columns]) + "\n")
                 outFile.write("\n")
+                sentenceCount += 1
             prevSentence = token["sentence"]
             outToken = token.copy()
             # Clear the columns to be predicted
@@ -63,16 +74,18 @@ class ResultAnalysis(Analysis):
         
     def analyse(self, inDir, fileStem=None, hidden=False, clear=True):
         self.inDir = inDir
-        self.fileStem = fileStem
-        meta = self._getMeta(inDir, fileStem)
+        self.meta = self._getMeta(inDir, fileStem)
         #if clear:
         #    meta.drop("project_analysis")
+        print "Reading examples"
         self.examples = [x for x in self.meta.db["example"].all() if x["label"] is not None]
-        self.predictions = {x["example"]:x["predicted"] for x in meta.db["prediction"].all()}
+        print "Reading predictions"
+        self.predictions = {x["example"]:x["predicted"] for x in self.meta.db["prediction"].all()}
+        print "Checking predictions"
         for example in self.examples:
             assert example["id"] in self.predictions
             
-        
+        print "Mapping examples"
         self.exampleMap = OrderedDict()
         for example in self.examples:
             if example["sentence"] not in self.exampleMap:
@@ -82,5 +95,8 @@ class ResultAnalysis(Analysis):
                 sentenceExamples[example["root_token"]] = []
             sentenceExamples[example["root_token"]].append(example)
         
+        print "Processing datasets"
         self.tokens = [x for x in self.meta.db["token"].all()]
-        
+        self.writeTokens(self.tokens, "train")
+        if hidden:
+            self.writeTokens(self.tokens, "test")
