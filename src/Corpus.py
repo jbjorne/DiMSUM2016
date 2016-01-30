@@ -44,3 +44,8 @@ class Corpus():
             print "Reading set", setName, "from", filePath
             self.corpus[setName] = self.readSentences(filePath) 
     
+    def getSentences(self, setName):
+        if setName in self.corpus: 
+            return self.corpus[setName]
+        else:
+            return []

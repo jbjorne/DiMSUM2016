@@ -3,19 +3,15 @@ from collections import OrderedDict
 from Meta import Meta
 from ExampleIO import SVMLightExampleIO
 import time
-import csv
 from _collections import defaultdict
 from nltk.corpus import wordnet
 import traceback
 from src.Corpus import Corpus
 
 class Experiment(object):    
-#     def getLabel(self, example):
-#         raise NotImplementedError
-    
-    def __init__(self, dataPath):
-        self.dataPath = dataPath
-        self.corpus = Corpus(dataPath)
+    def __init__(self):
+        self.dataPath = None
+        self.corpus = None
         # Id sets
         self.featureIds = {}
         self.classIds = {'True':1, 'False':-1}
@@ -94,15 +90,16 @@ class Experiment(object):
         self.beginExperiment(metaDataFileName)
         if setNames == None:
             setNames = self.includeSets
+        self.corpus = Corpus(self.dataPath)
         self.corpus.readCorpus(setNames) #self.readCorpus(setNames)
         #self.analysePOS()
         self.sentenceCount = 0
         self.exampleCount = 0
         self.missedExampleCount = 0
         self.classCounts = defaultdict(int)
-        self.numSentences = sum([len(self.corpus.get(setName, [])) for setName in setNames])
+        self.numSentences = sum([len(self.corpus.getSentences(setName)) for setName in setNames])
         for setName in setNames:
-            self.processSentences(self.corpus[setName], setName)
+            self.processSentences(self.corpus.getSentences(setName), setName)
         self.endExperiment()
         
     def endExperiment(self):
