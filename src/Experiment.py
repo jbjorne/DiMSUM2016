@@ -127,7 +127,7 @@ class Experiment(object):
                 self.processSentence(sentence, setName)
                 self.sentenceCount += 1
         except Exception, err:
-            self.printSentence(sentence)
+            self.corpus.printSentence(sentence)
             traceback.print_exc()
             sys.exit()
  
@@ -138,26 +138,26 @@ class Experiment(object):
             numPos = 0
             numTotal = 0
             goldTokens = self.getGoldExample(i, sentence)
-            skipNested = mappedTokens[i]
-            if not skipNested:
-                for j in range(i + self.maxExampleTokens, i, -1):
-                    tokens = sentence[i:j]
-                    supersenses = self.getSuperSenses("_".join([x["lemma"] for x in tokens]))
-                    goldSupersense = None
-                    if tokens == goldTokens:
-                        goldSupersense = goldTokens[0]["supersense"]
-                    for supersense in supersenses:
-                        if self.buildExample(tokens, sentence, supersense, supersenses, goldSupersense, setName):
-                            numPos += 1
-                        numTotal += 1
-                        self.exampleCount += 1
-                    if numTotal > 0:
-                        for mappedIndex in range(i, j):
-                            mappedTokens[mappedIndex] = True
-                        skipNested = True
-                        break
+            #skipNested = mappedTokens[i]
+            #if not skipNested:
+            for j in range(i + self.maxExampleTokens, i, -1):
+                tokens = sentence[i:j]
+                supersenses = self.getSuperSenses("_".join([x["lemma"] for x in tokens]))
+                goldSupersense = None
+                if tokens == goldTokens:
+                    goldSupersense = goldTokens[0]["supersense"]
+                for supersense in supersenses:
+                    if self.buildExample(tokens, sentence, supersense, supersenses, goldSupersense, setName):
+                        numPos += 1
+                    numTotal += 1
+                    self.exampleCount += 1
+                if numTotal > 0:
+                    #for mappedIndex in range(i, j):
+                    #    mappedTokens[mappedIndex] = True
+                    #skipNested = True
+                    break
             if goldTokens != None and numPos == 0:
-                self.insertExampleMeta(None, None, goldSupersense, tokens, {}, setName, numTotal > 0, skipNested)
+                self.insertExampleMeta(None, None, goldSupersense, tokens, {}, setName, numTotal > 0)
                 self.missedExampleCount += 1
             self.meta.insert("token", dict(sentence[i], token_id=self._getTokenId(sentence[i]), num_examples=len(supersenses), num_pos=numPos))
             #print (token["lemma"], token["supersense"], token["POS"]), self.getSuperSenses(token["lemma"])                        
@@ -199,7 +199,7 @@ class Experiment(object):
     # Example Generation
     ###########################################################################
     
-    def insertExampleMeta(self, label, supersense, goldSupersense, tokens, features, setName, textDetected, isNested, tableName="examples"):
+    def insertExampleMeta(self, label, supersense, goldSupersense, tokens, features, setName, textDetected=False, isNested=False, tableName="examples"):
         exampleId = self._getExampleId(tokens)
         self.meta.insert(tableName, {"label":label, 
                                      "supersense":supersense, 
