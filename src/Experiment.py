@@ -58,8 +58,11 @@ class Experiment(object):
             self.meta.insert("class", {"label":label, "id":self.classIds[label], "instances":self.exampleCounts.get(label, 0)})
         self.meta.flush()
         print "Built", sum(self.exampleCounts.values()), "examples with", len(self.featureIds), "unique features"
-        print "Missed", sum(self.missedExampleCounts.values()), "positive examples with window size", self.maxExampleTokens
-        print "Positives (built and missed):", self.exampleCounts.get(True, 0) + sum(self.missedExampleCounts.values())
+        missedPositives = sum(self.missedExampleCounts.values())
+        totalPositives = self.exampleCounts.get(True, 0) + missedPositives
+        missedPercent = 100.0 * missedPositives / float(totalPositives)
+        print "Missed", sum(self.missedExampleCounts.values()), "positive examples (%.2f percent) with window size" % missedPercent, self.maxExampleTokens
+        print "Positives (built and missed):", totalPositives
         print "Examples:", dict(self.exampleCounts)
         print "Missed:", dict(self.missedExampleCounts)
 
@@ -121,34 +124,35 @@ class Experiment(object):
         numTokens = len(sentence)
         matchedUntil = 0
         for i in range(numTokens): # There can be max one example per each token
-            tokenCounts = {"pos":0, "neg":0} # Number of examples for all spans of this token
+            exampleCounts = {"pos":0, "neg":0}
             goldTokens = getGoldExample(i, sentence)
             matchLength = -1
-            if i >= matchedUntil:
+            indexIsConsumed = i < matchedUntil
+            if not indexIsConsumed:
                 for j in range(i + self.maxExampleTokens, i, -1):
                     tokens = sentence[i:j]
-                    spanCounts = self.buildExamples(tokens, goldTokens, sentence, setName)
-                    if sum(spanCounts.values()) > 0: # At least one example was generated
-                        tokenCounts["pos"] += spanCounts["pos"]
-                        tokenCounts["neg"] += spanCounts["neg"]
+                    exampleCounts = self.buildExamples(tokens, goldTokens, sentence, setName)
+                    if sum(exampleCounts.values()) > 0: # At least one example was generated
                         matchLength = len(tokens)
-                        matchedUntil = j
+                        matchedUntil = j - 1
                         break # Ignore nested matches
             # If no positive example is generated record the reason
-            if goldTokens != None and tokenCounts["pos"] == 0:
+            if goldTokens != None and exampleCounts["pos"] == 0:
                 if hasGaps(goldTokens):
                     skipReason = "gaps"
                 elif len(goldTokens) > self.maxExampleTokens:
                     skipReason = "too long"
-                elif i < matchedUntil or len(goldTokens) < matchLength:
+                elif indexIsConsumed or len(goldTokens) < matchLength:
                     skipReason = "nested"
                 elif len(goldTokens) == matchLength:
                     skipReason = "type"
+                elif len(goldTokens) > matchLength:
+                    skipReason = "no match"
                 else:
                     skipReason = "unknown"
                 self.insertExampleMeta(None, None, goldTokens[0]["supersense"], tokens, {}, setName, skipReason)
             # Save the token
-            self.meta.insert("token", dict(sentence[i], token_id=getTokenId(sentence[i]), num_neg=tokenCounts["neg"], num_pos=tokenCounts["pos"]))
+            self.meta.insert("token", dict(sentence[i], token_id=getTokenId(sentence[i]), num_neg=exampleCounts["neg"], num_pos=exampleCounts["pos"]))
 
     def buildExamples(self, tokens, goldTokens, sentence, setName):
         # Get the gold supersense for the examples built for this span
