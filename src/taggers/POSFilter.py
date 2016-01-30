@@ -8,6 +8,7 @@ class POSFilter():
         firstPOS = tokens[0]["POS"]
         lastPOS = tokens[-1]["POS"]
         numTokens = len(tokens)
+        keep = "*" # no filtering
         if firstPOS in self.nounPOS: # Noun
             keep = ("n.",)
             if lastPOS in self.verbPOS:
@@ -21,7 +22,5 @@ class POSFilter():
                 keep = ("n.",)
             if firstPOS in self.removeSingle:
                 keep = []
-        else: # no filtering
-            keep = "*"
         return keep
         
