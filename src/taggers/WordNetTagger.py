@@ -1,4 +1,5 @@
 from Tagger import Tagger
+from nltk.corpus import wordnet
 
 class WordNetTagger(Tagger):
     def __init__(self):
