@@ -44,6 +44,9 @@ class Resources:
         return report
     
     def buildReport(self, used):
+        if "corpus" not in used: # The labeled training data is always used for classification
+            used = used + ["corpus"]
+        
         report = "Resource,Used?,Details if used\n"
         report += ",,"
         for level in (1,2,3):
