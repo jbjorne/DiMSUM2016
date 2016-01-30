@@ -49,30 +49,6 @@ class Experiment(object):
             assert token["sentence"] == sentenceId
         return sentenceId + ":" + ",".join([str(x) for x in sorted([token["index"] for token in tokens])])
     
-#     def _addToSentence(self, exampleId, groupName, featureSet, exampleFeatures, unique=True):
-#         if exampleId not in exampleFeatures:
-#             exampleFeatures[exampleId] = {}
-#         groups = exampleFeatures[exampleId]
-#         if unique or groupName not in groups:
-#             assert groupName not in groups
-#             groups[groupName] = featureSet
-#         else:
-#             combined = {}
-#             combined.update(groups[groupName])
-#             combined.update(featureSet)
-#             groups[groupName] = combined            
-    
-#     def analysePOS(self):
-#         d = {}
-#         for sentence in self.corpus["train"]:
-#             for example in sentence:
-#                 if example["POS"] not in d:
-#                     d[example["POS"]] = set()
-#                 d[example["POS"]].add(example["supersense"])
-#         for key in sorted(d.keys()):
-#             self.meta.insert("pos_group", {"pos":key, "senses":",".join(sorted(d[key]))})
-#         self.meta.flush()
-    
     def getSuperSenses(self, lemma):
         lexnames = sorted(set([x.lexname() for x in wordnet.synsets(lemma)]))
         return [x.replace("noun.", "n.").replace("verb.", "v.") for x in lexnames if x.startswith("noun.") or x.startswith("verb.")]
@@ -185,27 +161,6 @@ class Experiment(object):
                 assert mwe == "o", sentence[i]
                 if includeGaps: tokens.append(sentence[i])
         return tokens   
-    
-#     def isExact(self, tokens, sentence):
-#         if tokens[0]["MWE"] in ("O", "o"): # This is a single-word expression
-#             return len(tokens) == 1
-#         elif tokens[0]["MWE"] == "B": # The first token begins a multi-word expression
-#             if len(tokens) == 1: # A MWE must have more than one token
-#                 return False
-#             for token in tokens[1:]: # Check tokens after the beginning one
-#                 if token["MWE"] != "I": # Tokens must extend the MWE
-#                     return False
-#             if tokens[-1] != sentence[-1]: # Check the token after the last one
-#                 if sentence[tokens[-1]["index"] + 1]["MWE"] in ("I", "i", "o", "b"): # The token after the last one must close the MWE
-#                     return False
-#             return True # MWE is a B + n * I series
-#         return False # MWE begins with a token other than B
-#     
-#     def getAnnotatedSense(self, tokens, sentence):
-#         if self.isExact(tokens, sentence):
-#             return tokens[0]["supersense"]
-#         else:
-#             return None
     
     def insertExampleMeta(self, label, supersense, goldSupersense, tokens, features, setName, textDetected, isNested, tableName="examples"):
         exampleId = self._getExampleId(tokens)
