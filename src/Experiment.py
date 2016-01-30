@@ -7,15 +7,15 @@ import csv
 from _collections import defaultdict
 from nltk.corpus import wordnet
 import traceback
+from src.Corpus import Corpus
 
 class Experiment(object):    
 #     def getLabel(self, example):
 #         raise NotImplementedError
     
-    def __init__(self):
-        self.dataPath = None
-        self.corpusFiles = {"train":"dimsum-data-1.5/dimsum16.train", "test":"dimsum-data-1.5/dimsum16.test.blind"}
-        self.corpusColumns = ["index", "word", "lemma", "POS", "MWE", "parent", "strength", "supersense", "sentence"]
+    def __init__(self, dataPath):
+        self.dataPath = dataPath
+        self.corpus = Corpus(dataPath)
         # Id sets
         self.featureIds = {}
         self.classIds = {'True':1, 'False':-1}
@@ -94,7 +94,7 @@ class Experiment(object):
         self.beginExperiment(metaDataFileName)
         if setNames == None:
             setNames = self.includeSets
-        self.readCorpus(setNames)
+        self.corpus.readCorpus(setNames) #self.readCorpus(setNames)
         #self.analysePOS()
         self.sentenceCount = 0
         self.exampleCount = 0
