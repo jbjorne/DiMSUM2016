@@ -24,21 +24,15 @@ class Experiment(object):
         self.baseClassVars = None
         self.baseClassVars = set(vars(self).keys())
     
+    ###########################################################################
+    # ID Generation
+    ###########################################################################
     def getClassId(self, value):
         value = str(value)
         if value not in self.classIds:
             self.classIds[value] = len(self.classIds)
             self.classNames[self.classIds[value]] = value
         return self.classIds[value]
-    
-    def _getChildVars(self):
-        members = vars(self)
-        names = sorted(members.keys())
-        childVars = OrderedDict()
-        for name in names:
-            if name not in self.baseClassVars:
-                childVars[name] = members[name]
-        return childVars
     
     def _getTokenId(self, token):
         return token["sentence"] + ":" + str(token["index"])
@@ -48,10 +42,10 @@ class Experiment(object):
         for token in tokens:
             assert token["sentence"] == sentenceId
         return sentenceId + ":" + ",".join([str(x) for x in sorted([token["index"] for token in tokens])])
-    
-    def getSuperSenses(self, lemma):
-        lexnames = sorted(set([x.lexname() for x in wordnet.synsets(lemma)]))
-        return [x.replace("noun.", "n.").replace("verb.", "v.") for x in lexnames if x.startswith("noun.") or x.startswith("verb.")]
+
+    ###########################################################################
+    # Running the Experiment
+    ###########################################################################
     
     def run(self, outDir, fileStem=None, exampleIO=None):
         self.outDir = outDir
@@ -59,6 +53,53 @@ class Experiment(object):
         self.exampleIO = exampleIO
         self.processCorpus()
         self._closeExampleIO()
+    
+    def beginExperiment(self, metaDataFileName=None):
+        print "Experiment:", self.__class__.__name__
+        self.meta = Meta(metaDataFileName, clear=True)
+        childVars = self._getChildVars()
+        self.meta.insert("experiment", {"name":self.__class__.__name__,
+                                        "vars":";".join([x+"="+str(childVars[x]) for x in childVars]),
+                                        "time":time.strftime("%c")})
+        self.meta.flush()
+        self.meta.initCache("feature", 100000)        
+
+    def endExperiment(self):
+        for classId in self.classIds:
+            self.meta.insert("class", {"label":classId, "id":self.classIds[classId], "instances":self.classCounts[classId]})
+        self.meta.flush()
+        print "Built", self.exampleCount, "examples with", len(self.featureIds), "unique features"
+        print "Missed", self.missedExampleCount, "positive examples with window size", self.maxExampleTokens
+        print "Counts:", dict(self.classCounts)
+
+    def _getChildVars(self):
+        members = vars(self)
+        names = sorted(members.keys())
+        childVars = OrderedDict()
+        for name in names:
+            if name not in self.baseClassVars:
+                childVars[name] = members[name]
+        return childVars
+    
+    def _getExampleIO(self):
+        if self.exampleIO:
+            return self.exampleIO
+        if self.exampleIO == None:
+            self.exampleIO = SVMLightExampleIO(os.path.join(self.outDir, self.fileStem))
+        self.exampleIO.newFiles()
+        return self.exampleIO
+    
+    def _closeExampleIO(self):
+        if self.exampleIO:
+            self.exampleIO.closeFiles()
+
+    ###########################################################################
+    # Sentence processing
+    ###########################################################################
+    
+    def getSuperSenses(self, lemma):
+        lexnames = sorted(set([x.lexname() for x in wordnet.synsets(lemma)]))
+        return [x.replace("noun.", "n.").replace("verb.", "v.") for x in lexnames if x.startswith("noun.") or x.startswith("verb.")]
     
     def processCorpus(self, metaDataFileName=None, setNames=None):
         if metaDataFileName == None:
@@ -77,14 +118,6 @@ class Experiment(object):
         for setName in setNames:
             self.processSentences(self.corpus.getSentences(setName), setName)
         self.endExperiment()
-        
-    def endExperiment(self):
-        for classId in self.classIds:
-            self.meta.insert("class", {"label":classId, "id":self.classIds[classId], "instances":self.classCounts[classId]})
-        self.meta.flush()
-        print "Built", self.exampleCount, "examples with", len(self.featureIds), "unique features"
-        print "Missed", self.missedExampleCount, "positive examples with window size", self.maxExampleTokens
-        print "Counts:", dict(self.classCounts)
     
     def processSentences(self, sentences, setName):
         try:
@@ -161,6 +194,10 @@ class Experiment(object):
                 assert mwe == "o", sentence[i]
                 if includeGaps: tokens.append(sentence[i])
         return tokens   
+
+    ###########################################################################
+    # Example Generation
+    ###########################################################################
     
     def insertExampleMeta(self, label, supersense, goldSupersense, tokens, features, setName, textDetected, isNested, tableName="examples"):
         exampleId = self._getExampleId(tokens)
@@ -190,25 +227,3 @@ class Experiment(object):
         self._getExampleIO().writeExample(classId, features)
         self.classCounts[label] += 1
         return label
-    
-    def beginExperiment(self, metaDataFileName=None):
-        print "Experiment:", self.__class__.__name__
-        self.meta = Meta(metaDataFileName, clear=True)
-        childVars = self._getChildVars()
-        self.meta.insert("experiment", {"name":self.__class__.__name__,
-                                        "vars":";".join([x+"="+str(childVars[x]) for x in childVars]),
-                                        "time":time.strftime("%c")})
-        self.meta.flush()
-        self.meta.initCache("feature", 100000)        
-    
-    def _getExampleIO(self):
-        if self.exampleIO:
-            return self.exampleIO
-        if self.exampleIO == None:
-            self.exampleIO = SVMLightExampleIO(os.path.join(self.outDir, self.fileStem))
-        self.exampleIO.newFiles()
-        return self.exampleIO
-    
-    def _closeExampleIO(self):
-        if self.exampleIO:
-            self.exampleIO.closeFiles()
