@@ -5,9 +5,12 @@ class OutOfVocabularyTagger(Tagger):
         super(OutOfVocabularyTagger, self).__init__("OoV", ["corpus"])
     
     def tag(self, tokens):
+        supersenses = []
         if len(tokens) == 1:
             token = tokens[0]
-            if token["word"] == "@USER":
-                return ["n.person"]
-        return None
+            if token["word"].startswith("@"):
+                supersenses.append("n.person")
+            if token["word"].startswith("'") and token["POS"] == "VERB":
+                supersenses.append("v.stative")
+        return (None if len(supersenses) == 0 else supersenses)
         

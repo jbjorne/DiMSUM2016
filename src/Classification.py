@@ -87,14 +87,14 @@ class Classification(object):
         self.classes = None
         if "class" in self.meta.db.tables:
             self.classes = [int(x["id"]) for x in self.meta.db["class"].all()]
-        self._clearResults(preserveTables)
+        #self._clearResults(preserveTables)
     
-    def _clearResults(self, preserveTables):
-        preserveTables = set(preserveTables if preserveTables else [])
-        preserveTables = preserveTables.union(set(["class", "example", "experiment", "feature"]))
-        for tableName in self.meta.db.tables:
-            if tableName not in preserveTables:
-                self.meta.drop(tableName)
+#     def _clearResults(self, preserveTables):
+#         preserveTables = set(preserveTables if preserveTables else [])
+#         preserveTables = preserveTables.union(set(["class", "example", "experiment", "feature"]))
+#         for tableName in self.meta.db.tables:
+#             if tableName not in preserveTables:
+#                 self.meta.drop(tableName)
     
     def _getClassifier(self):
         classifier = importNamed(self.classifierName)
