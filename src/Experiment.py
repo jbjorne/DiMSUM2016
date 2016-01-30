@@ -180,7 +180,7 @@ class Experiment(object):
     # Example Generation
     ###########################################################################
     
-    def insertExampleMeta(self, label, supersense, goldSupersense, tokens, features, setName, skipReason=None, taggerName=None, tableName="examples"):
+    def insertExampleMeta(self, label, supersense, goldSupersense, tokens, features, setName, skipReason=None, taggerName=None, tableName="example"):
         exampleId = getExampleId(tokens) #self._getExampleId(tokens)
         self.meta.insert(tableName, {"label":label, 
                                      "supersense":supersense, 
