@@ -44,8 +44,6 @@ class ResultAnalysis(Analysis):
         if len(tokens) == 0:
             print "Zero tokens for set", setName
             return
-        outFile = open(os.path.join(self.inDir, "dimsum16." + setName + ".pred"))
-        prevSentence = None
         print "Counting sentences"
         sentenceIds = set()
         for token in tokens:
@@ -54,6 +52,8 @@ class ResultAnalysis(Analysis):
         print "Processing sentences"
         sentence = []
         sentenceCount = 0
+        outFile = open(os.path.join(self.inDir, "dimsum16." + setName + ".pred"), "wt")
+        prevSentence = None
         for token in tokens:
             if prevSentence != None and prevSentence != token["sentence"]:
                 if (sentenceCount + 1) % 100 == 0:
@@ -75,6 +75,9 @@ class ResultAnalysis(Analysis):
     def analyse(self, inDir, fileStem=None, hidden=False, clear=True):
         self.inDir = inDir
         self.meta = self._getMeta(inDir, fileStem)
+        for filename in os.listdir(inDir):
+            if filename.startswith("dimsum16.") and filename.endswith(".pred"):
+                os.remove(os.path.join(inDir, filename))
         #if clear:
         #    meta.drop("project_analysis")
         print "Reading examples"
