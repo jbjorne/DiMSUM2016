@@ -122,23 +122,28 @@ class Experiment(object):
         for i in range(numTokens):
             numPos = 0
             goldTokens = getGoldExample(i, sentence)
-            for j in range(i + self.maxExampleTokens, i, -1):
-                tokens = sentence[i:j]
-                goldSupersense = None
-                if tokens == goldTokens:
-                    goldSupersense = goldTokens[0]["supersense"]
-                supersenses = self.taggers[0].tag(tokens)
-                if supersenses:
-                    for supersense in supersenses:
-                        if self.buildExample(tokens, sentence, supersense, supersenses, goldSupersense, setName):
-                            numPos += 1
-                    matchedUntil = j
-                    break # Ignore nested matches
+            goldSupersense = goldTokens[0]["supersense"]
+            supersenses = None
+            if i >= matchedUntil - 1:
+                for j in range(i + self.maxExampleTokens, i, -1):
+                    tokens = sentence[i:j]
+                    exampleGoldSupersense = None
+                    if tokens == goldTokens: # Make a positive exaple only for the exact match
+                        exampleGoldSupersense = goldTokens[0]["supersense"]
+                    supersenses = self.taggers[0].tag(tokens)
+                    if supersenses:
+                        for supersense in supersenses:
+                            if self.buildExample(tokens, sentence, supersense, supersenses, exampleGoldSupersense, setName):
+                                numPos += 1
+                        matchedUntil = j
+                        break # Ignore nested matches
             if goldTokens != None and numPos == 0:
                 if hasGaps(goldTokens):
                     skipReason = "gaps"
                 elif len(goldTokens) > self.maxExampleTokens:
                     skipReason = "too long"
+                elif i < matchedUntil - 1:
+                    skipReason = "nested"
                 elif len(goldTokens) < matchedUntil - i:
                     skipReason = "nested"
                 elif (len(goldTokens) == matchedUntil - i) and (supersenses != None):
