@@ -21,8 +21,22 @@ class ResultAnalysis(Analysis):
                         maxExample = example
                 if float(maxPrediction["predicted"]) > 0.0:
                     token["supersense"] = maxExample["supersense"]
-            else:
-                token["MWE"] = "O"
+                    span = sorted([int(x) for x in str(maxExample["tokens"]).split(",")])
+                    assert span[0] == index
+                    if len(span) == 0:
+                        token["MWE"] = "O"
+                    else:
+                        token["MWE"] = "O"
+                        prevIndex = None
+                        for spanIndex in sorted(span):
+                            if prevIndex != None:
+                                assert spanIndex - prevIndex == 1
+                            assert spanIndex >= index
+                            if spanIndex > index:
+                                sentence[spanIndex] = "I"
+                            else:
+                                token["MWE"] = "B"
+                            prevIndex = spanIndex
     
     def writeTokens(self, tokens, setName):
         tokens = [x for x in tokens if x["set_name"] == setName]
@@ -42,7 +56,7 @@ class ResultAnalysis(Analysis):
             outToken = token.copy()
             # Clear the columns to be predicted
             outToken["supersense"] = None
-            outToken["MWE"] = None
+            outToken["MWE"] = "O"
             sentence.append(outToken)
             
         outFile.close()
