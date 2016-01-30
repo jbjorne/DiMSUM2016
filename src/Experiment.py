@@ -125,21 +125,24 @@ class Experiment(object):
             goldTokens = getGoldExample(i, sentence)
             goldSupersense = goldTokens[0]["supersense"]
             if i >= matchedUntil:
-                matchLength = 0
                 for j in range(i + self.maxExampleTokens, i, -1):
                     tokens = sentence[i:j]
                     exampleGoldSupersense = None
                     if tokens == goldTokens: # Make a positive example only for the exact match
                         exampleGoldSupersense = goldTokens[0]["supersense"]
-                    supersenses = self.taggers[0].tag(tokens)
-                    if supersenses:
-                        for supersense in supersenses:
-                            if self.buildExample(tokens, sentence, supersense, supersenses, exampleGoldSupersense, setName):
-                                numPos += 1
-                            numExamples += 1
-                        matchedUntil = j
-                        matchLength = j - i
-                        break # Ignore nested matches
+                    matchLength = -1
+                    for tagger in self.taggers:
+                        supersenses = tagger.tag(tokens)
+                        if supersenses:
+                            for supersense in supersenses:
+                                if self.buildExample(tokens, sentence, supersense, supersenses, exampleGoldSupersense, setName, tagger.name):
+                                    numPos += 1
+                                numExamples += 1
+                            matchedUntil = j
+                            matchLength = j - i
+                            break # Skip subsequent taggers
+                    if matchLength != -1: # Ignore nested matches
+                        break
             if goldTokens != None and numPos == 0:
                 if hasGaps(goldTokens):
                     skipReason = "gaps"
@@ -159,7 +162,7 @@ class Experiment(object):
     # Example Generation
     ###########################################################################
     
-    def insertExampleMeta(self, label, supersense, goldSupersense, tokens, features, setName, skipReason=None, tableName="examples"):
+    def insertExampleMeta(self, label, supersense, goldSupersense, tokens, features, setName, skipReason=None, taggerName=None, tableName="examples"):
         exampleId = getExampleId(tokens) #self._getExampleId(tokens)
         self.meta.insert(tableName, {"label":label, 
                                      "supersense":supersense, 
@@ -172,9 +175,10 @@ class Experiment(object):
                                      "num_tokens":len(tokens),
                                      "mwe_type":"".join([x["MWE"] for x in tokens]),
                                      "POS":":".join([x["POS"] for x in tokens]),
+                                     "tagger":taggerName,
                                      "skipped":skipReason})
     
-    def buildExample(self, tokens, sentence, supersense, supersenses, goldSupersense, setName):
+    def buildExample(self, tokens, sentence, supersense, supersenses, goldSupersense, setName, taggerName):
         #realSense = self.getAnnotatedSense(tokens, sentence)
         #label = True if supersense == realSense else False
         label = True if supersense == goldSupersense else False
@@ -182,7 +186,7 @@ class Experiment(object):
         features = {}
         for featureGroup in self.featureGroups:
             features.update(featureGroup.processExample(tokens, supersense, sentence, supersenses, self.featureIds, self.meta))
-        self.insertExampleMeta(label, supersense, goldSupersense, tokens, features, setName, True)
+        self.insertExampleMeta(label, supersense, goldSupersense, tokens, features, setName, None, taggerName)
         self._getExampleIO().writeExample(classId, features)
         self.classCounts[label] += 1
         self.exampleCount += 1

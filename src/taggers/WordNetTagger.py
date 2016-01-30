@@ -3,7 +3,7 @@ from nltk.corpus import wordnet
 
 class WordNetTagger(Tagger):
     def __init__(self):
-        super(WordNetTagger, self).__init__(["WordNet"])
+        super(WordNetTagger, self).__init__("WN", ["WordNet"])
     
     def getSuperSenses(self, lemma):
         lexnames = sorted(set([x.lexname() for x in wordnet.synsets(lemma)]))
