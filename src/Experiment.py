@@ -59,6 +59,7 @@ class Experiment(object):
         self.meta.flush()
         print "Built", sum(self.exampleCounts.values()), "examples with", len(self.featureIds), "unique features"
         print "Missed", sum(self.missedExampleCounts.values()), "positive examples with window size", self.maxExampleTokens
+        print "Positives (built and missed):", self.exampleCounts.get(True, 0) + sum(self.missedExampleCounts.values())
         print "Examples:", dict(self.exampleCounts)
         print "Missed:", dict(self.missedExampleCounts)
 

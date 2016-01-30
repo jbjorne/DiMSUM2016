@@ -60,16 +60,22 @@ class Corpus():
         self.MWETags = set(["O", "o", "B", "b", "I", "i"])
     
     def readExamples(self, filePath):
+        counts = {"supersense":0, "token":0}
         with open(filePath) as csvfile:
             reader = csv.DictReader(csvfile, fieldnames=self.columns,  delimiter="\t", quoting=csv.QUOTE_NONE)
-            examples = [row for row in reader]
-            for example in examples:
-                example["index"] = int(example["index"]) - 1
-                assert example["index"] >= 0
-                example["parent"] = int(example["parent"]) if example["parent"] != "" else None
-                example["supersense"] = example["supersense"] if example["supersense"] != "" else None
-                assert example["MWE"] in self.MWETags, example
-            return examples
+            tokens = [row for row in reader]
+            for token in tokens:
+                token["index"] = int(token["index"]) - 1
+                assert token["index"] >= 0, token
+                token["parent"] = int(token["parent"]) if token["parent"] != "" else None
+                token["supersense"] = token["supersense"] if token["supersense"] != "" else None
+                assert token["MWE"] in self.MWETags, token
+                # Add to counts
+                counts["token"] += 1
+                if token["supersense"] != None:
+                    counts["supersense"] += 1
+            print "Read corpus file", filePath, counts
+            return tokens
     
     def printSentence(self, sentence):
         for token in sentence:
