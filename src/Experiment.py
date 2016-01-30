@@ -156,7 +156,7 @@ class Experiment(object):
                     skipReason = "unknown"
                 self.insertExampleMeta(None, None, goldTokens[0]["supersense"], goldTokens, {}, setName, skipReason)
             # Save the token
-            self.meta.insert("token", dict(sentence[i], token_id=getTokenId(sentence[i]), num_neg=exampleCounts["neg"], num_pos=exampleCounts["pos"]))
+            self.meta.insert("token", dict(sentence[i], set_name=setName, token_id=getTokenId(sentence[i]), num_neg=exampleCounts["neg"], num_pos=exampleCounts["pos"]))
 
     def buildExamples(self, tokens, goldTokens, sentence, setName):
         # Get the gold supersense for the examples built for this span
@@ -189,6 +189,7 @@ class Experiment(object):
                                      "lemma":" ".join([x["lemma"] for x in tokens]), 
                                      "set_name":setName, 
                                      #"example_id":exampleId,
+                                     "root_token":str(tokens[0]["index"]),
                                      "tokens":",".join([str(x["index"]) for x in tokens]), 
                                      "sentence":tokens[0]["sentence"], 
                                      "num_features":len(features),

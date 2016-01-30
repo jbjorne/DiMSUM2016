@@ -40,8 +40,8 @@ if __name__ == "__main__":
     groupC.add_argument('-l', '--parallel', help='Cross-validation parallel jobs', type=int, default=1)
     groupC.add_argument("--hidden", default=False, action="store_true", dest="hidden")
     groupC.add_argument('--preDispatch', help='', default='2*n_jobs')
-#     groupA = parser.add_argument_group('Analysis', 'Analysis for classified data')
-#     groupA.add_argument("-y", "--analyses", default="ProjectAnalysis")
+    groupA = parser.add_argument_group('Analysis', 'Analysis for classified data')
+    groupA.add_argument("-y", "--analyses", default="ResultAnalysis")
     options = parser.parse_args()
     
     actions = splitOptions(options.action, ["build", "classify"]) #, "analyse"])
@@ -79,13 +79,13 @@ if __name__ == "__main__":
         classification.classify()
         classification = None
     
-#     if "analyse" in actions and options.analyses is not None:
-#         meta = resultPath
-#         for analysisName in options.analyses.split(","):
-#             print "======================================================"
-#             print "Analysing", analysisName
-#             print "======================================================"
-#             exec "from learn.analyse." + analysisName + " import " + analysisName
-#             analysisClass = eval(analysisName)
-#             analysisObj = analysisClass(dataPath=DATA_PATH)
-#             analysisObj.analyse(options.output, hidden=options.hidden)
+    if "analyse" in actions and options.analyses is not None:
+        meta = resultPath
+        for analysisName in options.analyses.split(","):
+            print "======================================================"
+            print "Analysing", analysisName
+            print "======================================================"
+            exec "from learn.analyse." + analysisName + " import " + analysisName
+            analysisClass = eval(analysisName)
+            analysisObj = analysisClass(dataPath=DATA_PATH)
+            analysisObj.analyse(options.output, hidden=options.hidden)
