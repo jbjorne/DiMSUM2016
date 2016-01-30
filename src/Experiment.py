@@ -115,35 +115,40 @@ class Experiment(object):
             self.corpus.printSentence(sentence)
             traceback.print_exc()
             sys.exit()
+    
+    def buildExamples(self, tokens, goldTokens, sentence, setName):
+        # Get the gold supersense for the examples built for this span
+        exampleGoldSupersense = None
+        if tokens == goldTokens: # Make a positive example only for the exact match
+            exampleGoldSupersense = goldTokens[0]["supersense"]
+        # Build the examples
+        counts = {"pos":0, "neg":0}
+        for tagger in self.taggers:
+            supersenses = tagger.tag(tokens)
+            if supersenses:
+                for supersense in supersenses:
+                    label = self.buildExample(tokens, sentence, supersense, supersenses, exampleGoldSupersense, setName, tagger.name)
+                    counts["pos" if label else "neg"] += 1
+                break # Skip subsequent taggers
+        return counts
      
     def processSentence(self, sentence, setName):
         numTokens = len(sentence)
         matchedUntil = 0
         for i in range(numTokens): # There can be max one example per each token
-            numExamples = 0
-            numPos = 0
+            tokenCounts = {"pos":0, "neg":0} # Number of examples
             goldTokens = getGoldExample(i, sentence)
             goldSupersense = goldTokens[0]["supersense"]
+            matchLength = -1
             if i >= matchedUntil:
                 for j in range(i + self.maxExampleTokens, i, -1):
                     tokens = sentence[i:j]
-                    exampleGoldSupersense = None
-                    if tokens == goldTokens: # Make a positive example only for the exact match
-                        exampleGoldSupersense = goldTokens[0]["supersense"]
-                    matchLength = -1
-                    for tagger in self.taggers:
-                        supersenses = tagger.tag(tokens)
-                        if supersenses:
-                            for supersense in supersenses:
-                                if self.buildExample(tokens, sentence, supersense, supersenses, exampleGoldSupersense, setName, tagger.name):
-                                    numPos += 1
-                                numExamples += 1
-                            matchedUntil = j
-                            matchLength = j - i
-                            break # Skip subsequent taggers
-                    if matchLength != -1: # Ignore nested matches
+                    spanCounts = self.buildExamples(tokens, goldTokens, sentence, setName)
+                    if sum(spanCounts.values()) > 0: # Ignore nested matches
+                        matchLength = len(tokens)
+                        matchedUntil = j
                         break
-            if goldTokens != None and numPos == 0:
+            if goldTokens != None and tokenCounts["pos"] == 0:
                 if hasGaps(goldTokens):
                     skipReason = "gaps"
                 elif len(goldTokens) > self.maxExampleTokens:
@@ -156,7 +161,7 @@ class Experiment(object):
                     skipReason = "unknown"
                 self.insertExampleMeta(None, None, goldSupersense, tokens, {}, setName, skipReason)
                 self.missedExampleCount += 1
-            self.meta.insert("token", dict(sentence[i], token_id=getTokenId(sentence[i]), num_examples=numExamples, num_pos=numPos))
+            self.meta.insert("token", dict(sentence[i], token_id=getTokenId(sentence[i]), num_neg=tokenCounts["neg"], num_pos=tokenCounts["pos"]))
 
     ###########################################################################
     # Example Generation
