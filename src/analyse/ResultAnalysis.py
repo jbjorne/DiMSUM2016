@@ -33,7 +33,8 @@ class ResultAnalysis(Analysis):
                                 assert spanIndex - prevIndex == 1
                             assert spanIndex >= index
                             if spanIndex > index:
-                                sentence[spanIndex] = "I"
+                                sentence[spanIndex]["MWE"] = "I"
+                                sentence[spanIndex]["parent"] = spanIndex - 1
                             else:
                                 token["MWE"] = "B"
                             prevIndex = spanIndex
@@ -60,13 +61,15 @@ class ResultAnalysis(Analysis):
                     print "Processing sentence", str(sentenceCount + 1) + "/" + str(numSentences)
                 self.processSentence(sentence)
                 for sentenceToken in sentence:
-                    outFile.write("\t".join([sentenceToken[column] for column in self.columns]) + "\n")
+                    outFile.write("\t".join([(str(sentenceToken[column]) if sentenceToken[column] != None else "") for column in self.columns]) + "\n")
                 outFile.write("\n")
                 sentenceCount += 1
+                sentence = []
             prevSentence = token["sentence"]
             outToken = token.copy()
             # Clear the columns to be predicted
             outToken["supersense"] = None
+            outToken["parent"] = 0
             outToken["MWE"] = "O"
             sentence.append(outToken)
             
@@ -81,12 +84,12 @@ class ResultAnalysis(Analysis):
         #if clear:
         #    meta.drop("project_analysis")
         print "Reading examples"
-        self.examples = [x for x in self.meta.db["example"].all() if x["label"] is not None]
+        self.examples = [x for x in self.meta.db.query("SELECT id,supersense,sentence,root_token,tokens FROM example WHERE skipped IS NULL;")] # [x for x in self.meta.db["example"].all() if x["label"] is not None]
         print "Reading predictions"
-        self.predictions = {x["example"]:x["predicted"] for x in self.meta.db["prediction"].all()}
-        print "Checking predictions"
-        for example in self.examples:
-            assert example["id"] in self.predictions
+        self.predictions = [x for x in self.meta.db.query("SELECT * FROM prediction WHERE predicted > 0;")] #{x["example"]:x["predicted"] for x in self.meta.db["prediction"].all()}
+        #print "Checking predictions"
+        #for example in self.examples:
+        #    assert example["id"] in self.predictions
             
         print "Mapping examples"
         self.exampleMap = OrderedDict()
@@ -98,8 +101,9 @@ class ResultAnalysis(Analysis):
                 sentenceExamples[example["root_token"]] = []
             sentenceExamples[example["root_token"]].append(example)
         
-        print "Processing datasets"
+        print "Reading tokens"
         self.tokens = [x for x in self.meta.db["token"].all()]
+        print "Processing datasets"
         self.writeTokens(self.tokens, "train")
         if hidden:
             self.writeTokens(self.tokens, "test")

@@ -10,6 +10,7 @@ class WordNetTagger(Tagger):
     def getSuperSenses(self, lemma):
         lexnames = sorted(set([x.lexname() for x in wordnet.synsets(lemma)]))
         if "noun.Tops" in lexnames:
+            lexnames.remove("noun.Tops")
             potential = "noun." + lemma
             if potential in self.lexnames:
                 lexnames.append(potential)
