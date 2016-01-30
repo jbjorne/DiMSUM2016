@@ -2,7 +2,7 @@ from src.Resources import Resources
 
 class Tagger(object):
     def __init__(self, name=None, resources=None):
-        self.name = None
+        self.name = name
         self.dataPath = None
         self.resources = []
         if resources != None:
