@@ -28,15 +28,18 @@ class ResultAnalysis(Analysis):
                         maxExample = example
                         maxPrediction = prediction
             if maxExample != None and maxPrediction > 0.0:
+                assert token["MWE"] == "O", (token, maxExample, maxPrediction)
+                assert token["parent"] == 0, (token, maxExample, maxPrediction)
+                assert token["supersense"] == None, (token, maxExample, maxPrediction)
                 token["supersense"] = maxExample["supersense"]
                 span = sorted([int(x) for x in str(maxExample["tokens"]).split(",")])
-                assert span[0] == index
+                assert span[0] == index, (index, span, token, maxExample, maxPrediction)
+                assert min(span) == index, (index, span, token, maxExample, maxPrediction)
                 if len(span) == 1:
-                    token["MWE"] = "O"
                     counts["pred-O"] += 1
                 else:
                     prevIndex = None
-                    for spanIndex in sorted(span):
+                    for spanIndex in span:
                         if prevIndex != None:
                             assert spanIndex - prevIndex == 1
                         assert spanIndex >= index
@@ -93,6 +96,7 @@ class ResultAnalysis(Analysis):
             outToken["supersense"] = None
             outToken["parent"] = 0
             outToken["MWE"] = "O"
+            assert outToken not in sentence
             sentence.append(outToken)
             
         predFile.close()

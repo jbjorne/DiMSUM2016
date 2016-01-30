@@ -138,7 +138,7 @@ class Experiment(object):
                     exampleCounts = self.buildExamples(tokens, goldTokens, sentence, setName)
                     if sum(exampleCounts.values()) > 0: # At least one example was generated
                         matchLength = len(tokens)
-                        matchedUntil = j - 1
+                        matchedUntil = j
                         break # Ignore nested matches
             # If no positive example is generated record the reason
             if goldTokens != None and exampleCounts["pos"] == 0:
