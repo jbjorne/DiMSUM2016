@@ -118,7 +118,7 @@ class Classification(object):
     def _getTrainGroups(self):
         examples = [self.examples[i] for i in self.indices["train"]]
         groups = []
-        groupNames = set()
+        groupCounts = defaultdict(int)
         for example in examples:
             sentenceId = example["sentence"]
             if "-" in sentenceId:
@@ -126,10 +126,11 @@ class Classification(object):
             else:
                 group = sentenceId.split(".")[0]
             assert group in ("lowlands", "ritter", "ewtb"), example
-            groupNames.add(group)
+            groupCounts[group] += 1
             groups.append(group)
-        if len(groupNames) == 1 and groupNames[0] != "ewtb":
-            raise Exception("Training group '" + str(groupNames[0]) + "' cannot be used alone.")
+        if len(groupCounts) == 1 and groupCounts.keys()[0] != "ewtb":
+            raise Exception("Training group '" + str(groupCounts.keys()[0]) + "' cannot be used alone.")
+        print "Training data", len(examples), "examples divided into groups:", dict(groupCounts)
         return groups
                 
     def classify(self):
