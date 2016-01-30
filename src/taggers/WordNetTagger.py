@@ -1,12 +1,12 @@
 from Tagger import Tagger
 from nltk.corpus import wordnet
+from POSFilter import POSFilter
 
 class WordNetTagger(Tagger):
     def __init__(self):
         super(WordNetTagger, self).__init__("WN", ["WordNet"])
         self.lexnames = wordnet._lexnames
-        self.nounPOS = set(["NOUN", "PROPN"])
-        self.verbPOS = set(["VERB"])
+        self.posFilter = POSFilter()
         assert len(self.lexnames) > 0
     
     def getSuperSenses(self, lemma, tokens):
@@ -17,6 +17,10 @@ class WordNetTagger(Tagger):
             if potential in self.lexnames:
                 lexnames.append(potential)
         lexnames = [x.replace("noun.", "n.").replace("verb.", "v.") for x in lexnames if x.startswith("noun.") or x.startswith("verb.")]
+        if len(lexnames) > 0:
+            keep = self.posFilter.filterByPOS(tokens)
+            if keep != "*":
+                lexnames = [x for x in lexnames if x[0:2] in keep]
         return lexnames
     
     def filterByPOS(self, lexnames, tokens):
@@ -45,7 +49,7 @@ class WordNetTagger(Tagger):
             text = "_".join([x[key] for x in tokens])
             if useLowerCase:
                 text = text.lower()
-            supersenses = self.getSuperSenses(text)
+            supersenses = self.getSuperSenses(text, tokens)
             if len(supersenses) > 0:
                 return supersenses
         return None
