@@ -7,7 +7,10 @@ class WordNetTagger(Tagger):
     
     def getSuperSenses(self, lemma):
         lexnames = sorted(set([x.lexname() for x in wordnet.synsets(lemma)]))
-        return [x.replace("noun.", "n.").replace("verb.", "v.") for x in lexnames if x.startswith("noun.") or x.startswith("verb.")]
+        lexnames = [x.replace("noun.", "n.").replace("verb.", "v.") for x in lexnames if x.startswith("noun.") or x.startswith("verb.")]
+        if "n.Tops" in lexnames:
+            lexnames.append("n." + lemma)
+        return lexnames
     
     def tag(self, tokens):
         for key, useLowerCase in [("lemma", False), ("word", True)]:
