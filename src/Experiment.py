@@ -121,7 +121,7 @@ class Experiment(object):
         numTokens = len(sentence)
         matchedUntil = 0
         for i in range(numTokens): # There can be max one example per each token
-            tokenCounts = {"pos":0, "neg":0} # Number of examples
+            tokenCounts = {"pos":0, "neg":0} # Number of examples for all spans of this token
             goldTokens = getGoldExample(i, sentence)
             matchLength = -1
             if i >= matchedUntil:
