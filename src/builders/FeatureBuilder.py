@@ -8,10 +8,15 @@ class FeatureBuilder(FeatureGroup):
         self.supersense = supersense
         self.supersenses = supersenses
         self.sentence = sentence
+        self.tokens = tokens
         features = self.buildSpanFeatures()
         for token in self.tokens:
             features.append(self.buildTokenFeatures(token))
         return features, None
-            
+    
+    def buildSpanFeatures(self):
+        return []
+    
     def buildTokenFeatures(self, token):
+        return []
         
