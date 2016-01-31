@@ -36,22 +36,19 @@ class YelpTagger(Tagger):
         for name in ("the",):
             self.names.remove(name)
         
-    def tag(self, tokens, sentence, taggingState):
-#         for token in tokens:
-#             if token["word"][0].islower():
-#                 return []
-#         left, right = self.getFlankingTokens(tokens, sentence)
-#         if left and left["word"][0].isupper():
-#             return []
-#         if right and right["word"][0].isupper():
-#             return []
+    def tag(self, tokens, sentence, taggingState): 
+        allUpper, leftUpper, rightUpper = self.getCapitalization(tokens, sentence)
 
-#         if len(tokens) == 1 and len(taggingState["supersenses"]) > 0:
-#             return
+        # Tag exact matches
         types = self.tagExact(tokens)
-        if len(types) == 0:
-            types += self.tagNames(tokens)
         
+        # Tag personal names
+        if len(types) == 0 and len(tokens) <= 2 and allUpper:
+            firstName = tokens[0]["word"].lower()
+            if len(firstName) >= 3 and firstName in self.names:
+                types += ["n.person"]
+        
+        # Convert Yelp types to categories
         categories = []
         for yelpType in types:
             categories.extend(self.categoryMap[yelpType])
@@ -61,13 +58,6 @@ class YelpTagger(Tagger):
         text = " ".join([x["word"].lower() for x in tokens])
         if text in self.locations:
             return [row["type"] for row in self.locations[text]]
-        return []
-    
-    def tagNames(self, tokens):
-        if len(tokens) <= 2:
-            lemma = tokens[0]["lemma"]
-            if len(lemma) >= 3 and lemma in self.names:
-                return ["n.person"]
         return []
     
     def tagPartial(self, tokens, sentence):

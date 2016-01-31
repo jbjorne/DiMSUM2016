@@ -30,6 +30,20 @@ class Tagger(object):
             right = sentence[maxIndex + 1]
         return left, right
     
+    def getCapitalization(self, tokens, sentence):
+        allUpper = True
+        for token in tokens:
+            if token["word"][0].islower():
+                allUpper = False
+        leftUpper = False
+        rightUpper = False
+        left, right = self.getFlankingTokens(tokens, sentence)
+        if left and left["word"][0].isupper():
+            leftUpper = True
+        if right and right["word"][0].isupper():
+            rightUpper = True
+        return allUpper, leftUpper, rightUpper
+    
     def filterByPOS(self, tokens, supersenses, taggingState):
         if len(supersenses) == 0:
             return supersenses
