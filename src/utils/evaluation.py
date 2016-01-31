@@ -1,4 +1,5 @@
 from sklearn.metrics.scorer import SCORERS, make_scorer
+import subprocess
 def getMajorityPredictions(labels, groups=None):
     majorityLabel = getMajorityClasses(labels, groups)
     return [majorityLabel[group] for group in groups]
@@ -81,3 +82,18 @@ def statistics(correct, predicted):
         else:
             results[pred][True] += 1
     return results
+
+def evaluateScript(goldPath, predPath, evaluatorPath, verbose=False):
+    command = " ".join("python", evaluatorPath, "-C", goldPath, predPath)
+    p = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    linesErr = p.stderr.readlines()
+    linesOut = p.stdout.readlines()
+    if len(linesErr) > 0:
+        for line in linesErr:
+            print line
+    if verbose:
+        for line in linesOut:
+            print line
+    for i in range(len(linesOut)):
+        if lines[i].startswith("SUMMARY SCORES"):
+            
