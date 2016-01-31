@@ -52,6 +52,19 @@ class ResultAnalysis(Analysis):
                             counts["pred-B"] += 1
                         prevIndex = spanIndex
     
+    def writeSentence(self, sentence, predFile, counts):
+        self.processSentence(sentence, counts)
+        for sentenceToken in sentence:
+            sentenceToken = sentenceToken.copy()
+            sentenceToken["index"] = sentenceToken["index"] + 1
+            for column in self.columns:
+                if sentenceToken[column] == None:
+                    sentenceToken[column] = ""
+                else:
+                    sentenceToken[column] = str(sentenceToken[column])
+            predFile.write("\t".join([sentenceToken[column] for column in self.columns]) + "\n")
+        predFile.write("\n")
+    
     def writeTokens(self, tokens, setName):
         print "Processing tokens for dataset '" + setName + "'"
         tokens = [x for x in tokens if x["set_name"] == setName]
@@ -68,26 +81,13 @@ class ResultAnalysis(Analysis):
         sentence = []
         sentenceCount = 0
         predFile = open(os.path.join(self.inDir, "dimsum16." + setName + ".pred"), "wt")
-        debugFile = open(os.path.join(self.inDir, "debug." + setName + ".pred"), "wt")
+        #debugFile = open(os.path.join(self.inDir, "debug." + setName + ".pred"), "wt")
         prevSentence = None
         for token in tokens:
             if prevSentence != None and prevSentence != token["sentence"]:
                 if (sentenceCount + 1) % 100 == 0:
                     print "Processing sentence", str(sentenceCount + 1) + "/" + str(counts["sentences"])
-                self.processSentence(sentence, counts)
-                for sentenceToken in sentence:
-                    sentenceToken = sentenceToken.copy()
-                    sentenceToken["index"] = sentenceToken["index"] + 1
-                    for column in self.columns:
-                        if sentenceToken[column] == None:
-                            sentenceToken[column] = ""
-                        else:
-                            sentenceToken[column] = str(sentenceToken[column])
-                    debugFile.write("\t".join([sentenceToken[column] for column in self.columns]) + "\n")
-                    sentenceToken["lemma"] = "-"
-                    predFile.write("\t".join([sentenceToken[column] for column in self.columns]) + "\n")
-                debugFile.write("\n")
-                predFile.write("\n")
+                self.writeSentence(sentence, predFile, counts)
                 sentenceCount += 1
                 sentence = []
             prevSentence = token["sentence"]
@@ -98,9 +98,10 @@ class ResultAnalysis(Analysis):
             outToken["MWE"] = "O"
             assert outToken not in sentence
             sentence.append(outToken)
+        if len(sentence) > 0: # Write final sentence
+            self.writeSentence(sentence, predFile, counts)
             
         predFile.close()
-        debugFile.close()
         print "Finished processing dataset '" + setName + "'", counts
         
     def analyse(self, inDir, fileStem=None, hidden=False, clear=True):
