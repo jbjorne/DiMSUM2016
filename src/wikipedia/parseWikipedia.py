@@ -13,6 +13,8 @@ class WikipediaParser():
         self.redirect = None
         self.categories = []
         self.infobox = None
+        self.verbose = False
+        self.numTitles = 0
     
     def checkTags(self, line, tag):
         openTag = "<" + tag + ">"
@@ -27,6 +29,7 @@ class WikipediaParser():
         if line.startswith("<"):
             newTitle = self.checkTags(line, "title")
             if newTitle:
+                self.numTitles += 1
                 if self.title != None:
                     disambiguation = None
                     if self.title.endswith(")") and "(" in self.title:
@@ -34,7 +37,7 @@ class WikipediaParser():
                         self.title = self.title.strip()
                         disambiguation = disambiguation.rstrip(" )")
                     if disambiguation == None or disambiguation != u"disambiguation":
-                        if disambiguation != None:
+                        if disambiguation != None and self.verbose:
                             print (self.title, disambiguation)
                         item = {"t":self.title, "d":disambiguation, "r":self.redirect, "i":self.infobox, "c":self.categories}
                         if self.outFile:
@@ -74,7 +77,7 @@ class WikipediaParser():
         c = codecs.iterdecode(f, "utf-8")
         for line in c:
             if lineNum % 100000 == 0:
-                print "Processing line", lineNum
+                print "Processing line", lineNum, "title", self.numTitles, "=", self.title
             self.processLine(line)
             lineNum += 1
         
