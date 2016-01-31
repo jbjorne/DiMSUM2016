@@ -62,10 +62,12 @@ class Corpus():
     
     def readExamples(self, filePath):
         counts = {"supersense":0, "token":0}
-        with open(filePath) as csvfile:
+        with open(filePath, "rb") as csvfile:
             reader = csv.DictReader(csvfile, fieldnames=self.columns,  delimiter="\t", quoting=csv.QUOTE_NONE)
             tokens = [row for row in reader]
             for token in tokens:
+                for column in self.columns:
+                    token[column] = token[column].decode('utf8')
                 token["index"] = int(token["index"]) - 1
                 assert token["index"] >= 0, token
                 token["parent"] = int(token["parent"]) if token["parent"] != "" else None

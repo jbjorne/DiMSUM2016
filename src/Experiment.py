@@ -67,7 +67,9 @@ class Experiment(object):
         print "Built", sum(self.exampleCounts.values()), "examples with", len(self.featureIds), "unique features"
         missedPositives = sum(self.missedExampleCounts.values())
         totalPositives = self.exampleCounts.get(True, 0) + missedPositives
-        missedPercent = 100.0 * missedPositives / float(totalPositives)
+        missedPercent = 0
+        if totalPositives > 0:
+            missedPercent = 100.0 * missedPositives / float(totalPositives)
         print "Missed", sum(self.missedExampleCounts.values()), "positive examples (%.2f percent) with window size" % missedPercent, self.maxExampleTokens
         print "Positives (built and missed):", totalPositives
         print "Examples:", dict(self.exampleCounts)

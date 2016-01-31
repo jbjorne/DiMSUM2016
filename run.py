@@ -58,7 +58,7 @@ if __name__ == "__main__":
         else:
             e = ExperimentClass()
         e.dataPath = DATA_PATH
-        e.includeSets = ("train", "hidden") if options.hidden else ("train",)
+        e.includeSets = ("train", "test") if options.hidden else ("train",)
         featureGroups = (e.featureGroups if e.featureGroups != None else []) + (options.features.split(",") if options.features else [])
         print "Using feature groups:", featureGroups
         e.featureGroups = getFeatureGroups(featureGroups)

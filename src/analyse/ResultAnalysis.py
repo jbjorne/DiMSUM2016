@@ -3,6 +3,7 @@ from Analysis import Analysis
 from collections import OrderedDict
 from _collections import defaultdict
 from src.utils.evaluation import evaluateScript
+import codecs
 
 class ResultAnalysis(Analysis):
     def __init__(self, dataPath=None):
@@ -87,7 +88,7 @@ class ResultAnalysis(Analysis):
         sentence = []
         sentenceCount = 0
         predFilePath = os.path.join(self.inDir, "dimsum16." + setName + ".pred")
-        predFile = open(predFilePath, "wt")
+        predFile = codecs.open(predFilePath, "wt", "utf-8")
         #debugFile = open(os.path.join(self.inDir, "debug." + setName + ".pred"), "wt")
         prevSentence = None
         for token in tokens:

@@ -54,7 +54,7 @@ def splitArray(array, setNames):
 def splitData(examples, labels, setNames):
     e, indices = splitArray(examples, setNames)
     l, indices = splitArray(labels, setNames)
-    return indices, e.get("train", np.array([])), e.get("hidden", np.array([])), l.get("train", np.array([])), l.get("hidden", np.array([]))   
+    return indices, e.get("train", np.array([])), e.get("test", np.array([])), l.get("train", np.array([])), l.get("test", np.array([]))   
 
 class Classification(object):
     def __init__(self, classifierName, classifierArgs, numFolds=10, parallel=1, metric='roc_auc', getCV=None, preDispatch='2*n_jobs', classifyHidden=False):
@@ -246,12 +246,12 @@ class Classification(object):
             hiddenResult["train_size"] = trainSize
             hiddenResult["test_size"] = y_hidden.shape[0]
             y_hidden_proba = search.predict_proba(X_hidden)
-            #if self.classes and len(self.classes) == 2:
-            #    y_hidden_pred = getClassPredictions(y_hidden_proba, self.classes)
-            #    print "AUC =", aucForPredictions(y_hidden, y_hidden_pred), "(eval:auc)"
-            #    hiddenExtra = {"predictions":{i:x for i,x in enumerate(y_hidden_pred)}}
-            #else:
-            hiddenExtra = {"probabilities":{i:x for i,x in enumerate(y_hidden_proba)}}
+            if self.classes and len(self.classes) == 2:
+                y_hidden_pred = getClassPredictions(y_hidden_proba, self.classes)
+                print "AUC =", aucForPredictions(y_hidden, y_hidden_pred), "(eval:auc)"
+                hiddenExtra = {"predictions":{i:x for i,x in enumerate(y_hidden_pred)}}
+            else:
+                hiddenExtra = {"probabilities":{i:x for i,x in enumerate(y_hidden_proba)}}
             if hasattr(search.best_estimator_, "feature_importances_"):
                 hiddenExtra["importances"] = search.best_estimator_.feature_importances_
             print "Saving results"

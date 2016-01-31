@@ -23,7 +23,11 @@ class WordNetTagger(Tagger):
         self.exact = exact
     
     def getSuperSenses(self, lemma, tokens, taggingState):
-        lexnames = sorted(set([x.lexname() for x in wordnet.synsets(lemma)]))
+        try:
+            lexnames = sorted(set([x.lexname() for x in wordnet.synsets(lemma)]))
+        except:
+            print "Warning, exception on lemma", lemma
+            lexnames = []
         if "noun.Tops" in lexnames:
             lexnames.remove("noun.Tops")
             potential = "noun." + lemma
