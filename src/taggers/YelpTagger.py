@@ -56,7 +56,7 @@ class YelpTagger(Tagger):
         types = []
         if len(tokens) == 1:
             text = tokens[0]["word"].lower()
-            if text in self.parts["single"]:
+            if text in self.dataset.parts["single"]:
                 types.extend(self.dataset.parts["single"][text])
         else:
             last = self.dataset.parts["last"].get(tokens[-1]["word"].lower(), [])
