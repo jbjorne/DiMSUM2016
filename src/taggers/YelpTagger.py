@@ -19,7 +19,7 @@ class YelpTagger(Tagger):
         self.meta = Meta(dbPath)
         
         self.parts = {"middle":{}, "first":{}, "last":{}, "single":{}}
-        for row in self.meta.db.query("select * from part where total > 10;"):
+        for row in self.meta.db.query("select * from part"): # where total > 10;"):
             pos = row["position"]
             text = row["token"]
             if text not in self.parts[pos]:
@@ -58,6 +58,8 @@ class YelpTagger(Tagger):
         for yelpType in types:
             if yelpType in self.categoryMap:
                 categories.extend(self.categoryMap[yelpType])
+        #if tokens[0]["word"] == "Pacific":
+        #    print [x["word"] for x in tokens], categories
         return list(set(categories))
         
     def tagExact(self, tokens):        
@@ -67,6 +69,8 @@ class YelpTagger(Tagger):
         return []
     
     def tagPartial(self, tokens, sentence):
+        #if tokens[0]["word"] == "Pacific":
+        #    print [x["word"] for x in tokens]
         for token in tokens:
             if token["POS"] not in ("NOUN", "PROPN",):
                 return []
@@ -85,5 +89,7 @@ class YelpTagger(Tagger):
         if len(types) > 0:
             types += ["business"]
             #print "Match", [x["word"] for x in tokens], types
+        #if tokens[0]["word"] == "Pacific":
+        #    print [x["word"] for x in tokens], types
         return types
         

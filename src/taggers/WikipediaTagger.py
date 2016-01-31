@@ -18,4 +18,19 @@ class WikipediaTagger(Tagger):
         print "done"
     
     def tag(self, tokens, sentence, taggingState):
+        if len(taggingState["supersenses"]) > 0:
+            return []
+        includesProperNoun = False
+        for token in tokens:
+            if token["POS"] == "PROPN":
+                includesProperNoun = True
+        if not includesProperNoun:
+            return []
+        for key in ("lemma", "word"):
+            text = "_".join([x[key] for x in tokens])
+            text = text.lower()
+            if text in self.titles:
+                supersenses = ["Wikipedia"]
+                if len(supersenses) > 0:
+                    return supersenses
         return []

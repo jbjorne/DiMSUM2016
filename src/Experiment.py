@@ -223,7 +223,7 @@ class Experiment(object):
         # Build the examples
         counts = {"pos":0, "neg":0}
         supersenseDict = {}
-        taggingState = {} #{"nested":nested} #, "supersenses":supersenses}
+        taggingState = {"supersenses":supersenseDict} #{"nested":nested} #, "supersenses":supersenses}
         for tagger in self.taggers:
             supersenses = tagger.tag(tokens, sentence, taggingState)
             for supersense in supersenses:
