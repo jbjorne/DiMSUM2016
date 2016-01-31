@@ -173,7 +173,9 @@ def readsent(inF):
     parents = {}
 
     for ln in inF:
+        #print("XLINEX(" + repr(ln) + ")<" + str(inF) + ">")
         if not ln.strip():
+            #print("XLINEXEMPTY")
             if not words: continue
             break
 
@@ -193,6 +195,7 @@ def readsent(inF):
         if int(parent)!=0:
             parents[int(offset)] = (int(parent), strength)
 
+    #print("XXX", words, lemmas, tags, labels, parents)
     if not words: raise StopIteration()
 
     data = process_sentence(words, lemmas, tags, labels, parents, sentId=sentId)

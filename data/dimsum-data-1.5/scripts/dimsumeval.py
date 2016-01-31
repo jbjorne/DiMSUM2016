@@ -343,12 +343,15 @@ if __name__=='__main__':
     confCs = [Counter() for predFP in args[1:]]    # confusion matrix
 
     for sentId,gdata in readsents(fileinput.input(goldFP)):
+        #print("A",sentId,gdata)
         gtags_mwe = [t.encode('utf-8') for t in gdata["tags"]]
         assert all(len(t)<=1 for t in gtags_mwe)
         glbls = {k-1: v[1].encode('utf-8') for k,v in gdata["labels"].items()}
         goldLblsC.update(glbls.values())
+        #print("B",predFs,statsCs,gmwetypesCs,pmwetypesCs,sststatsCs,confCs)
         for predF,stats,gmwetypes,pmwetypes,sststats,conf in zip(predFs,statsCs,gmwetypesCs,pmwetypesCs,sststatsCs,confCs):
             sentId,pdata = next(predF)
+            #print("C",sentId,pdata)
             ptags_mwe = [t.encode('utf-8') for t in pdata["tags"]]
             plbls = {k-1: v[1].encode('utf-8') for k,v in pdata["labels"].items()}
             assert all(len(t)<=1 for t in ptags_mwe)
