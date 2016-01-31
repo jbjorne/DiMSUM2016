@@ -4,7 +4,7 @@ class OutOfVocabularyTagger(Tagger):
     def __init__(self):
         super(OutOfVocabularyTagger, self).__init__("OoV", ["corpus"])
     
-    def tag(self, tokens, taggingState):
+    def tag(self, tokens, sentence, taggingState):
         supersenses = []
         if len(tokens) == 1:
             token = tokens[0]

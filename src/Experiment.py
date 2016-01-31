@@ -167,7 +167,7 @@ class Experiment(object):
         counts = {"pos":0, "neg":0}
         taggingState = {}
         for tagger in self.taggers:
-            supersenses = tagger.tag(tokens, taggingState)
+            supersenses = tagger.tag(tokens, sentence, taggingState)
             if supersenses:
                 for supersense in supersenses:
                     label = self.buildExample(tokens, sentence, supersense, supersenses, exampleGoldSupersense, setName, tagger.name)

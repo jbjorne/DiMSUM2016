@@ -18,15 +18,32 @@ class YelpParser():
     def writeDatabase(self, outPath):
         meta = Meta(outPath, clear=True)
         meta.insert_many("location", self.locationRows, True)
+        self.addLocationParts(meta)
         #names = [name.lstrip(".,'-_") for name in self.firstNames]
         names = [{"name":key, "lower":key.lower(), "length":len(key), "total":self.firstNames[key]} for key in sorted(self.firstNames)]
         meta.insert_many("first_name", names, True)
         print "Indexing"
         for column in ("name", "lower", "level"):
-            meta.db["location"].create_index("column")
+            meta.db["location"].create_index([column])
         for column in ("name", "lower", "length"):
-            meta.db["first_name"].create_index("column")
+            meta.db["first_name"].create_index([column])
     
+    def addLocationParts(self, meta):
+        counts = defaultdict(int)
+        for location in self.locationRows:
+            parts = location["lower"].split()
+            if len(parts) == 0:
+                counts[(parts[0], "single", location["category"])] += 1
+            else:
+                counts[(parts[0], "first", location["category"])] += 1
+                counts[(parts[-1], "last", location["category"])] += 1
+                for i in range(1, len(parts) - 1):
+                    counts[(parts[i], "middle", location["category"])] += 1
+        rows = []
+        for key in sorted(counts.keys()):
+            rows.append({"token":key[0], "position":key[1], "category":key[2], "total":counts[key]})
+        meta.insert_many("part", rows, True)
+        
     def processLine(self, data):
         itemType = data["type"]
         if itemType == "user":

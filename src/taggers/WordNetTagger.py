@@ -18,7 +18,7 @@ class WordNetTagger(Tagger):
         lexnames = self.filterByPOS(tokens, lexnames, taggingState)
         return lexnames
     
-    def tag(self, tokens, taggingState):
+    def tag(self, tokens, sentence, taggingState):
         for key, useLowerCase in [("lemma", False), ("word", True)]:
             text = "_".join([x[key] for x in tokens])
             if useLowerCase:

@@ -16,8 +16,19 @@ class Tagger(object):
     def initialize(self, dataPath):
         self.dataPath = dataPath
     
-    def tag(self, tokens, taggingState):
+    def tag(self, tokens, sentence, taggingState):
         raise NotImplementedError
+    
+    def getFlankingTokens(self, tokens, sentence):
+        left = None
+        right = None
+        minIndex = tokens[0]["index"]
+        maxIndex = tokens[-1]["index"]
+        if minIndex > 0:
+            left = sentence[minIndex - 1]
+        if maxIndex < len(sentence) - 1:
+            right = sentence[maxIndex + 1]
+        return left, right
     
     def filterByPOS(self, tokens, supersenses, taggingState):
         if len(supersenses) == 0:
