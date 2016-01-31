@@ -10,8 +10,12 @@ class OutOfVocabularyTagger(Tagger):
             token = tokens[0]
             if token["word"].startswith("@"):
                 supersenses.append("n.person")
-            if token["word"].startswith("'") and token["POS"] == "VERB":
+            elif token["word"].startswith("'") and token["POS"] == "VERB":
                 supersenses.append("v.stative")
+            elif token["lemma"] in ("place", "restaurant", "store"):
+                supersenses.append("n.group")
+            elif token["lemma"] in ("place", "restaurant", "store", "hotel", "places", "shop", "guys", "salon"):
+                supersenses.append("n.group")
         supersenses = self.filterByPOS(tokens, supersenses, taggingState)
         return supersenses #(None if len(supersenses) == 0 else supersenses)
         
