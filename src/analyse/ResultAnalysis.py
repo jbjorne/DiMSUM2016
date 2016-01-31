@@ -2,6 +2,7 @@ import os
 from Analysis import Analysis
 from collections import OrderedDict
 from _collections import defaultdict
+from src.utils.evaluation import evaluateScript
 
 class ResultAnalysis(Analysis):
     def __init__(self, dataPath=None):
@@ -80,7 +81,8 @@ class ResultAnalysis(Analysis):
         print "Processing sentences"
         sentence = []
         sentenceCount = 0
-        predFile = open(os.path.join(self.inDir, "dimsum16." + setName + ".pred"), "wt")
+        predFilePath = os.path.join(self.inDir, "dimsum16." + setName + ".pred")
+        predFile = open(predFilePath, "wt")
         #debugFile = open(os.path.join(self.inDir, "debug." + setName + ".pred"), "wt")
         prevSentence = None
         for token in tokens:
@@ -102,6 +104,12 @@ class ResultAnalysis(Analysis):
             self.writeSentence(sentence, predFile, counts)
             
         predFile.close()
+        print "Evaluating", predFilePath
+        goldFile = "dimsum16.train" if setName == "train" else "dimsum16.test.blind"
+        goldFile = "dimsum-data-1.5/" + goldFile
+        evaluateScript(os.path.join(self.dataPath, "dimsum-data-1.5/scripts/dimsumeval.py"),
+                       os.path.join(self.dataPath, goldFile),
+                       predFilePath)
         print "Finished processing dataset '" + setName + "'", counts
         
     def analyse(self, inDir, fileStem=None, hidden=False, clear=True):

@@ -83,17 +83,20 @@ def statistics(correct, predicted):
             results[pred][True] += 1
     return results
 
-def evaluateScript(goldPath, predPath, evaluatorPath, verbose=False):
-    command = " ".join("python", evaluatorPath, "-C", goldPath, predPath)
+def evaluateScript(evaluatorPath, goldPath, predPath, verbose=False):
+    command = " ".join(["python", evaluatorPath, "-C", goldPath, predPath])
+    print "Run: '" + command + "'"
     p = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     linesErr = p.stderr.readlines()
     linesOut = p.stdout.readlines()
     if len(linesErr) > 0:
         for line in linesErr:
             print line
-    if verbose:
-        for line in linesOut:
-            print line
-    for i in range(len(linesOut)):
-        if lines[i].startswith("SUMMARY SCORES"):
+    print "------------------------------------------------------"
+    for line in linesOut:
+        if line.startswith("SUMMARY SCORES"):
+            verbose = True
+        if verbose:
+            print line.rstrip()
+    print "------------------------------------------------------"
             
