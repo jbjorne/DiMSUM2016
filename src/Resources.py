@@ -17,6 +17,7 @@ class Resources:
         # Group 2
         self.__add(2, "Yelp", "Yelp Academic Dataset (other than for the above clusters)")
         # Group 3
+        self.__add(3, "Wikipedia", "English Wikipedia")
     
     def validate(self, keys):
         for key in keys:

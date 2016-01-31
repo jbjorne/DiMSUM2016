@@ -4,6 +4,7 @@ from src.taggers.WordNetTagger import WordNetTagger
 from src.taggers.OutOfVocabularyTagger import OutOfVocabularyTagger
 from src.builders.BasicFeatureBuilder import BasicFeatureBuilder
 from src.taggers.YelpTagger import YelpTagger
+from src.taggers.WikipediaTagger import WikipediaTagger
 
 ###############################################################################
 # Features
@@ -47,3 +48,9 @@ class Task2(Experiment):
         self.featureGroups = [BasicFeatureBuilder]
         #self.taggers = [WordNetTagger, YelpTagger, WordNetTagger(exact=False), OutOfVocabularyTagger]
         self.taggers = [WordNetTagger, YelpTagger, OutOfVocabularyTagger]
+
+class Task3(Experiment):
+    def __init__(self):
+        super(Task3, self).__init__()
+        self.featureGroups = [BasicFeatureBuilder]
+        self.taggers = [WordNetTagger, WikipediaTagger, YelpTagger, OutOfVocabularyTagger]
