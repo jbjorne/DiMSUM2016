@@ -9,9 +9,11 @@ class FeatureBuilder(FeatureGroup):
         self.supersenses = supersenses
         self.sentence = sentence
         self.tokens = tokens
+        
         features = self.buildSpanFeatures()
         for token in self.tokens:
-            features.append(self.buildTokenFeatures(token))
+            features += self.buildTokenFeatures(token)
+        
         return features, None
     
     def buildSpanFeatures(self):
