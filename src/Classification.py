@@ -240,15 +240,15 @@ class Classification(object):
             print "search.scoring", search.scoring
             print "search.scorer_", search.scorer_
             print "search.best_estimator_.score", search.best_estimator_.score
-            score = search.score(X_hidden, y_hidden) #roc_auc_score(y_hidden, search.best_estimator_.predict(X_hidden))
-            print "Score =", score, "(" + self.metric + ")"
-            hiddenResult = self._getResult("hidden", search.best_estimator_.__class__, None, search.best_params_, score)
+            #score = search.score(X_hidden, y_hidden) #roc_auc_score(y_hidden, search.best_estimator_.predict(X_hidden))
+            #print "Score =", score, "(" + self.metric + ")"
+            hiddenResult = self._getResult("test", search.best_estimator_.__class__, None, search.best_params_, 0)
             hiddenResult["train_size"] = trainSize
             hiddenResult["test_size"] = y_hidden.shape[0]
             y_hidden_proba = search.predict_proba(X_hidden)
             if self.classes and len(self.classes) == 2:
                 y_hidden_pred = getClassPredictions(y_hidden_proba, self.classes)
-                print "AUC =", aucForPredictions(y_hidden, y_hidden_pred), "(eval:auc)"
+                #print "AUC =", aucForPredictions(y_hidden, y_hidden_pred), "(eval:auc)"
                 hiddenExtra = {"predictions":{i:x for i,x in enumerate(y_hidden_pred)}}
             else:
                 hiddenExtra = {"probabilities":{i:x for i,x in enumerate(y_hidden_proba)}}
@@ -256,7 +256,7 @@ class Classification(object):
                 hiddenExtra["importances"] = search.best_estimator_.feature_importances_
             print "Saving results"
             self._insert("result", [hiddenResult])
-            self._saveExtras([hiddenExtra], "hidden", True)
+            self._saveExtras([hiddenExtra], "test", True)
             self.meta.flush()
 #             if "predictions" in hiddenExtra:
 #                 try:

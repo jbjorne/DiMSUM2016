@@ -4,6 +4,8 @@ from collections import OrderedDict
 from _collections import defaultdict
 from src.utils.evaluation import evaluateScript
 import codecs
+import zipfile
+from src.Resources import Resources
 
 class ResultAnalysis(Analysis):
     def __init__(self, dataPath=None):
@@ -117,12 +119,31 @@ class ResultAnalysis(Analysis):
                        os.path.join(self.dataPath, goldFile),
                        predFilePath)
         print "Finished processing dataset '" + setName + "'", counts
+        if setName == "test":
+            print "Making the zip file"
+            self.writeZip(predFilePath)
+            #self.writeZip(os.path.join(self.inDir, "result.zip"), predFilePath)
+    
+    def writeZip(self, predFilePath):
+        # Write the report
+        experiment = self.meta.db["experiment"].all()[0]
+        report = Resources().buildReport(self, experiment["resources"].split(","))
+        reportPath = os.path.join(self.inDir, "submission.csv")
+        f = open(reportPath, "wt")
+        f.write(report)
+        f.close()
+        # Save the zipfile
+        zipPath = os.path.join(self.inDir, experiment["name"] + ".zip")
+        zf = zipfile.ZipFile(zipPath, "w")
+        for filePath in (predFilePath,reportPath):
+            zf.write(filePath, os.path.basename(filePath))
+        zf.close()
         
     def analyse(self, inDir, fileStem=None, hidden=False, clear=True):
         self.inDir = inDir
         self.meta = self._getMeta(inDir, fileStem)
         for filename in os.listdir(inDir):
-            if filename.endswith(".pred"):
+            if filename.endswith(".pred") or filename.endswith(".zip"):
                 os.remove(os.path.join(inDir, filename))
         #if clear:
         #    meta.drop("project_analysis")

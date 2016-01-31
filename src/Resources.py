@@ -18,10 +18,11 @@ class Resources:
         self.__add(2, "Yelp", "Yelp Academic Dataset (other than for the above clusters)")
         # Group 3
     
-    def validate(self, key):
-        if key not in self.__resources:
-            raise Exception("Unknown resource key '" + str(key) + "'")
-        return key
+    def validate(self, keys):
+        for key in keys:
+            if key not in self.__resources:
+                raise Exception("Unknown resource key '" + str(key) + "'")
+        return keys
         
     def __add(self, level, key, name, details=None):
         assert level in (1, 2, 3)

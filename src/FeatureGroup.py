@@ -1,7 +1,12 @@
 from collections import OrderedDict
+from Resources import Resources
+
 class FeatureGroup(object):
-    def __init__(self, name):
+    def __init__(self, name, resources=None):
         self.name = name
+        self.resources = []
+        if resources != None:
+            self.resources = Resources().validate(resources)
     
     def initialize(self, dataPath):
         self.dataPath = dataPath

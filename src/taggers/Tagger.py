@@ -8,8 +8,7 @@ class Tagger(object):
         self.resources = []
         if resources != None:
             validator = Resources()
-            for key in resources:
-                self.resources.append(validator.validate(key))
+            self.resources = validator.validate(resources)
         self.posFilter = POSFilter()
         self.POS_FILTER_KEEP = "POS_FILTER"
     

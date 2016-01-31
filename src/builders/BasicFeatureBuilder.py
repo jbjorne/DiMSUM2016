@@ -3,7 +3,7 @@ from FeatureBuilder import FeatureBuilder
 class BasicFeatureBuilder(FeatureBuilder):
     
     def __init__(self):
-        super(FeatureBuilder, self).__init__("BASIC")
+        super(FeatureBuilder, self).__init__("BASIC", ["WordNet"])
     
     def buildTokenFeatures(self, token):
         features = []

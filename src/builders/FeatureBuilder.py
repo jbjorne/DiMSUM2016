@@ -1,8 +1,8 @@
 from src.FeatureGroup import FeatureGroup
 
 class FeatureBuilder(FeatureGroup):
-    def __init__(self, name):
-        super(FeatureBuilder, self).__init__(name)
+    def __init__(self, name, resources=None):
+        super(FeatureBuilder, self).__init__(name, resources)
     
     def buildFeatures(self, tokens, supersense, sentence, supersenses):
         self.supersense = supersense

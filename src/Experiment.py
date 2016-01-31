@@ -54,8 +54,17 @@ class Experiment(object):
         print "Experiment:", self.__class__.__name__
         self.meta = Meta(metaDataFileName, clear=True)
         childVars = self._getChildVars()
+        resources = []
+        if self.taggers:
+            for tagger in self.taggers:
+                resources += tagger.resources
+        if self.featureGroups:
+            for featureGroup in self.featureGroups:
+                resources += featureGroup.resources
+        resources = sorted(set(resources))
         self.meta.insert("experiment", {"name":self.__class__.__name__,
                                         "vars":";".join([x+"="+str(childVars[x]) for x in childVars]),
+                                        "resources":",".join(resources),
                                         "time":time.strftime("%c")})
         self.meta.flush()
         self.meta.initCache("feature", 100000)        
