@@ -5,9 +5,10 @@ import os
 class YelpTagger(Tagger):
     def __init__(self):
         super(YelpTagger, self).__init__("Yelp", ["Yelp"])
-        self.categoryMap = {"business":["n.group", "n.artifact", "n.communication"],
+        self.categoryMap = {"business":["n.group"],#["n.group", "n.artifact", "n.communication"],
                             "neighborhood":["n.location"],
-                            "school":["n.location"]}
+                            "school":["n.location"],
+                            "n.person":["n.person"]}
     
     def initialize(self, dataPath):
         super(YelpTagger, self).initialize(dataPath)
@@ -30,7 +31,11 @@ class YelpTagger(Tagger):
             if row["lower"] not in self.locations:
                 self.locations[name] = []
             self.locations[name].append(row)
-    
+        
+        self.names = set([x["lower"] for x in self.meta.db.query("select * from first_name where total > 10;")])
+        for name in ("the",):
+            self.names.remove(name)
+        
     def tag(self, tokens, sentence, taggingState):
 #         for token in tokens:
 #             if token["word"][0].islower():
@@ -43,17 +48,27 @@ class YelpTagger(Tagger):
 
 #         if len(tokens) == 1 and len(taggingState["supersenses"]) > 0:
 #             return
+        types = self.tagExact(tokens)
+        if len(types) == 0:
+            types += self.tagNames(tokens)
         
+        categories = []
+        for yelpType in types:
+            categories.extend(self.categoryMap[yelpType])
+        return list(set(categories))
+        
+    def tagExact(self, tokens):        
         text = " ".join([x["word"].lower() for x in tokens])
         if text in self.locations:
-            yelpTypes = [row["type"] for row in self.locations[text]]
-            categories = []
-            for yelpType in yelpTypes:
-                categories.extend(self.categoryMap[yelpType])
-            return categories
-            #return ["yelp." + row["type"] for row in self.locations[text]]
-        else:
-            return []
+            return [row["type"] for row in self.locations[text]]
+        return []
+    
+    def tagNames(self, tokens):
+        if len(tokens) <= 2:
+            lemma = tokens[0]["lemma"]
+            if len(lemma) >= 3 and lemma in self.names:
+                return ["n.person"]
+        return []
     
     def tagPartial(self, tokens, sentence):
         for token in tokens:
