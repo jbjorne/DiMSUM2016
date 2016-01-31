@@ -9,7 +9,10 @@ except:
 
 class WikipediaParser():
     def __init__(self):
-        pass
+        self.title = None
+        self.redirect = None
+        self.categories = []
+        self.infobox = None
     
     def checkTags(self, line, tag):
         openTag = "<" + tag + ">"
@@ -21,31 +24,37 @@ class WikipediaParser():
     
     def processLine(self, line):
         line = line.strip()
-        title = None
-        redirect = None
-        categories = []
-        infobox = None
         if line.startswith("<"):
             newTitle = self.checkTags(line, "title")
             if newTitle:
-                print newTitle, title
-                if title != None:
-                    item = {"t":title, "r":redirect, "i":infobox, "c":categories}
-                    print item
-                    if self.outFile:
-                        self.outFile.write(json.dumps(item))
-                title = newTitle
-                redirect = None
-                categories = []
-                infobox = None
+                if self.title != None:
+                    disambiguation = None
+                    if self.title.endswith(")") and "(" in self.title:
+                        self.title, disambiguation = self.title.rsplit("(", 1)
+                        self.title = self.title.strip()
+                        disambiguation = disambiguation.rstrip(" )")
+                    if disambiguation == None or disambiguation != u"disambiguation":
+                        if disambiguation != None:
+                            print (self.title, disambiguation)
+                        item = {"t":self.title, "d":disambiguation, "r":self.redirect, "i":self.infobox, "c":self.categories}
+                        if self.outFile:
+                            self.outFile.write(json.dumps(item))
+                            self.outFile.write("\n")
+                self.title = newTitle
+                self.redirect = None
+                self.categories = []
+                self.infobox = None
             else:
                 newRedirect = self.checkTags(line, "redirect title")
                 if newRedirect:
-                    redirect = newRedirect
+                    self.redirect = newRedirect
         elif line.startswith("{{Infobox"):
-            infobox = line[9:].strip()
+            self.infobox = line[9:].strip()
         elif line.startswith("[[Category:"):
-            categories.append(line[11:].strip())
+            line = line[11:-2]
+            if "]]" in line:
+                line = line.split("]]")[0]
+            self.categories.append(line.strip("| "))
             
     def parseWikipedia(self, inPath, outPath):
         assert inPath != outPath
@@ -62,7 +71,8 @@ class WikipediaParser():
             f = originalFile
 
         lineNum = 0
-        for line in f:
+        c = codecs.iterdecode(f, "utf-8")
+        for line in c:
             if lineNum % 100000 == 0:
                 print "Processing line", lineNum
             self.processLine(line)
