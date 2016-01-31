@@ -2,6 +2,10 @@ import sys, os
 import bz2file
 import codecs
 sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+try:
+    import ujson as json
+except:
+    import json
 
 class WikipediaParser():
     def __init__(self):
@@ -10,21 +14,38 @@ class WikipediaParser():
     def checkTags(self, line, tag):
         openTag = "<" + tag + ">"
         closeTag = "</" + tag + ">"
-        if line.startswith("<" + tag + ">") and line.endswith("</" + tag + ">"):
-            return line[len]
+        if line.startswith(openTag) and line.endswith(closeTag):
+            return line[len(openTag):-len(closeTag)]
+        else:
+            return None
     
     def processLine(self, line):
         line = line.strip()
         title = None
+        redirect = None
+        categories = []
+        infobox = None
         if line.startswith("<"):
-            if self.checkTags(line, "title"):
-                print line
-            elif self.checkTags(line, "redirect title"):
-                print line
+            newTitle = self.checkTags(line, "title")
+            if newTitle:
+                print newTitle, title
+                if title != None:
+                    item = {"t":title, "r":redirect, "i":infobox, "c":categories}
+                    print item
+                    if self.outFile:
+                        self.outFile.write(json.dumps(item))
+                title = newTitle
+                redirect = None
+                categories = []
+                infobox = None
+            else:
+                newRedirect = self.checkTags(line, "redirect title")
+                if newRedirect:
+                    redirect = newRedirect
         elif line.startswith("{{Infobox"):
-            print line
+            infobox = line[9:].strip()
         elif line.startswith("[[Category:"):
-            print line
+            categories.append(line[11:].strip())
             
     def parseWikipedia(self, inPath, outPath):
         assert inPath != outPath
