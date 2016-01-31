@@ -32,6 +32,12 @@ class Experiment(object):
             self.classIds[value] = len(self.classIds)
             self.classNames[self.classIds[value]] = value
         return self.classIds[value]
+    
+    def getFeatureId(self, featureName):
+        if featureName not in self.featureIds:
+            self.featureIds[featureName] = len(self.featureIds)
+            self.meta.insert("feature", {"name":featureName, "id":self.featureIds[featureName]})
+        return self.featureIds[featureName]
 
     ###########################################################################
     # Running the Experiment
@@ -141,23 +147,20 @@ class Experiment(object):
             exampleCounts = {"pos":0, "neg":0}
             goldTokens = getGoldExample(i, sentence)
             matchLength = -1
-            indexIsConsumed = False #i < matchedUntil
-            if True: #not indexIsConsumed:
-                for j in range(i + self.maxExampleTokens, i, -1):
-                    tokens = sentence[i:j]
-                    exampleCounts = self.buildExamples(tokens, goldTokens, sentence, setName)
-                    if sum(exampleCounts.values()) > 0: # At least one example was generated
-                        matchLength = len(tokens)
-                        matchedUntil = j
-                        #break # Ignore nested matches
+            nested = i < matchedUntil
+            for j in range(i + self.maxExampleTokens, i, -1):
+                tokens = sentence[i:j]
+                exampleCounts = self.buildExamples(tokens, goldTokens, sentence, setName, nested=nested)
+                if sum(exampleCounts.values()) > 0: # At least one example was generated
+                    matchLength = len(tokens)
+                    matchedUntil = j
+                    nested = True
             # If no positive example is generated record the reason
             if goldTokens != None and exampleCounts["pos"] == 0:
                 if hasGaps(goldTokens):
                     skipReason = "gaps"
                 elif len(goldTokens) > self.maxExampleTokens:
                     skipReason = "too long"
-                elif indexIsConsumed or len(goldTokens) < matchLength:
-                    skipReason = "nested"
                 elif len(goldTokens) == matchLength:
                     skipReason = "type"
                 elif len(goldTokens) > matchLength:
@@ -202,30 +205,37 @@ class Experiment(object):
 #             # Save the token
 #             self.meta.insert("token", dict(sentence[i], set_name=setName, token_id=getTokenId(sentence[i]), num_neg=exampleCounts["neg"], num_pos=exampleCounts["pos"]))
 
-    def buildExamples(self, tokens, goldTokens, sentence, setName):
+    def buildExamples(self, tokens, goldTokens, sentence, setName, nested):
         # Get the gold supersense for the examples built for this span
         exampleGoldSupersense = None
         if tokens == goldTokens: # Make a positive example only for the exact match
             exampleGoldSupersense = goldTokens[0]["supersense"]
         # Build the examples
         counts = {"pos":0, "neg":0}
-        taggingState = {}
+        supersenseDict = {}
+        taggingState = {"nested":nested} #, "supersenses":supersenses}
         for tagger in self.taggers:
             supersenses = tagger.tag(tokens, sentence, taggingState)
-            if supersenses:
-                for supersense in supersenses:
-                    label = self.buildExample(tokens, sentence, supersense, supersenses, exampleGoldSupersense, setName, tagger.name)
-                    category = "pos" if label else "neg"
-                    counts[category] += 1
-                    self.taggerCounts[tagger.name][category] += 1
-                break # Skip subsequent taggers
+            for supersense in supersenses:
+                if supersense not in supersenseDict:
+                    supersenseDict[supersense] = []
+                supersenseDict[supersense].append(tagger.name)
+        if len(supersenseDict) > 0:
+            supersenses = sorted(supersenseDict.keys())
+            for supersense in supersenses:
+                label = self.buildExample(tokens, sentence, supersense, supersenses, exampleGoldSupersense, setName, ",".join(supersenseDict[supersense]), nested=nested)
+                category = "pos" if label else "neg"
+                counts[category] += 1
+                for taggerName in supersenseDict[supersense]:
+                    self.taggerCounts[taggerName][category] += 1
+            #break # Skip subsequent taggers
         return counts
 
     ###########################################################################
     # Example Generation
     ###########################################################################
     
-    def insertExampleMeta(self, label, supersense, goldSupersense, tokens, features, setName, skipReason=None, taggerName=None, tableName="example"):
+    def insertExampleMeta(self, label, supersense, goldSupersense, tokens, features, setName, skipReason=None, taggerName=None, tableName="example", nested=False):
         exampleId = getExampleId(tokens) #self._getExampleId(tokens)
         self.meta.insert(tableName, {"label":label, 
                                      "supersense":supersense, 
@@ -242,20 +252,22 @@ class Experiment(object):
                                      "mwe_type":"".join([x["MWE"] for x in tokens]),
                                      "POS":":".join([x["POS"] for x in tokens]),
                                      "tagger":taggerName,
+                                     "nested":nested,
                                      "skipped":skipReason})
         if label == None:
             self.missedExampleCounts[skipReason] += 1
         else:
             self.exampleCounts[label] += 1
     
-    def buildExample(self, tokens, sentence, supersense, supersenses, goldSupersense, setName, taggerName):
+    def buildExample(self, tokens, sentence, supersense, supersenses, goldSupersense, setName, taggerName, nested):
         #realSense = self.getAnnotatedSense(tokens, sentence)
         #label = True if supersense == realSense else False
         label = True if supersense == goldSupersense else False
         classId = self.getClassId(label)
         features = {}
+        features[self.getFeatureId("SPAN_NESTED:" + str(nested))] = 1
         for featureGroup in self.featureGroups:
             features.update(featureGroup.processExample(tokens, supersense, sentence, supersenses, self.featureIds, self.meta))
-        self.insertExampleMeta(label, supersense, goldSupersense, tokens, features, setName, None, taggerName)
+        self.insertExampleMeta(label, supersense, goldSupersense, tokens, features, setName, None, taggerName, nested=nested)
         self._getExampleIO().writeExample(classId, features)
         return label

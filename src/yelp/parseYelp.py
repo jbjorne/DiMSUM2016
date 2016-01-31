@@ -61,17 +61,17 @@ class YelpParser():
                 category = categories[-i - 1]
                 combined = name + "_" + category
                 if combined not in self.locations:
-                    self.locationRows.append({"name":name, "lower":name.lower(), "level":i, "category":category})
+                    self.locationRows.append({"type":"business", "name":name, "lower":name.lower(), "level":i, "category":category})
                     self.locations.add(combined)
             schools = data["schools"]
             for school in schools:
                 if school not in self.locations:
-                    self.locationRows.append({"name":school, "lower":school.lower(), "level":0, "category":"school"})
+                    self.locationRows.append({"type":"school", "name":school, "lower":school.lower(), "level":0, "category":"school"})
                     self.locations.add(school)
             neighborhoods = data["neighborhoods"]
             for nb in neighborhoods:
                 if nb not in self.locations:
-                    self.locationRows.append({"name":nb, "lower":nb.lower(), "level":0, "category":"neighborhood"})
+                    self.locationRows.append({"type":"neighborhood", "name":nb, "lower":nb.lower(), "level":0, "category":"neighborhood"})
                     self.locations.add(nb)           
             
     def parseYelp(self, inPath, outPath):

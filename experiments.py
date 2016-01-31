@@ -40,3 +40,9 @@ class Task1(Experiment):
         super(Task1, self).__init__()
         self.featureGroups = [BasicFeatureBuilder]
         self.taggers = [WordNetTagger, OutOfVocabularyTagger]
+
+class Task2(Experiment):
+    def __init__(self):
+        super(Task2, self).__init__()
+        self.featureGroups = [BasicFeatureBuilder]
+        self.taggers = [WordNetTagger, YelpTagger, OutOfVocabularyTagger]

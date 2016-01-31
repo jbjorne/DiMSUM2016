@@ -20,7 +20,7 @@ class BasicFeatureBuilder(FeatureBuilder):
         return features
     
     def buildSpanFeatures(self):
-        features = []      
+        features = []  
         
         for key in ("lemma", "POS", "word"):
             values = [x[key].lower() for x in self.tokens]

@@ -26,5 +26,5 @@ class WordNetTagger(Tagger):
             supersenses = self.getSuperSenses(text, tokens, taggingState)
             if len(supersenses) > 0:
                 return supersenses
-        return None
+        return []
         

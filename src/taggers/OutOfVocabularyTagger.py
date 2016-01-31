@@ -13,5 +13,5 @@ class OutOfVocabularyTagger(Tagger):
             if token["word"].startswith("'") and token["POS"] == "VERB":
                 supersenses.append("v.stative")
         supersenses = self.filterByPOS(tokens, supersenses, taggingState)
-        return (None if len(supersenses) == 0 else supersenses)
+        return supersenses #(None if len(supersenses) == 0 else supersenses)
         
