@@ -16,6 +16,10 @@ class OutOfVocabularyTagger(Tagger):
                 supersenses.append("n.group")
             elif token["lemma"] in ("place", "restaurant", "store", "hotel", "places", "shop", "guys", "salon"):
                 supersenses.append("n.group")
+            elif token["lemma"] in ("get", "got", "s") and token["POS"] == "VERB":
+                supersenses.append("v.stative")
+            elif token["lemma"] in ("go", "went", "going", "coming") and token["POS"] == "VERB":
+                supersenses.append("v.motion")
         supersenses = self.filterByPOS(tokens, supersenses, taggingState)
         return supersenses #(None if len(supersenses) == 0 else supersenses)
         

@@ -219,8 +219,8 @@ class Experiment(object):
                 if supersense not in supersenseDict:
                     supersenseDict[supersense] = []
                 supersenseDict[supersense].append(tagger.name)
-            if len(supersenses) > 0: # Ignore subsequent taggers
-                break
+            #if len(supersenses) > 0: # Ignore subsequent taggers
+            #    break
         if len(supersenseDict) > 0:
             supersenses = sorted(supersenseDict.keys())
             for supersense in supersenses:
