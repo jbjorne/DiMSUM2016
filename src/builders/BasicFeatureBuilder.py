@@ -6,35 +6,32 @@ class BasicFeatureBuilder(FeatureBuilder):
         super(FeatureBuilder, self).__init__("BASIC", ["WordNet"])
     
     def buildTokenFeatures(self, token):
-        features = []
         numTokens = len(self.tokens)
         for key in ("lemma", "POS", "word"):
             values = [x[key].lower() for x in self.tokens]
-            features += ["TOKEN_" + key + ":" + x for x in values]
+            self.buildMany(["TOKEN_" + key + ":" + x for x in values])
             if numTokens == 1:
-                features += ["SINGLE_TOKEN_" + key + ":" + x for x in values]
+                self.buildMany(["SINGLE_TOKEN_" + key + ":" + x for x in values])
             elif token == self.tokens[0]:
-                features += ["FIRST_TOKEN_" + key + ":" + x for x in values]
+                self.buildMany(["FIRST_TOKEN_" + key + ":" + x for x in values])
             elif token == self.tokens[-1]:
-                features += ["LAST_TOKEN_" + key + ":" + x for x in values]
-        return features
+                self.buildMany(["LAST_TOKEN_" + key + ":" + x for x in values])
     
     def buildSpanFeatures(self):
-        features = []
-        
         supersensePOS = self.supersense.split(".")[0]
         
-        features.append("SPAN_LEX:" + self.supersense)
-        features.append("SPAN_LEX:" + supersensePOS)
+        self.build("SPAN_LEX:" + self.supersense)
+        self.build("SPAN_LEX:" + supersensePOS)
         for sense in self.supersenses:
             if sense != self.supersense:
-                features.append("SPAN_OTHER_LEX:" + self.supersense)
-                features.append("SPAN_OTHER_LEX:" + supersensePOS)
+                self.build("SPAN_OTHER_LEX:" + self.supersense)
+                self.build("SPAN_OTHER_LEX:" + supersensePOS)
+        
+        self.build("SPAN_LEX_NUM_" + str(len(self.supersenses)))
+        self.build("SPAN_LEX_NUM_VALUE", len(self.supersenses))
         
         for key in ("lemma", "POS", "word"):
             values = "_".join([x[key].lower() for x in self.tokens])
-            features.append("SPAN_" + key + ":" + values)
-            features.append("SPAN_" + key + ":" + values + ":" + self.supersense)
-            features.append("SPAN_" + key + ":" + values + ":" + supersensePOS)
-        
-        return features
+            self.build("SPAN_" + key + ":" + values)
+            self.build("SPAN_" + key + ":" + values + ":" + self.supersense)
+            self.build("SPAN_" + key + ":" + values + ":" + supersensePOS)
