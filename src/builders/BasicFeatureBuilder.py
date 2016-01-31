@@ -20,14 +20,21 @@ class BasicFeatureBuilder(FeatureBuilder):
         return features
     
     def buildSpanFeatures(self):
-        features = []  
+        features = []
         
-        for key in ("lemma", "POS", "word"):
-            values = [x[key].lower() for x in self.tokens]
-            features.append("SPAN_" + key + ":" + "_".join(values))
+        supersensePOS = self.supersense.split(".")[0]
         
         features.append("SPAN_LEX:" + self.supersense)
+        features.append("SPAN_LEX:" + supersensePOS)
         for sense in self.supersenses:
             if sense != self.supersense:
                 features.append("SPAN_OTHER_LEX:" + self.supersense)
+                features.append("SPAN_OTHER_LEX:" + supersensePOS)
+        
+        for key in ("lemma", "POS", "word"):
+            values = "_".join([x[key].lower() for x in self.tokens])
+            features.append("SPAN_" + key + ":" + values)
+            features.append("SPAN_" + key + ":" + values + ":" + self.supersense)
+            features.append("SPAN_" + key + ":" + values + ":" + supersensePOS)
+        
         return features

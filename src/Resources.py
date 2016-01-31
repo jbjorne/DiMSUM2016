@@ -31,17 +31,17 @@ class Resources:
     
     def __addToReport(self, used, level, report):
         assert level in (1, 2, 3)
-        report += "GROUP " + level * "I" + ",,"
+        report += "GROUP " + level * "I" + ",,\n"
         for key in Resources.__resources:
             resource = self.__resources[key]
             if resource["level"] == level:
                 s = resource["name"] + ","
-                s += ("Y" if resource["name"] in used else "N") + ","
+                s += ("Y" if key in used else "N") + ","
                 if resource["details"]:
                     s += resource["details"]
                 s += "\n"
                 report += s
-        report += ",,"
+        report += ",,\n"
         return report
     
     def buildReport(self, used):
@@ -49,7 +49,7 @@ class Resources:
             used = used + ["corpus"]
         
         report = "Resource,Used?,Details if used\n"
-        report += ",,"
+        report += ",,\n"
         for level in (1,2,3):
             report = self.__addToReport(used, level, report)
         report += "\"RULES: If you put Y for any resource in Group III, the system will be counted under the Open condition.\",,\n"

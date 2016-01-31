@@ -69,7 +69,7 @@ class ResultAnalysis(Analysis):
             for column in self.columns:
                 if sentenceToken[column] == None:
                     sentenceToken[column] = ""
-                else:
+                elif not isinstance(sentenceToken[column], basestring):
                     sentenceToken[column] = str(sentenceToken[column])
             predFile.write("\t".join([sentenceToken[column] for column in self.columns]) + "\n")
         predFile.write("\n")
@@ -126,8 +126,10 @@ class ResultAnalysis(Analysis):
     
     def writeZip(self, predFilePath):
         # Write the report
-        experiment = self.meta.db["experiment"].all()[0]
-        report = Resources().buildReport(self, experiment["resources"].split(","))
+        experiment = [x for x in self.meta.db["experiment"].all()]
+        assert len(experiment) == 1
+        experiment = experiment[0]
+        report = Resources().buildReport(experiment["resources"].split(","))
         reportPath = os.path.join(self.inDir, "submission.csv")
         f = open(reportPath, "wt")
         f.write(report)
@@ -143,7 +145,7 @@ class ResultAnalysis(Analysis):
         self.inDir = inDir
         self.meta = self._getMeta(inDir, fileStem)
         for filename in os.listdir(inDir):
-            if filename.endswith(".pred") or filename.endswith(".zip"):
+            if filename.endswith(".pred") or filename.endswith(".zip") or filename.endswith(".csv"):
                 os.remove(os.path.join(inDir, filename))
         #if clear:
         #    meta.drop("project_analysis")
