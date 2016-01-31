@@ -8,7 +8,8 @@ class YelpTagger(Tagger):
         self.categoryMap = {"business":["n.group"],#["n.group", "n.artifact", "n.communication"],
                             "neighborhood":["n.location"],
                             "school":["n.location"],
-                            "n.person":["n.person"]}
+                            "person":["n.person"],
+                            "Restaurants":["n.group", "n.food"]}
     
     def initialize(self, dataPath):
         super(YelpTagger, self).initialize(dataPath)
@@ -46,12 +47,17 @@ class YelpTagger(Tagger):
         if len(types) == 0 and len(tokens) <= 2 and allUpper:
             firstName = tokens[0]["word"].lower()
             if len(firstName) >= 3 and firstName in self.names:
-                types += ["n.person"]
+                types += ["person"]
+        
+        # Tag partial matches
+        if len(types) == 0 and len(tokens) > 1 and allUpper and not leftUpper and not rightUpper:
+            types += self.tagPartial(tokens, sentence)
         
         # Convert Yelp types to categories
         categories = []
         for yelpType in types:
-            categories.extend(self.categoryMap[yelpType])
+            if yelpType in self.categoryMap:
+                categories.extend(self.categoryMap[yelpType])
         return list(set(categories))
         
     def tagExact(self, tokens):        
@@ -62,21 +68,22 @@ class YelpTagger(Tagger):
     
     def tagPartial(self, tokens, sentence):
         for token in tokens:
-            if token["word"][0].islower():
-                return None
-        categories = []
+            if token["POS"] not in ("NOUN", "PROPN",):
+                return []
+        types = []
         if len(tokens) == 1:
             text = tokens[0]["word"].lower()
             if text in self.parts["single"]:
-                categories.extend(self.parts["single"][text])
+                types.extend(self.parts["single"][text])
         else:
             last = self.parts["last"].get(tokens[-1]["word"].lower(), [])
             if last:
-                categories += last
-                categories += self.parts["first"].get(tokens[0]["word"].lower(), [])
+                types += last
+                types += self.parts["first"].get(tokens[0]["word"].lower(), [])
                 for i in range(1, len(tokens) - 1):
-                    categories += self.parts["middle"].get(tokens[i]["word"].lower(), [])
-        if len(categories) > 0:
-            return sorted(set(categories))
-        return None
+                    types += self.parts["middle"].get(tokens[i]["word"].lower(), [])
+        if len(types) > 0:
+            types += ["business"]
+            #print "Match", [x["word"] for x in tokens], types
+        return types
         
