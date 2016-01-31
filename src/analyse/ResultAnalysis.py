@@ -11,6 +11,9 @@ class ResultAnalysis(Analysis):
     
     def processSentence(self, sentence, counts):
         for token in sentence:
+            if token["MWE"] == "I": # Skip already matched
+                continue
+            
             sentenceId = token["sentence"]
             index = token["index"]
             if sentenceId not in self.exampleMap:
@@ -19,6 +22,7 @@ class ResultAnalysis(Analysis):
             if index not in self.exampleMap[sentenceId]:
                 continue
             counts["tokens-with-examples"] += 1
+            # Get example with the highest predicted value
             examples = self.exampleMap[sentenceId][index]
             maxExample = None
             maxPrediction = None
@@ -28,6 +32,7 @@ class ResultAnalysis(Analysis):
                     if maxPrediction == None or prediction > maxPrediction:
                         maxExample = example
                         maxPrediction = prediction
+            # Generate the expression for the example
             if maxExample != None and maxPrediction > 0.0:
                 assert token["MWE"] == "O", (token, maxExample, maxPrediction)
                 assert token["parent"] == 0, (token, maxExample, maxPrediction)

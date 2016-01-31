@@ -7,6 +7,7 @@ from _collections import defaultdict
 from nltk.corpus import wordnet
 import traceback
 from src.Corpus import Corpus, getGoldExample, getExampleId, getTokenId, hasGaps
+#from src.taggers.WordNetTagger import WordNetTagger
 
 class Experiment(object):    
     def __init__(self):
@@ -113,6 +114,7 @@ class Experiment(object):
         self.endExperiment()
     
     def processSentences(self, sentences, setName):
+        #self.preprocessSentences(sentences)
         try:
             for sentence in sentences:
                 if (self.sentenceCount + 1) % 100 == 0:
@@ -123,7 +125,15 @@ class Experiment(object):
             self.corpus.printSentence(sentence)
             traceback.print_exc()
             sys.exit()
-     
+    
+#     def preprocessSentences(self, sentences):
+#         print "Preprocessing sentences...",
+#         tagger = WordNetTagger()
+#         for sentence in sentences:
+#             for token in sentence:
+#                 token["lexnames"] = tagger.tag([token], sentence, {})
+#         print "done"
+
     def processSentence(self, sentence, setName):
         numTokens = len(sentence)
         matchedUntil = 0
@@ -131,15 +141,15 @@ class Experiment(object):
             exampleCounts = {"pos":0, "neg":0}
             goldTokens = getGoldExample(i, sentence)
             matchLength = -1
-            indexIsConsumed = i < matchedUntil
-            if not indexIsConsumed:
+            indexIsConsumed = False #i < matchedUntil
+            if True: #not indexIsConsumed:
                 for j in range(i + self.maxExampleTokens, i, -1):
                     tokens = sentence[i:j]
                     exampleCounts = self.buildExamples(tokens, goldTokens, sentence, setName)
                     if sum(exampleCounts.values()) > 0: # At least one example was generated
                         matchLength = len(tokens)
                         matchedUntil = j
-                        break # Ignore nested matches
+                        #break # Ignore nested matches
             # If no positive example is generated record the reason
             if goldTokens != None and exampleCounts["pos"] == 0:
                 if hasGaps(goldTokens):
@@ -157,6 +167,40 @@ class Experiment(object):
                 self.insertExampleMeta(None, None, goldTokens[0]["supersense"], goldTokens, {}, setName, skipReason)
             # Save the token
             self.meta.insert("token", dict(sentence[i], set_name=setName, token_id=getTokenId(sentence[i]), num_neg=exampleCounts["neg"], num_pos=exampleCounts["pos"]))
+     
+#     def processSentence(self, sentence, setName):
+#         numTokens = len(sentence)
+#         matchedUntil = 0
+#         for i in range(numTokens): # There can be max one example per each token
+#             exampleCounts = {"pos":0, "neg":0}
+#             goldTokens = getGoldExample(i, sentence)
+#             matchLength = -1
+#             indexIsConsumed = i < matchedUntil
+#             if not indexIsConsumed:
+#                 for j in range(i + self.maxExampleTokens, i, -1):
+#                     tokens = sentence[i:j]
+#                     exampleCounts = self.buildExamples(tokens, goldTokens, sentence, setName)
+#                     if sum(exampleCounts.values()) > 0: # At least one example was generated
+#                         matchLength = len(tokens)
+#                         matchedUntil = j
+#                         break # Ignore nested matches
+#             # If no positive example is generated record the reason
+#             if goldTokens != None and exampleCounts["pos"] == 0:
+#                 if hasGaps(goldTokens):
+#                     skipReason = "gaps"
+#                 elif len(goldTokens) > self.maxExampleTokens:
+#                     skipReason = "too long"
+#                 elif indexIsConsumed or len(goldTokens) < matchLength:
+#                     skipReason = "nested"
+#                 elif len(goldTokens) == matchLength:
+#                     skipReason = "type"
+#                 elif len(goldTokens) > matchLength:
+#                     skipReason = "no match"
+#                 else:
+#                     skipReason = "unknown"
+#                 self.insertExampleMeta(None, None, goldTokens[0]["supersense"], goldTokens, {}, setName, skipReason)
+#             # Save the token
+#             self.meta.insert("token", dict(sentence[i], set_name=setName, token_id=getTokenId(sentence[i]), num_neg=exampleCounts["neg"], num_pos=exampleCounts["pos"]))
 
     def buildExamples(self, tokens, goldTokens, sentence, setName):
         # Get the gold supersense for the examples built for this span

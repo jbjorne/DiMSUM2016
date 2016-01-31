@@ -19,9 +19,17 @@ class YelpTagger(Tagger):
             if text not in self.parts[pos]:
                 self.parts[pos][text] = []
             self.parts[pos][text].append(row["category"])
-        #self.locations = set([row["lower"] for row in self.meta.db["location"].all()])
+        self.locations = {}
+        self.locations = set([row["lower"] for row in self.meta.db["location"].all()])
     
     def tag(self, tokens, sentence, taggingState):
+        text = " ".join([x["word"].lower() for x in tokens])
+        if text in self.locations:
+            return "yelp"
+        else:
+            return None
+    
+    def tagPartial(self, tokens, sentence):
         #left, right = self.getFlankingTokens(tokens, sentence)
         for token in tokens:
             if token["word"][0].islower():
