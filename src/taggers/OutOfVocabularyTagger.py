@@ -4,7 +4,7 @@ class OutOfVocabularyTagger(Tagger):
     def __init__(self):
         super(OutOfVocabularyTagger, self).__init__("OoV", ["corpus"])
     
-    def tag(self, tokens):
+    def tag(self, tokens, taggingState):
         supersenses = []
         if len(tokens) == 1:
             token = tokens[0]
@@ -12,5 +12,6 @@ class OutOfVocabularyTagger(Tagger):
                 supersenses.append("n.person")
             if token["word"].startswith("'") and token["POS"] == "VERB":
                 supersenses.append("v.stative")
+        supersenses = self.filterByPOS(tokens, supersenses, taggingState)
         return (None if len(supersenses) == 0 else supersenses)
         
