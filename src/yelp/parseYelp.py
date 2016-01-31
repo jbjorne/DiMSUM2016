@@ -11,20 +11,32 @@ except:
 class YelpParser():
     def __init__(self):
         self.firstNames = defaultdict(int)
+        self.skippedNames = defaultdict(int)
         self.locations = set()
         self.locationRows = []
     
     def writeDatabase(self, outPath):
         meta = Meta(outPath, clear=True)
         meta.insert_many("location", self.locationRows, True)
-        names = [{"name":key, "lower":key.lower(), "total":self.firstNames[key]} for key in sorted(self.firstNames)]
+        #names = [name.lstrip(".,'-_") for name in self.firstNames]
+        names = [{"name":key, "lower":key.lower(), "length":len(key), "total":self.firstNames[key]} for key in sorted(self.firstNames)]
         meta.insert_many("first_name", names, True)
+        print "Indexing"
+        for column in ("name", "lower", "level"):
+            meta.db["location"].create_index("column")
+        for column in ("name", "lower", "length"):
+            meta.db["first_name"].create_index("column")
     
     def processLine(self, data):
         itemType = data["type"]
         if itemType == "user":
             name = data["name"].split()[0]
+            name = name.lstrip(".,'-_")
             self.firstNames[name] += 1
+            #if len(name) > 2 or (len(name) == 2 and name[0].isupper() and name[1].islower()):
+            #    self.firstNames[name] += 1
+            #else:
+            #    self.skippedNames[name] += 1
         elif itemType == "business":
             name = data["name"]
             categories = data["categories"]
@@ -57,6 +69,7 @@ class YelpParser():
         
         print "Read", len(self.firstNames), "unique first names."
         print "Read", len(self.locationRows), "location rows."
+        print "Skipped", dict(self.skippedNames)
         if outPath:
             assert outPath != inPath
             self.writeDatabase(outPath)

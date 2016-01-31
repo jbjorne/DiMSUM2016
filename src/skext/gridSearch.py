@@ -69,7 +69,7 @@ def _extended_fit_and_score(estimator, X, y, scorer, train, test, verbose,
     scoring_time = time.time() - start_time
 
     if verbose > 2:
-        msg += " ,n=" + str(X_test.shape[0]) + ", score=%f" % test_score
+        msg += " , n=" + str(X_test.shape[0]) + ", score=%f" % test_score
     if verbose > 1:
         end_msg = "%s -%s" % (msg, logger.short_format_time(scoring_time))
         print("[CV] %s %s" % ((64 - len(end_msg)) * '.', end_msg))

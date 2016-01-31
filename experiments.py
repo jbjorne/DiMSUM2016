@@ -3,6 +3,7 @@ from src.FeatureGroup import FeatureGroup
 from src.taggers.WordNetTagger import WordNetTagger
 from src.taggers.OutOfVocabularyTagger import OutOfVocabularyTagger
 from src.builders.BasicFeatureBuilder import BasicFeatureBuilder
+from src.taggers.YelpTagger import YelpTagger
 
 ###############################################################################
 # Features
@@ -22,6 +23,11 @@ class TestFeatureGroup(FeatureGroup):
 # Experiments
 ###############################################################################
 
+class TestYelpTagger(Experiment):
+    def __init__(self):
+        super(TestYelpTagger, self).__init__()
+        self.featureGroups = [TestFeatureGroup]
+        self.taggers = [YelpTagger]
 
 class SuperSenseTest(Experiment):
     def __init__(self):

@@ -87,7 +87,7 @@ class ResultAnalysis(Analysis):
         prevSentence = None
         for token in tokens:
             if prevSentence != None and prevSentence != token["sentence"]:
-                if (sentenceCount + 1) % 100 == 0:
+                if (sentenceCount + 1) % 1000 == 0:
                     print "Processing sentence", str(sentenceCount + 1) + "/" + str(counts["sentences"])
                 self.writeSentence(sentence, predFile, counts)
                 sentenceCount += 1
