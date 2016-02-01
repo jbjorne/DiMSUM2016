@@ -15,6 +15,9 @@ class WikipediaParser():
         self.infobox = None
         self.verbose = False
         self.numTitles = 0
+        
+        self.limit = None
+        self.skip = False
     
     def checkTags(self, line, tag):
         openTag = "<" + tag + ">"
@@ -28,6 +31,11 @@ class WikipediaParser():
         line = line.strip()
         if line.startswith("<"):
             newTitle = self.checkTags(line, "title")
+            if self.limit and newTitle not in self.limit:
+                skip = True
+            else:
+                skip = False
+            
             if newTitle:
                 self.numTitles += 1
                 if self.title != None:
@@ -58,8 +66,17 @@ class WikipediaParser():
             if "]]" in line:
                 line = line.split("]]")[0]
             self.categories.append(line.strip("| "))
+    
+    def loadTitles(self, titlesPath):
+        self.limit = set()
+        if titlesPath:
+            f = codecs.open(titlesPath, "rt", "utf-8")
+            for line in f:
+                line = line.strip("\"\n")
+                print line
+            self.limit.add(line)
             
-    def parseWikipedia(self, inPath, outPath):
+    def parseWikipedia(self, inPath, outPath, titlesPath):
         assert inPath != outPath
         
         self.outFile = None
@@ -93,8 +110,9 @@ if __name__ == "__main__":
     import argparse
     parser = argparse.ArgumentParser(description='')
     parser.add_argument('-o', '--output', help='Output directory', default=None)
-    parser.add_argument('-i', '--input', help='Yelp Academic Dataset', default=None)
+    parser.add_argument('-i', '--input', help='', default=None)
+    parser.add_argument('-t', '--titles', help='', default=None)
     options = parser.parse_args()
     
     p = WikipediaParser()
-    p.parseWikipedia(options.input, options.output)
+    p.parseWikipedia(options.input, options.output, options.titles)
