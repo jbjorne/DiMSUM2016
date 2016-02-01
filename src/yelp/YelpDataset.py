@@ -19,7 +19,7 @@ class YelpDataset():
         self.meta = Meta(dbPath)
         
         self.parts = {"middle":{}, "first":{}, "last":{}, "single":{}}
-        for row in self.meta.db.query("select * from part"): # where total > 10;"):
+        for row in self.meta.db.query("select * from part where total > 10;"):
             pos = row["position"]
             text = row["token"]
             if text not in self.parts[pos]:

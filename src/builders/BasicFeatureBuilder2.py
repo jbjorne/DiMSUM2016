@@ -1,6 +1,6 @@
 from FeatureBuilder import FeatureBuilder
 
-class BasicFeatureBuilder(FeatureBuilder):
+class BasicFeatureBuilder2(FeatureBuilder):
     
     def __init__(self):
         super(FeatureBuilder, self).__init__("BASIC", ["WordNet"])
@@ -18,11 +18,17 @@ class BasicFeatureBuilder(FeatureBuilder):
                 self.buildMany(["LAST_TOKEN_" + key + ":" + x for x in values])
     
     def buildSpanFeatures(self):
-        for key in ("lemma", "POS", "word"):
-            values = [x[key].lower() for x in self.tokens]
-            self.build("SPAN_" + key + ":" + "_".join(values))
+        supersensePOS = self.supersense.split(".")[0]
         
         self.build("SPAN_LEX:" + self.supersense)
+        self.build("SPAN_LEX:" + supersensePOS)
         for sense in self.supersenses:
             if sense != self.supersense:
                 self.build("SPAN_OTHER_LEX:" + self.supersense)
+                self.build("SPAN_OTHER_LEX:" + supersensePOS)
+        
+        for key in ("lemma", "POS", "word"):
+            values = "_".join([x[key].lower() for x in self.tokens])
+            self.build("SPAN_" + key + ":" + values)
+            self.build("SPAN_" + key + ":" + values + ":" + self.supersense)
+            self.build("SPAN_" + key + ":" + values + ":" + supersensePOS)
