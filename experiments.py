@@ -41,7 +41,7 @@ class SuperSenseTest(Experiment):
 class Task1(Experiment):
     def __init__(self):
         super(Task1, self).__init__()
-        self.featureGroups = [BasicFeatureBuilder]
+        self.featureGroups = [BasicFeatureBuilder, ContextFeatureBuilder]
         self.taggers = [WordNetTagger, OutOfVocabularyTagger]
 
 class Task2(Experiment):
@@ -54,5 +54,5 @@ class Task2(Experiment):
 class Task3(Experiment):
     def __init__(self):
         super(Task3, self).__init__()
-        self.featureGroups = [BasicFeatureBuilder]
+        self.featureGroups = [BasicFeatureBuilder, ContextFeatureBuilder, YelpFeatureBuilder]
         self.taggers = [WordNetTagger, WikipediaTagger, YelpTagger, OutOfVocabularyTagger]
