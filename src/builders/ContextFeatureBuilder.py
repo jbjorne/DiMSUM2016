@@ -25,10 +25,10 @@ class ContextFeatureBuilder(FeatureBuilder):
             if token == None:
                 self.build("TERMINAL_" + tag)
                 continue
-            for key in ("lemma", "POS", "word"):
+            for key in ("lemma", "POS"):
                 value = token[key].lower()
                 self.build(tag + "_" + key + "_" + value)
-                self.build(tag + "_" + key + "_" + value + ":" + lemma)
+                #self.build(tag + "_" + key + "_" + value + ":" + lemma)
                 self.build(tag + "_" + key + "_" + value + ":" + pos)
                 self.build(tag + "_" + key + "_" + value + ":" + self.supersense)
                 self.build(tag + "_" + key + "_" + value + ":" + supersensePOS)
