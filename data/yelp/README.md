@@ -1,0 +1,1 @@
+Place the `yelp.sqlite` file in this directory.
