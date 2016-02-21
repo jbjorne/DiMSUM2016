@@ -14,14 +14,14 @@ Required Libraries and Data
 The dependencies are listed in `requirements.txt`. Except for scikit-learn, other versions of the libraries may also work. The specific version 0.16.0 of scikit-learn is required for our extensions to work with it.
 
 ### Data files
-All required data files, a copy of the DiMSUM corpus and our submitted results can be found in the `data` directory.
+Data files used in our experiments, a copy of the DiMSUM corpus and our submitted results can be found in the `data` directory.
 
-> NOTE: You cannot run the entries for tasks 2 and 3 unless you get the [YELP academic dataset](https://www.yelp.com/academic_dataset). To get the dataset apply for a permission from Yelp. Once you have the permission, download the dataset and use `setupYelp.py` to build the database, e.g. `python setupYelp.py -i yelp_academic_dataset.json.gz`.
+> NOTE: You cannot run the experiments for tasks 2 and 3 unless you get the [YELP academic dataset](https://www.yelp.com/academic_dataset). To get the dataset first apply for a permission from Yelp. Once you have the permission, download the dataset and use `setupYelp.py` to build the database, e.g. `python setupYelp.py -i yelp_academic_dataset.json.gz`.
 
 * `dimsum-data-1.5`: A copy of the [DiMSUM 2016 shared task data](https://github.com/dimsum16/dimsum-data/releases/tag/1.5).
 * `wikipedia`: Data files derived from the English Wikipedia, used in our entry for the open condition.
 * `yelp`: A placeholder for the YELP database generated from the YELP academic dataset. To access the YELP academic dataset request a license from the [YELP website](https://www.yelp.com/academic_dataset)
-* `results`: Our submitted results for the DiMSUM challenge and the official evaluation results from the organizers.
+* `results`: Our submitted results for the DiMSUM challenge.
 
 Running the Experiments
 -----------------------
