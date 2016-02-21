@@ -112,7 +112,7 @@ class Experiment(object):
         
     def processCorpus(self, dbFileName=None, setNames=None):
         if dbFileName == None:
-            dbFileName = os.path.join(self.outDir, self.fileStem + ".meta.sqlite")
+            dbFileName = os.path.join(self.outDir, self.fileStem + ".sqlite")
         self.beginExperiment(dbFileName)
         if setNames == None:
             setNames = self.includeSets
@@ -280,7 +280,7 @@ class Experiment(object):
         features = {}
         #features[self.getFeatureId("SPAN_NESTED:" + str(nested))] = 1
         for featureGroup in self.featureGroups:
-            features.update(featureGroup.processExample(tokens, supersense, sentence, supersenses, self.featureIds, self.meta))
+            features.update(featureGroup.processExample(tokens, supersense, sentence, supersenses, self.featureIds, self.db))
         self.insertExampleMeta(label, supersense, goldSupersense, tokens, features, setName, None, taggerName)
         self._getExampleIO().writeExample(classId, features)
         return label

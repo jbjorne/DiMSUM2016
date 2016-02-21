@@ -84,7 +84,7 @@ class Classification(object):
             exampleIO = SVMLightExampleIO(os.path.join(inDir, fileStem))
         self.X, self.y = exampleIO.readFiles()
         # Read metadata
-        self.db = Database(os.path.join(inDir, fileStem + ".meta.sqlite"))
+        self.db = Database(os.path.join(inDir, fileStem + ".sqlite"))
         self.examples = [x for x in self.db.db["example"].all() if x["label"] is not None]
         self.classes = None
         if "class" in self.db.db.tables:
