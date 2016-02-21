@@ -2,7 +2,7 @@ import gzip
 from _collections import defaultdict
 import sys, os
 sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
-from src.Meta import Meta
+from src.Database import Database
 try:
     import ujson as json
 except:
@@ -16,19 +16,19 @@ class YelpParser():
         self.locationRows = []
     
     def writeDatabase(self, outPath):
-        meta = Meta(outPath, clear=True)
-        meta.insert_many("location", self.locationRows, True)
-        self.addLocationParts(meta)
+        db = Database(outPath, clear=True)
+        db.insert_many("location", self.locationRows, True)
+        self.addLocationParts(db)
         #names = [name.lstrip(".,'-_") for name in self.firstNames]
         names = [{"name":key, "lower":key.lower(), "length":len(key), "total":self.firstNames[key]} for key in sorted(self.firstNames)]
-        meta.insert_many("first_name", names, True)
+        db.insert_many("first_name", names, True)
         print "Indexing"
         for column in ("name", "lower", "level"):
-            meta.db["location"].create_index([column])
+            db.db["location"].create_index([column])
         for column in ("name", "lower", "length"):
-            meta.db["first_name"].create_index([column])
+            db.db["first_name"].create_index([column])
     
-    def addLocationParts(self, meta):
+    def addLocationParts(self, db):
         counts = defaultdict(int)
         for location in self.locationRows:
             parts = location["lower"].split()
@@ -42,7 +42,7 @@ class YelpParser():
         rows = []
         for key in sorted(counts.keys()):
             rows.append({"token":key[0], "position":key[1], "category":key[2], "total":counts[key]})
-        meta.insert_many("part", rows, True)
+        db.insert_many("part", rows, True)
         
     def processLine(self, data):
         itemType = data["type"]

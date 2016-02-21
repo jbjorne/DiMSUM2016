@@ -1,5 +1,5 @@
 from Tagger import Tagger
-from src.Meta import Meta
+from src.Database import Database
 import os
 from src.yelp.YelpDataset import getYelpDataset
 

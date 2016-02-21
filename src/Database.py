@@ -86,7 +86,7 @@ import dataset
 #     else: # a and b are dict, neither has a sort attribute
 #         return a["id"] - b["id"]
 
-class Meta():
+class Database():
     def __init__(self, filePath=None, copyFrom=None, clear=False):
         self.filePath = filePath
         self.verbose = True
@@ -159,7 +159,7 @@ class Meta():
         if len(rows) >= chunkSize and len(rows) > 0:
             if not self.exists(tableName):
                 #print self.db.tables, self.db.metadata.tables.keys(), self.db._tables.keys()
-                print "Inserting initial row for metadata table", self.db[tableName]
+                print "Inserting initial row for table", self.db[tableName]
                 #print self.db.tables, self.db.metadata.tables.keys(), self.db._tables.keys()
                 self.db[tableName].insert(rows[0], ensure=True)
                 rows[:1] = [] # remove first row

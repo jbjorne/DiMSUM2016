@@ -1,5 +1,5 @@
 import os
-from src.Meta import Meta
+from src.Database import Database
 
 YELP_DATASET = None
 
@@ -16,10 +16,10 @@ class YelpDataset():
         dbPath = os.path.join(dataPath, "yelp", "yelp.sqlite")
         if not os.path.exists(dbPath):
             raise Exception("No Yelp database at " + dbPath)
-        self.meta = Meta(dbPath)
+        self.db = Database(dbPath)
         
         self.parts = {"middle":{}, "first":{}, "last":{}, "single":{}}
-        for row in self.meta.db.query("select * from part where total > 10;"):
+        for row in self.db.db.query("select * from part where total > 10;"):
             pos = row["position"]
             text = row["token"]
             if text not in self.parts[pos]:
@@ -27,13 +27,13 @@ class YelpDataset():
             self.parts[pos][text].append(row["category"])
         
         self.locations = {}
-        for row in self.meta.db["location"].all():
+        for row in self.db.db["location"].all():
             name = row["lower"]
             if row["lower"] not in self.locations:
                 self.locations[name] = []
             self.locations[name].append(row)
         
-        self.names = set([x["lower"] for x in self.meta.db.query("select * from first_name where total > 10;")])
+        self.names = set([x["lower"] for x in self.db.db.query("select * from first_name where total > 10;")])
         for name in ("the",):
             self.names.remove(name)
     

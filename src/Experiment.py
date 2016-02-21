@@ -1,6 +1,6 @@
 import sys, os
 from collections import OrderedDict
-from Meta import Meta
+from Database import Database
 from ExampleIO import SVMLightExampleIO
 import time
 from _collections import defaultdict
@@ -22,7 +22,7 @@ class Experiment(object):
         self.taggers = None
         self.featureGroups = None
         self.includeSets = ("train",)
-        self.meta = None
+        self.db = None
         self.baseClassVars = None
         self.baseClassVars = set(vars(self).keys())
 
@@ -36,7 +36,7 @@ class Experiment(object):
     def getFeatureId(self, featureName):
         if featureName not in self.featureIds:
             self.featureIds[featureName] = len(self.featureIds)
-            self.meta.insert("feature", {"name":featureName, "id":self.featureIds[featureName]})
+            self.db.insert("feature", {"name":featureName, "id":self.featureIds[featureName]})
         return self.featureIds[featureName]
 
     ###########################################################################
@@ -50,9 +50,9 @@ class Experiment(object):
         self.processCorpus()
         self._closeExampleIO()
     
-    def beginExperiment(self, metaDataFileName=None):
+    def beginExperiment(self, dbFileName=None):
         print "Experiment:", self.__class__.__name__
-        self.meta = Meta(metaDataFileName, clear=True)
+        self.db = Database(dbFileName, clear=True)
         childVars = self._getChildVars()
         resources = []
         if self.taggers:
@@ -62,17 +62,17 @@ class Experiment(object):
             for featureGroup in self.featureGroups:
                 resources += featureGroup.resources
         resources = sorted(set(resources))
-        self.meta.insert("experiment", {"name":self.__class__.__name__,
+        self.db.insert("experiment", {"name":self.__class__.__name__,
                                         "vars":";".join([x+"="+str(childVars[x]) for x in childVars]),
                                         "resources":",".join(resources),
                                         "time":time.strftime("%c")})
-        self.meta.flush()
-        self.meta.initCache("feature", 100000)        
+        self.db.flush()
+        self.db.initCache("feature", 100000)        
 
     def endExperiment(self):
         for label in self.classIds:
-            self.meta.insert("class", {"label":label, "id":self.classIds[label], "instances":self.exampleCounts.get(label, 0)})
-        self.meta.flush()
+            self.db.insert("class", {"label":label, "id":self.classIds[label], "instances":self.exampleCounts.get(label, 0)})
+        self.db.flush()
         print "Built", sum(self.exampleCounts.values()), "examples with", len(self.featureIds), "unique features"
         missedPositives = sum(self.missedExampleCounts.values())
         totalPositives = self.exampleCounts.get(True, 0) + missedPositives
@@ -110,10 +110,10 @@ class Experiment(object):
     # Sentence processing
     ###########################################################################
         
-    def processCorpus(self, metaDataFileName=None, setNames=None):
-        if metaDataFileName == None:
-            metaDataFileName = os.path.join(self.outDir, self.fileStem + ".meta.sqlite")
-        self.beginExperiment(metaDataFileName)
+    def processCorpus(self, dbFileName=None, setNames=None):
+        if dbFileName == None:
+            dbFileName = os.path.join(self.outDir, self.fileStem + ".meta.sqlite")
+        self.beginExperiment(dbFileName)
         if setNames == None:
             setNames = self.includeSets
         self.corpus = Corpus(self.dataPath)
@@ -213,7 +213,7 @@ class Experiment(object):
                     skipReason = "unknown"
                 self.insertExampleMeta(None, None, goldTokens[0]["supersense"], goldTokens, {}, setName, skipReason)
             # Save the token
-            self.meta.insert("token", dict(sentence[i], set_name=setName, token_id=getTokenId(sentence[i]), num_neg=exampleCounts["neg"], num_pos=exampleCounts["pos"]))
+            self.db.insert("token", dict(sentence[i], set_name=setName, token_id=getTokenId(sentence[i]), num_neg=exampleCounts["neg"], num_pos=exampleCounts["pos"]))
 
     def buildExamples(self, tokens, goldTokens, sentence, setName):
         # Get the gold supersense for the examples built for this span
@@ -249,7 +249,7 @@ class Experiment(object):
     
     def insertExampleMeta(self, label, supersense, goldSupersense, tokens, features, setName, skipReason=None, taggerName=None, tableName="example", addToCounts=True):
         exampleId = getExampleId(tokens) #self._getExampleId(tokens)
-        self.meta.insert(tableName, {"label":label, 
+        self.db.insert(tableName, {"label":label, 
                                      "supersense":supersense, 
                                      "gold_sense":goldSupersense, 
                                      "text":" ".join([x["word"] for x in tokens]),

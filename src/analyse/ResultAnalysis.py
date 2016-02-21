@@ -126,7 +126,7 @@ class ResultAnalysis(Analysis):
     
     def writeZip(self, predFilePath):
         # Write the report
-        experiment = [x for x in self.meta.db["experiment"].all()]
+        experiment = [x for x in self.db.db["experiment"].all()]
         assert len(experiment) == 1
         experiment = experiment[0]
         report = Resources().buildReport(experiment["resources"].split(","))
@@ -143,18 +143,18 @@ class ResultAnalysis(Analysis):
         
     def analyse(self, inDir, fileStem=None, hidden=False, clear=True):
         self.inDir = inDir
-        self.meta = self._getMeta(inDir, fileStem)
+        self.db = self._getDatabase(inDir, fileStem)
         for filename in os.listdir(inDir):
             if filename.endswith(".pred") or filename.endswith(".zip") or filename.endswith(".csv"):
                 os.remove(os.path.join(inDir, filename))
         #if clear:
         #    meta.drop("project_analysis")
         print "Reading examples"
-        self.examples = [x for x in self.meta.db.query("SELECT id,supersense,sentence,root_token,tokens FROM example WHERE skipped IS NULL;")] # [x for x in self.meta.db["example"].all() if x["label"] is not None]
+        self.examples = [x for x in self.db.db.query("SELECT id,supersense,sentence,root_token,tokens FROM example WHERE skipped IS NULL;")] # [x for x in self.meta.db["example"].all() if x["label"] is not None]
         for example in self.examples:
             example["root_token"] = int(example["root_token"])
         print "Reading predictions"
-        self.predictions = {x["example"]:float(x["predicted"]) for x in self.meta.db.query("SELECT * FROM prediction WHERE predicted > 0;")} #{x["example"]:x["predicted"] for x in self.meta.db["prediction"].all()}
+        self.predictions = {x["example"]:float(x["predicted"]) for x in self.db.db.query("SELECT * FROM prediction WHERE predicted > 0;")} #{x["example"]:x["predicted"] for x in self.meta.db["prediction"].all()}
         #print "Checking predictions"
         #for example in self.examples:
         #    assert example["id"] in self.predictions
@@ -170,7 +170,7 @@ class ResultAnalysis(Analysis):
             sentenceExamples[example["root_token"]].append(example)
         
         print "Reading tokens"
-        self.tokens = [x for x in self.meta.db["token"].all()]
+        self.tokens = [x for x in self.db.db["token"].all()]
         for token in self.tokens:
             token["index"] = int(token["index"])
         print "Processing datasets"

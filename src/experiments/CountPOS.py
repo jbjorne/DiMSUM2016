@@ -12,7 +12,7 @@ class CountPOS(Experiment):
     def processSentence(self, sentence, setName):
         for i in range(len(sentence)):
             token = sentence[i]
-            self.meta.insert("token", dict(token, token_id=self._getTokenId(token)))
+            self.db.insert("token", dict(token, token_id=self._getTokenId(token)))
             self.countPOS(token)
             self.countGoldPOS(i, sentence, setName)
             self.countCommon(token)
@@ -69,12 +69,12 @@ class CountPOS(Experiment):
     def endExperiment(self):
         # Save POS counts
         rows = [self.posCounts[key] for key in sorted(self.posCounts.keys())]
-        self.meta.insert_many("pos_count", rows, True)
+        self.db.insert_many("pos_count", rows, True)
         # Save gold counts
-        self.meta.insert_many("gold_count", [{"POS":key, "total":self.goldCounts[key]} for key in sorted(self.goldCounts.keys())], True)
+        self.db.insert_many("gold_count", [{"POS":key, "total":self.goldCounts[key]} for key in sorted(self.goldCounts.keys())], True)
         # Save common words
         rows = [x for x in self.common.values()]
-        self.meta.insert_many("common", rows, True)
+        self.db.insert_many("common", rows, True)
         
         super(CountPOS, self).endExperiment()
             

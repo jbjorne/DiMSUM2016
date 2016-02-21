@@ -8,7 +8,7 @@ from skext.gridSearch import ExtendedGridSearchCV
 from sklearn.metrics import classification_report
 from collections import defaultdict, OrderedDict
 from ExampleIO import SVMLightExampleIO
-from Meta import Meta
+from Database import Database
 import numpy as np
 
 def importNamed(name):
@@ -84,11 +84,11 @@ class Classification(object):
             exampleIO = SVMLightExampleIO(os.path.join(inDir, fileStem))
         self.X, self.y = exampleIO.readFiles()
         # Read metadata
-        self.meta = Meta(os.path.join(inDir, fileStem + ".meta.sqlite"))
-        self.examples = [x for x in self.meta.db["example"].all() if x["label"] is not None]
+        self.db = Database(os.path.join(inDir, fileStem + ".meta.sqlite"))
+        self.examples = [x for x in self.db.db["example"].all() if x["label"] is not None]
         self.classes = None
-        if "class" in self.meta.db.tables:
-            self.classes = [int(x["id"]) for x in self.meta.db["class"].all()]
+        if "class" in self.db.db.tables:
+            self.classes = [int(x["id"]) for x in self.db.db["class"].all()]
         #self._clearResults(preserveTables)
     
 #     def _clearResults(self, preserveTables):
@@ -135,7 +135,7 @@ class Classification(object):
         return groups
                 
     def classify(self):
-        self.meta.dropTables(["result", "prediction", "importance"], 100000)
+        self.db.dropTables(["result", "prediction", "importance"], 100000)
         self.indices, X_train, X_hidden, y_train, y_hidden = self._splitData()
         search = self._crossValidate(y_train, X_train, self.classifyHidden and (X_hidden.shape[0] > 0))
         if self.classifyHidden:
@@ -153,7 +153,7 @@ class Classification(object):
         return result
     
     def _insert(self, tableName, rows):
-        self.meta.insert_many(tableName, rows)
+        self.db.insert_many(tableName, rows)
         
     def _crossValidate(self, y_train, X_train, refit=False):
         # Run the grid search
@@ -200,7 +200,7 @@ class Classification(object):
         print "Saving results"
         self._insert("result", results)
         self._saveExtras(bestExtras, "train")
-        self.meta.flush() 
+        self.db.flush() 
         return search
     
     def _validateExtras(self, folds, labels):
@@ -257,7 +257,7 @@ class Classification(object):
             print "Saving results"
             self._insert("result", [hiddenResult])
             self._saveExtras([hiddenExtra], "test", True)
-            self.meta.flush()
+            self.db.flush()
 #             if "predictions" in hiddenExtra:
 #                 try:
 #                     print classification_report(y_hidden, getClassPredictions(y_hidden_proba, self.classes))
