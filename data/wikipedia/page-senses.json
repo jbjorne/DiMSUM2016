@@ -1,0 +1,9032 @@
+[
+    {
+        "s":[
+            "n.act",
+            "n.cognition",
+            "n.communication",
+            "n.event",
+            "n.group",
+            "n.person",
+            "n.time",
+            "v.cognition"
+        ],
+        "c":[
+            "August observances",
+            "EngvarB from April 2015",
+            "Festivals",
+            "Ganesha",
+            "Hindu festivals",
+            "Observances set by the Indian National Calendar",
+            "September observances"
+        ],
+        "e":false,
+        "t":"Ganeshotsav"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Facebook"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Megaupload"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "e":false,
+        "t":"Messi"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Google+"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "e":false,
+        "t":"Cory"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Tena"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "e":false,
+        "t":"Singh"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "e":false,
+        "t":"Philip_Pullman"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.person"
+        ],
+        "e":false,
+        "t":"K-Dawg"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Youtube"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.communication"
+        ],
+        "e":false,
+        "t":"Dilbert"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "e":false,
+        "t":"Jill_Konrath"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Venice_film_festival"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "e":false,
+        "t":"Narendra_modi"
+    },
+    {
+        "s":[
+            "n.group",
+            "n.location",
+            "n.person"
+        ],
+        "c":[
+            "CS1 Hindi-language sources (hi)",
+            "CS1 Marathi-language sources (mr)",
+            "Cities and towns",
+            "EngvarB from January 2015",
+            "Metropolitan cities",
+            "Pune"
+        ],
+        "e":false,
+        "t":"Pune"
+    },
+    {
+        "s":[
+            "n.cognition",
+            "n.group",
+            "n.location"
+        ],
+        "c":[
+            "Geography",
+            "Parishes"
+        ],
+        "e":false,
+        "t":"Loudoun"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.artifact",
+            "n.communication",
+            "n.process"
+        ],
+        "c":[
+            "Cloud storage",
+            "Mobile software",
+            "Note-taking software",
+            "Proprietary cross-platform software",
+            "Social bookmarking",
+            "Web annotation"
+        ],
+        "e":false,
+        "t":"Evernote"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.person"
+        ],
+        "e":false,
+        "t":"G-Dragon"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.person"
+        ],
+        "e":false,
+        "t":"Missy_elliott"
+    },
+    {
+        "s":[
+            "n.communication"
+        ],
+        "e":false,
+        "t":"Niliria"
+    },
+    {
+        "s":[
+            "n.group"
+        ],
+        "e":false,
+        "t":"Sihuan_Pharmaceutical"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "e":false,
+        "t":"Baines"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "e":false,
+        "t":"Fellaini"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Linkedin"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "e":false,
+        "t":"Xavi"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"La_liga"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.person"
+        ],
+        "c":[
+            "Atari ST software",
+            "Digital audio workstation software",
+            "OS X audio editors"
+        ],
+        "e":false,
+        "t":"Cubase"
+    },
+    {
+        "s":[
+            "n.artifact",
+            "n.communication"
+        ],
+        "e":false,
+        "t":"The_Aurora"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "e":false,
+        "t":"The_UN"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "e":false,
+        "t":"John_Wooden"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"ABRSM"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.artifact",
+            "n.communication",
+            "n.event",
+            "n.object",
+            "n.quantity",
+            "n.substance",
+            "v.change",
+            "v.cognition",
+            "v.communication",
+            "v.contact",
+            "v.creation",
+            "v.motion"
+        ],
+        "c":[
+            "All-wheel-drive vehicles",
+            "Cars introduced",
+            "Hybrid electric vehicles",
+            "Mid-size sport utility vehicles",
+            "Motor vehicles manufactured",
+            "Nissan vehicles",
+            "Rear-wheel-drive vehicles",
+            "Sport utility vehicles",
+            "Vehicles with CVT transmission"
+        ],
+        "e":false,
+        "t":"Nissan_Terrano"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "e":false,
+        "t":"Cosmo_Baker"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "e":false,
+        "t":"Karlie_kloss"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "e":false,
+        "t":"Greg_Kadel"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Los_Angeles_Times"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "e":false,
+        "t":"Sturridge"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Teen_Top"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"L.A"
+    },
+    {
+        "s":[
+            "n.States",
+            "n.act",
+            "n.artifact",
+            "n.attribute",
+            "n.cognition",
+            "n.communication",
+            "n.feeling",
+            "n.food",
+            "n.group",
+            "n.location",
+            "n.object",
+            "n.person",
+            "n.quantity",
+            "n.relation",
+            "n.state",
+            "n.substance",
+            "n.time",
+            "v.change",
+            "v.communication",
+            "v.competition",
+            "v.creation",
+            "v.social",
+            "v.stative"
+        ],
+        "c":[
+            "CS1 French-language sources (fr)",
+            "CS1 Russian-language sources (ru)",
+            "Contemporary Italian history",
+            "Edwardian era",
+            "French Third Republic",
+            "Global conflicts",
+            "History",
+            "Russo-Turkish Wars",
+            "Use British English from July 2014",
+            "Wars involving Armenia",
+            "Wars involving Australia",
+            "Wars involving Azerbaijan",
+            "Wars involving Belgium",
+            "Wars involving Brazil",
+            "Wars involving British India",
+            "Wars involving Bulgaria",
+            "Wars involving Canada",
+            "Wars involving Costa Rica",
+            "Wars involving Cuba",
+            "Wars involving France",
+            "Wars involving Germany",
+            "Wars involving Greece",
+            "Wars involving Guatemala",
+            "Wars involving Haiti",
+            "Wars involving Honduras",
+            "Wars involving Ireland",
+            "Wars involving Italy",
+            "Wars involving Japan",
+            "Wars involving Korea",
+            "Wars involving Liberia",
+            "Wars involving Malta",
+            "Wars involving Montenegro",
+            "Wars involving Nepal",
+            "Wars involving New Zealand",
+            "Wars involving Nicaragua",
+            "Wars involving Panama",
+            "Wars involving Portugal",
+            "Wars involving Rhodesia",
+            "Wars involving Romania",
+            "Wars involving Russia",
+            "Wars involving Serbia",
+            "Wars involving South Africa",
+            "Wars involving Sri Lanka",
+            "Wars involving Sudan",
+            "Wars involving Taiwan",
+            "Wars involving Thailand",
+            "Wars involving the Habsburg Monarchy",
+            "Wars involving the Ottoman Empire",
+            "Wars involving the Republic",
+            "Wars involving the United Kingdom",
+            "Wars involving the United States",
+            "Wars involving the states and peoples",
+            "World War I"
+        ],
+        "e":false,
+        "t":"Wwi"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "e":false,
+        "t":"Femi_Kuti"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Instagram"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.person"
+        ],
+        "e":false,
+        "t":"Bret_Hart"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.event",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Summerslam"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Hague"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "e":false,
+        "t":"David_guetta"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Creamfields"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"U.n."
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "e":false,
+        "t":"Valon_Behrami"
+    },
+    {
+        "s":[
+            "n.artifact",
+            "n.attribute",
+            "n.body",
+            "n.cognition",
+            "n.food",
+            "n.location",
+            "n.person",
+            "n.state",
+            "v.creation",
+            "v.social"
+        ],
+        "c":[
+            "Areas",
+            "Districts",
+            "Use British English from September 2015",
+            "West Ham"
+        ],
+        "e":false,
+        "t":"West_ham"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Fiorentina"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "e":false,
+        "t":"Ted_cruz"
+    },
+    {
+        "s":[
+            "n.Act",
+            "n.Acts",
+            "n.act",
+            "n.communication",
+            "n.possession",
+            "v.body",
+            "v.competition",
+            "v.creation",
+            "v.social",
+            "v.stative"
+        ],
+        "c":[
+            "Acts",
+            "Legislation attempting to reform or repeal the Patient Protection and Affordable Care Act",
+            "United States federal appropriations"
+        ],
+        "e":false,
+        "t":"Defund_Obamacare"
+    },
+    {
+        "s":[
+            "n.act",
+            "v.cognition",
+            "v.consumption",
+            "v.stative"
+        ],
+        "c":[
+            "Companies based",
+            "Identity theft"
+        ],
+        "e":false,
+        "t":"Lifelock"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.artifact",
+            "n.communication",
+            "n.event",
+            "n.object",
+            "n.quantity",
+            "n.substance",
+            "v.change",
+            "v.cognition",
+            "v.communication",
+            "v.contact",
+            "v.creation",
+            "v.motion"
+        ],
+        "c":[
+            "1970s automobiles",
+            "1980s automobiles",
+            "1990s automobiles",
+            "2000s automobiles",
+            "2010s automobiles",
+            "All-wheel-drive vehicles",
+            "CS1 Portuguese-language sources (pt)",
+            "Cars introduced",
+            "Compact cars",
+            "Coupes",
+            "Front-wheel-drive vehicles",
+            "Hatchbacks",
+            "Honda Civic",
+            "Honda vehicles",
+            "Motor vehicles manufactured",
+            "Rally cars",
+            "Road vehicles manufactured",
+            "Sedans",
+            "Station wagons",
+            "Subcompact cars",
+            "Touring cars",
+            "Vehicles with CVT transmission"
+        ],
+        "e":false,
+        "t":"Honda_civic"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.animal",
+            "n.artifact",
+            "n.attribute",
+            "n.cognition",
+            "n.event",
+            "n.group",
+            "n.location",
+            "n.object",
+            "n.plant",
+            "n.possession",
+            "n.relation",
+            "v.communication",
+            "v.emotion",
+            "v.perception",
+            "v.possession",
+            "v.stative"
+        ],
+        "c":[
+            "Economy",
+            "Geography",
+            "Politics",
+            "Ports and harbors",
+            "San Francisco Bay",
+            "Transportation"
+        ],
+        "e":false,
+        "t":"Port_of_oakland"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "e":false,
+        "t":"Alessandra"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "e":false,
+        "t":"Di_Resta"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "e":false,
+        "t":"Wim"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.artifact",
+            "n.attribute",
+            "n.cognition",
+            "n.communication",
+            "n.group",
+            "n.object",
+            "n.phenomenon",
+            "n.quantity",
+            "n.relation",
+            "n.substance",
+            "n.units",
+            "v.change",
+            "v.cognition",
+            "v.communication",
+            "v.contact",
+            "v.creation",
+            "v.motion",
+            "v.social"
+        ],
+        "c":[
+            "1950s automobiles",
+            "1960s automobiles",
+            "1970s automobiles",
+            "1980s automobiles",
+            "1990s automobiles",
+            "2000s automobiles",
+            "Automobiles powered by transverse 4-cylinder engines",
+            "BMC vehicles",
+            "British Leyland vehicles",
+            "British brands",
+            "Cars",
+            "Cars having sold 5 million units",
+            "Cars introduced",
+            "City cars",
+            "Economy",
+            "Front-wheel-drive vehicles",
+            "Issigonis vehicles",
+            "Mini vehicles",
+            "Rally cars",
+            "Touring cars",
+            "Use British English from June 2011"
+        ],
+        "e":false,
+        "t":"Mini_Cooper"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.cognition",
+            "n.process",
+            "v.cognition",
+            "v.contact",
+            "v.perception"
+        ],
+        "c":[
+            "Experiments for dark matter search"
+        ],
+        "e":false,
+        "t":"Darkside"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.artifact",
+            "n.attribute",
+            "n.body",
+            "n.communication",
+            "n.event",
+            "n.group",
+            "n.location",
+            "n.possession",
+            "n.state",
+            "v.change",
+            "v.communication",
+            "v.motion",
+            "v.social"
+        ],
+        "c":[
+            "CS1 German-language sources (de)",
+            "Human rights",
+            "Human rights abuses",
+            "Law enforcement",
+            "National Security Agency",
+            "Privacy",
+            "Signals intelligence agencies",
+            "Surveillance scandals"
+        ],
+        "e":false,
+        "t":"Loveint"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.person"
+        ],
+        "e":false,
+        "t":"Lady_gaga"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Chevy"
+    },
+    {
+        "s":[
+            "n.group"
+        ],
+        "e":false,
+        "t":"Recaro"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.cognition",
+            "n.communication",
+            "n.location",
+            "n.state",
+            "v.cognition",
+            "v.communication",
+            "v.competition",
+            "v.contact",
+            "v.creation",
+            "v.possession",
+            "v.social",
+            "v.stative"
+        ],
+        "c":[
+            "Populated places",
+            "Sub-prefectures"
+        ],
+        "e":false,
+        "t":"Obo"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "e":false,
+        "t":"Seth_Godin"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Nube"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"AdvancED"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.communication"
+        ],
+        "e":false,
+        "t":"Mega_Millions"
+    },
+    {
+        "s":[
+            "n.artifact",
+            "n.cognition",
+            "n.group",
+            "n.location",
+            "n.person",
+            "v.change",
+            "v.contact",
+            "v.stative"
+        ],
+        "c":[
+            "Bayreuth",
+            "Bayreuth (district)",
+            "CS1 German-language sources (de)",
+            "Displaced persons camps",
+            "Towns",
+            "University towns"
+        ],
+        "e":false,
+        "t":"Bayreuth"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "e":false,
+        "t":"Kraigg_Brathwaite"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.cognition",
+            "n.communication",
+            "n.location",
+            "n.person",
+            "n.state",
+            "n.substance",
+            "v.cognition",
+            "v.communication",
+            "v.contact",
+            "v.creation",
+            "v.perception",
+            "v.stative"
+        ],
+        "c":[
+            "Collaborative projects",
+            "Mass media",
+            "Revolutionary tactics",
+            "Social media"
+        ],
+        "e":false,
+        "t":"Social_media"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "e":false,
+        "t":"Brodus_Clay"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"4_Music"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Premier_league"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Thirty_seconds_to_mars"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "e":false,
+        "t":"Joey_Bada$$"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.person"
+        ],
+        "e":false,
+        "t":"Kendrick_Lamar"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "e":false,
+        "t":"Kiessling"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.person"
+        ],
+        "e":false,
+        "t":"Charlie_Rose"
+    },
+    {
+        "s":[
+            "n.food",
+            "n.plant",
+            "v.cognition",
+            "v.communication",
+            "v.contact",
+            "v.creation",
+            "v.stative"
+        ],
+        "c":[
+            "Apples",
+            "Fruits originating",
+            "Malus",
+            "Plants described"
+        ],
+        "e":false,
+        "t":"Apple's"
+    },
+    {
+        "s":[
+            "n.artifact",
+            "n.communication",
+            "n.person",
+            "v.change",
+            "v.cognition",
+            "v.communication",
+            "v.contact",
+            "v.creation",
+            "v.motion"
+        ],
+        "c":[
+            "Apple Inc. mobile phones",
+            "Digital audio players",
+            "IOS (Apple)",
+            "IPhone",
+            "ITunes",
+            "Mobile phones introduced",
+            "Multi-touch mobile phones",
+            "Products introduced",
+            "Smartphones",
+            "Touchscreen mobile phones"
+        ],
+        "e":false,
+        "t":"Iphone"
+    },
+    {
+        "s":[
+            "n.communication"
+        ],
+        "c":[
+            "Apple Inc.",
+            "CS1 French-language sources (fr)",
+            "Macintosh websites"
+        ],
+        "e":false,
+        "t":"Apple_Insider"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "e":false,
+        "t":"Bonsignore"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "e":false,
+        "t":"Avicii"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Scientific_American"
+    },
+    {
+        "s":[
+            "n.attribute",
+            "n.communication",
+            "n.person",
+            "n.state",
+            "v.communication",
+            "v.contact"
+        ],
+        "c":[
+            "Hindu texts",
+            "Honorifics",
+            "Lakshmi",
+            "Prefixes",
+            "Titles"
+        ],
+        "e":false,
+        "t":"Sri"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.artifact",
+            "n.attribute",
+            "n.cognition",
+            "n.group",
+            "n.location",
+            "n.object",
+            "n.person",
+            "n.process",
+            "n.state",
+            "n.states",
+            "v.communication",
+            "v.consumption",
+            "v.social"
+        ],
+        "c":[
+            "British Islands",
+            "CS1 maint: Explicit use",
+            "Constitutional monarchies",
+            "Countries",
+            "English-speaking countries and territories",
+            "G20 nations",
+            "G7 nations",
+            "G8 nations",
+            "Island countries",
+            "Liberal democracies",
+            "Member states",
+            "Northern Europe",
+            "United Kingdom",
+            "Use British English from April 2012",
+            "Western Europe"
+        ],
+        "e":false,
+        "t":"The_uk"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.artifact",
+            "n.cognition",
+            "n.communication",
+            "n.person",
+            "n.state"
+        ],
+        "c":[
+            "Nondualism",
+            "Perennial philosophy",
+            "Philosophical concepts",
+            "Singular God",
+            "Superlatives",
+            "Theology"
+        ],
+        "e":false,
+        "t":"The_ultimate"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Ustream"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "e":false,
+        "t":"Amber_Le_Bon"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "e":false,
+        "t":"Giles_Deacon"
+    },
+    {
+        "s":[
+            "n.event",
+            "n.person"
+        ],
+        "e":false,
+        "t":"LFW"
+    },
+    {
+        "s":[
+            "n.artifact",
+            "n.attribute",
+            "n.communication",
+            "n.person"
+        ],
+        "c":[
+            "Apple Inc. software",
+            "Digital audio",
+            "IOS software",
+            "IPod software",
+            "ITunes",
+            "Jukebox-style media players",
+            "Mac OS media players",
+            "Mobile device management software",
+            "OS X CD ripping software",
+            "OS X media players",
+            "Online music database clients",
+            "Podcasting software",
+            "Tag editors",
+            "Windows CD ripping software",
+            "Windows CD\/DVD writing software",
+            "Windows media players",
+            "software"
+        ],
+        "e":false,
+        "t":"Itunes"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.person"
+        ],
+        "e":false,
+        "t":"@justinbieber"
+    },
+    {
+        "s":[
+            "n.communication"
+        ],
+        "e":false,
+        "t":"Icarly"
+    },
+    {
+        "s":[
+            "n.attribute",
+            "n.communication",
+            "v.communication",
+            "v.motion",
+            "v.social"
+        ],
+        "c":[
+            "Drake & Josh",
+            "Lists"
+        ],
+        "e":false,
+        "t":"Crazy_Steve"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "e":false,
+        "t":"Megan"
+    },
+    {
+        "s":[
+            "n.food"
+        ],
+        "e":false,
+        "t":"Chinese_food"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.artifact",
+            "n.cognition",
+            "n.communication",
+            "n.group",
+            "n.object",
+            "n.person",
+            "n.phenomenon",
+            "n.state",
+            "n.time",
+            "v.body",
+            "v.change",
+            "v.cognition",
+            "v.communication",
+            "v.consumption",
+            "v.contact",
+            "v.creation",
+            "v.emotion",
+            "v.motion",
+            "v.perception",
+            "v.social",
+            "v.stative"
+        ],
+        "c":[
+            "1990s American animated films",
+            "American 3D films",
+            "American Christmas films",
+            "American animated films",
+            "American films",
+            "Animated fantasy films",
+            "Animated musical films",
+            "Clay animation films",
+            "Dark fantasy films",
+            "Directorial debut films",
+            "Disney animated films",
+            "English-language films",
+            "Film scores by Danny Elfman",
+            "Films about Halloween",
+            "Films based on multiple works",
+            "Films based on poems",
+            "Films directed by Henry Selick",
+            "Films produced by Denise Di Novi",
+            "Goth subculture",
+            "Monster movies",
+            "Musical fantasy films",
+            "Parallel universes",
+            "Santa Claus",
+            "Screenplays by Caroline Thompson",
+            "The Nightmare Before Christmas",
+            "Touchstone Pictures films",
+            "Walt Disney Pictures films",
+            "animated films",
+            "films"
+        ],
+        "e":false,
+        "t":"Nightmare_before_christmas"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Serie_A"
+    },
+    {
+        "s":[
+            "n.artifact",
+            "n.communication",
+            "v.communication"
+        ],
+        "c":[
+            "Nokia mobile phones",
+            "Smartphones"
+        ],
+        "e":false,
+        "t":"Nokia_5800"
+    },
+    {
+        "s":[
+            "n.communication"
+        ],
+        "e":false,
+        "t":"The_inbetweeners"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.artifact",
+            "n.attribute",
+            "n.body",
+            "n.cognition",
+            "n.group",
+            "n.possession",
+            "v.change"
+        ],
+        "c":[
+            "Airports",
+            "Buildings and structures",
+            "Transportation"
+        ],
+        "e":false,
+        "t":"HKY"
+    },
+    {
+        "s":[
+            "n.artifact",
+            "n.cognition",
+            "n.communication",
+            "n.event",
+            "n.group",
+            "n.person",
+            "n.possession",
+            "n.relation",
+            "v.cognition",
+            "v.social"
+        ],
+        "c":[
+            "American young adult novels",
+            "HarperCollins books",
+            "Novel series",
+            "Pretty Little Liars"
+        ],
+        "e":false,
+        "t":"Pretty_little_liars"
+    },
+    {
+        "s":[
+            "n.person",
+            "n.state",
+            "n.time"
+        ],
+        "c":[
+            "Days",
+            "October"
+        ],
+        "e":false,
+        "t":"October_18"
+    },
+    {
+        "s":[
+            "n.communication"
+        ],
+        "e":false,
+        "t":"I_will"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "e":false,
+        "t":"BE_Taylor"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.person"
+        ],
+        "e":false,
+        "t":"Justin_bieber"
+    },
+    {
+        "s":[
+            "n.person",
+            "n.state",
+            "n.time"
+        ],
+        "c":[
+            "Days",
+            "November"
+        ],
+        "e":false,
+        "t":"November_6"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "c":[
+            "Commissioners"
+        ],
+        "e":false,
+        "t":"FDA_commissioner"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "e":false,
+        "t":"Margaret_Hamburg"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "c":[
+            "Djoser",
+            "Pharaohs"
+        ],
+        "e":false,
+        "t":"Dj_set"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Metropcs"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Livestrong"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.communication",
+            "n.person"
+        ],
+        "e":false,
+        "t":"Soulja_boy"
+    },
+    {
+        "s":[
+            "n.artifact",
+            "n.communication"
+        ],
+        "e":false,
+        "t":"The_DeAndre_Way"
+    },
+    {
+        "s":[
+            "n.artifact",
+            "n.attribute",
+            "n.body",
+            "n.cognition",
+            "n.communication",
+            "n.forms",
+            "n.group",
+            "n.state",
+            "v.change",
+            "v.creation",
+            "v.social",
+            "v.stative"
+        ],
+        "c":[
+            "Fiction",
+            "Fiction forms",
+            "Novels",
+            "Prose"
+        ],
+        "e":false,
+        "t":"Nov_2"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.artifact",
+            "n.attribute",
+            "n.body",
+            "n.cognition",
+            "n.communication",
+            "n.group",
+            "n.process",
+            "n.shape",
+            "n.substance",
+            "v.change",
+            "v.contact",
+            "v.social"
+        ],
+        "c":[
+            "Biological databases",
+            "Classification systems",
+            "Protein classification",
+            "Protein folds",
+            "Protein structure"
+        ],
+        "e":false,
+        "t":"Cath"
+    },
+    {
+        "s":[
+            "n.group",
+            "n.location"
+        ],
+        "c":[
+            "Civil parishes",
+            "North Lincolnshire",
+            "Use British English from October 2013",
+            "Villages"
+        ],
+        "e":false,
+        "t":"Wrawby"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "e":false,
+        "t":"Pope_benedict_xvi"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "e":false,
+        "t":"Jim_Rohn"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.event",
+            "n.group"
+        ],
+        "e":false,
+        "t":"A7x"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Fall_out_boy"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "e":false,
+        "t":"Gert"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.artifact",
+            "n.communication"
+        ],
+        "c":[
+            "Latin alphabet ligatures",
+            "Palaeography",
+            "Typographic ligatures",
+            "Typography"
+        ],
+        "e":false,
+        "t":"St"
+    },
+    {
+        "s":[
+            "n.animal",
+            "n.group"
+        ],
+        "c":[
+            "Bird subfamilies",
+            "Ibises",
+            "Threskiornithidae"
+        ],
+        "e":false,
+        "t":"Ibgp"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.artifact",
+            "n.attribute",
+            "n.cognition",
+            "n.communication",
+            "n.possession",
+            "n.quantity"
+        ],
+        "c":[
+            "Internet Standards",
+            "Internet architecture",
+            "Internet protocols",
+            "Routing protocols"
+        ],
+        "e":false,
+        "t":"Ebgp"
+    },
+    {
+        "s":[
+            "n.communication"
+        ],
+        "e":false,
+        "t":"For_America"
+    },
+    {
+        "s":[
+            "n.artifact",
+            "n.communication",
+            "n.plant",
+            "n.quantity",
+            "n.shape",
+            "v.cognition",
+            "v.communication",
+            "v.contact",
+            "v.creation"
+        ],
+        "c":[
+            "2000s comedy films",
+            "American comedy films",
+            "American films",
+            "Cube Vision films",
+            "Directorial debut films",
+            "English-language films",
+            "Film scores by Terence Blanchard",
+            "Films about cannabis",
+            "Films directed by Steve Carr",
+            "Hip hop films",
+            "Hood films",
+            "New Line Cinema films",
+            "Screenplays by Ice Cube",
+            "Sequel films",
+            "films"
+        ],
+        "e":false,
+        "t":"Next_Friday"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Nyc"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"At_t"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.artifact",
+            "n.attribute",
+            "n.body",
+            "n.cognition",
+            "n.communication",
+            "n.event",
+            "n.group",
+            "n.location",
+            "n.possession",
+            "n.quantity",
+            "v.change",
+            "v.cognition",
+            "v.communication",
+            "v.competition",
+            "v.contact",
+            "v.creation",
+            "v.perception",
+            "v.social"
+        ],
+        "c":[
+            "Art Deco architecture",
+            "City",
+            "Gothic Revival architecture",
+            "Gothic Revival skyscrapers",
+            "Historic district contributing properties",
+            "Individually listed contributing properties to historic districts on the National Register",
+            "Pittsburgh History & Landmarks Foundation Historic Landmarks",
+            "School buildings completed",
+            "School buildings on the National Register",
+            "Skyscrapers",
+            "Skyscrapers between 150 and 199 meters",
+            "University",
+            "University and college administration buildings"
+        ],
+        "e":false,
+        "t":"Cathedral_of_learning"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.person"
+        ],
+        "e":false,
+        "t":"Bono"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "e":false,
+        "t":"Barbara_Boxer"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.communication",
+            "n.person",
+            "v.motion",
+            "v.stative"
+        ],
+        "c":[
+            "Shotgun shooting sports"
+        ],
+        "e":false,
+        "t":"Wingo"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Time_Warner_cable"
+    },
+    {
+        "s":[
+            "n.communication"
+        ],
+        "e":false,
+        "t":"Movie_channel"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Netflix"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Youtube_video"
+    },
+    {
+        "s":[
+            "n.communication"
+        ],
+        "e":false,
+        "t":"Family_guy"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Ncaaf"
+    },
+    {
+        "s":[
+            "n.person",
+            "n.state",
+            "n.time"
+        ],
+        "c":[
+            "Days",
+            "December"
+        ],
+        "e":false,
+        "t":"Dec_31"
+    },
+    {
+        "s":[
+            "n.person",
+            "n.state",
+            "n.time"
+        ],
+        "c":[
+            "Days",
+            "December"
+        ],
+        "e":false,
+        "t":"December_30"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Roh"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.artifact",
+            "n.attribute",
+            "n.communication",
+            "n.person",
+            "v.social"
+        ],
+        "c":[
+            "Constitution",
+            "Prime Ministers",
+            "Use Indian English from July 2015"
+        ],
+        "e":false,
+        "t":"Indian_prime_minister"
+    },
+    {
+        "s":[
+            "n.body",
+            "n.cognition",
+            "n.group",
+            "n.location",
+            "n.object",
+            "n.quantity"
+        ],
+        "c":[
+            "Regions",
+            "Southern Europe"
+        ],
+        "e":false,
+        "t":"South_Europe"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Temecula"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.artifact",
+            "n.attribute",
+            "n.body",
+            "n.cognition",
+            "n.communication",
+            "n.group",
+            "n.location",
+            "n.object",
+            "n.person",
+            "n.phenomenon",
+            "n.quantity",
+            "n.state",
+            "v.change",
+            "v.contact",
+            "v.motion",
+            "v.social",
+            "v.stative"
+        ],
+        "c":[
+            "Culture",
+            "Geography",
+            "Jersey Shore",
+            "Regions",
+            "Seaside resorts",
+            "Tourism",
+            "Tourism regions",
+            "Visitor attractions"
+        ],
+        "e":false,
+        "t":"Jersey_shore"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.communication"
+        ],
+        "e":false,
+        "t":"Ugly_Mug"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Mtv"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"The_Sharks"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Nhl"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.artifact",
+            "n.cognition",
+            "n.communication",
+            "n.event",
+            "n.feeling",
+            "n.group",
+            "n.person",
+            "n.process",
+            "n.quantity",
+            "n.state",
+            "n.time",
+            "v.body",
+            "v.change",
+            "v.cognition",
+            "v.communication",
+            "v.competition",
+            "v.consumption",
+            "v.contact",
+            "v.creation",
+            "v.motion",
+            "v.perception",
+            "v.social",
+            "v.weather"
+        ],
+        "c":[
+            "2000s drama films",
+            "American drama films",
+            "American films",
+            "American independent films",
+            "Artisan Entertainment films",
+            "English-language films",
+            "Film scores by Clint Mansell",
+            "Films about drugs",
+            "Films about heroin addiction",
+            "Films about prostitution",
+            "Films based on American novels",
+            "Films directed by Darren Aronofsky",
+            "Films set",
+            "Films shot",
+            "Screenplays by Darren Aronofsky",
+            "films"
+        ],
+        "e":false,
+        "t":"Requiem_for_a_dream"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.artifact",
+            "n.attribute",
+            "n.cognition",
+            "n.communication",
+            "n.event",
+            "n.group",
+            "n.person",
+            "n.process",
+            "n.quantity",
+            "n.state",
+            "n.time",
+            "v.body",
+            "v.change",
+            "v.cognition",
+            "v.communication",
+            "v.competition",
+            "v.consumption",
+            "v.contact",
+            "v.creation",
+            "v.motion",
+            "v.perception",
+            "v.social",
+            "v.weather"
+        ],
+        "c":[
+            "2000s romantic comedy films",
+            "American comedy-drama films",
+            "American coming-of-age films",
+            "American films",
+            "American independent films",
+            "American romantic comedy films",
+            "Directorial debut films",
+            "English-language films",
+            "Films directed by Marc Webb",
+            "Films produced by Mason Novick",
+            "Films set",
+            "Films shot",
+            "Films with live action and animation",
+            "Fox Searchlight Pictures films",
+            "Nonlinear narrative films",
+            "Screenplays by Scott Neustadter and Michael H. Weber",
+            "films"
+        ],
+        "e":false,
+        "t":"500_days_of_summer"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "e":false,
+        "t":"Carbo"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.animal",
+            "n.artifact",
+            "n.attribute",
+            "n.body",
+            "n.cognition",
+            "n.communication",
+            "n.event",
+            "n.food",
+            "n.group",
+            "n.location",
+            "n.object",
+            "n.person",
+            "n.phenomenon",
+            "n.plant",
+            "n.quantity",
+            "n.state",
+            "v.communication",
+            "v.contact",
+            "v.motion",
+            "v.social",
+            "v.stative"
+        ],
+        "c":[
+            "Emperors",
+            "Heads",
+            "Men's social titles",
+            "Noble titles",
+            "Political philosophy",
+            "Royal titles"
+        ],
+        "e":false,
+        "t":"Emporer"
+    },
+    {
+        "s":[
+            "n.artifact",
+            "n.communication"
+        ],
+        "e":false,
+        "t":"New_Groove"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "e":false,
+        "t":"Vinny"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "e":false,
+        "t":"Snooki"
+    },
+    {
+        "s":[
+            "n.communication"
+        ],
+        "e":false,
+        "t":"Saturday_Party"
+    },
+    {
+        "s":[
+            "n.communication"
+        ],
+        "e":false,
+        "t":"Doug"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Camarillo"
+    },
+    {
+        "s":[
+            "n.artifact",
+            "n.communication",
+            "v.communication",
+            "v.creation"
+        ],
+        "c":[
+            "Film scores by Ajit Varman",
+            "Hindi-language films",
+            "Indian films",
+            "Use Indian English from November 2015",
+            "films"
+        ],
+        "e":false,
+        "t":"Jan_6"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Googletv"
+    },
+    {
+        "s":[
+            "n.communication"
+        ],
+        "e":false,
+        "t":"Hdmi"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.artifact",
+            "n.cognition",
+            "n.communication",
+            "n.event",
+            "n.feeling",
+            "n.group",
+            "n.location",
+            "n.person",
+            "n.process",
+            "n.quantity",
+            "n.state",
+            "n.time",
+            "v.body",
+            "v.change",
+            "v.cognition",
+            "v.communication",
+            "v.competition",
+            "v.consumption",
+            "v.contact",
+            "v.creation",
+            "v.motion",
+            "v.perception",
+            "v.social",
+            "v.weather"
+        ],
+        "c":[
+            "1970s LGBT-related films",
+            "1970s comedy horror films",
+            "1970s musical comedy films",
+            "1970s musical films",
+            "20th Century Fox films",
+            "American LGBT-related films",
+            "American comedy horror films",
+            "American films",
+            "American musical comedy films",
+            "British LGBT-related films",
+            "British comedy horror films",
+            "British films",
+            "British musical comedy films",
+            "Cannibalism",
+            "Cross-dressing",
+            "Dance films",
+            "English-language films",
+            "Films based on musicals",
+            "Films directed by Jim Sharman",
+            "Films set",
+            "Films shot",
+            "Incest",
+            "LGBT-related comedy films",
+            "LGBT-related horror films",
+            "LGBT-related musical films",
+            "Mad scientist films",
+            "Rocky Horror",
+            "Transgender",
+            "Transylvania",
+            "United States National Film Registry films",
+            "films"
+        ],
+        "e":false,
+        "t":"The_rocky_horror_picture_show"
+    },
+    {
+        "s":[
+            "n.communication"
+        ],
+        "e":false,
+        "t":"Sweet_Transvestite"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"La_fitness"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Consumer_Electronics_Show"
+    },
+    {
+        "s":[
+            "n.artifact",
+            "n.communication"
+        ],
+        "e":false,
+        "t":"Pink_Friday"
+    },
+    {
+        "s":[
+            "n.artifact",
+            "n.communication"
+        ],
+        "e":false,
+        "t":"The_new"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.person"
+        ],
+        "e":false,
+        "t":"75_Years_of_DC_Comics"
+    },
+    {
+        "s":[
+
+        ],
+        "c":[
+            "Eighth Avenue (Manhattan)"
+        ],
+        "e":false,
+        "t":"8th_Ave"
+    },
+    {
+        "s":[
+            "n.person",
+            "n.state",
+            "n.time"
+        ],
+        "c":[
+            "Days",
+            "February"
+        ],
+        "e":false,
+        "t":"Feb_6"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Nyt"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"CSTVT"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Winn-Dixie"
+    },
+    {
+        "s":[
+            "n.quantity"
+        ],
+        "c":[
+            "Integers"
+        ],
+        "e":false,
+        "t":"8th"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"@google"
+    },
+    {
+        "s":[
+            "n.person",
+            "n.state",
+            "n.time"
+        ],
+        "c":[
+            "Days",
+            "February"
+        ],
+        "e":false,
+        "t":"Feb_10"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.artifact",
+            "n.cognition",
+            "n.communication",
+            "n.event",
+            "n.group",
+            "n.location",
+            "n.object",
+            "n.person",
+            "n.shape",
+            "n.state",
+            "v.body",
+            "v.cognition",
+            "v.communication",
+            "v.contact",
+            "v.motion",
+            "v.possession",
+            "v.social",
+            "v.stative",
+            "v.weather"
+        ],
+        "c":[
+            "American Heritage Rivers",
+            "Borders",
+            "CS1 French-language sources (fr)",
+            "Geobox usage tracking for river type",
+            "Mississippi River",
+            "Mississippi embayment",
+            "Rivers",
+            "Rivers and streams",
+            "World Digital Library related"
+        ],
+        "e":false,
+        "t":"The_mississippi"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.cognition",
+            "n.event",
+            "n.feeling",
+            "n.person",
+            "n.quantity",
+            "n.state",
+            "n.time",
+            "v.contact",
+            "v.emotion",
+            "v.stative"
+        ],
+        "c":[
+            "CS1 Japanese-language sources (ja)",
+            "CS1 Slovenian-language sources (sl)",
+            "CS1 uses Japanese-language script (ja)",
+            "Christian festivals and holy days",
+            "Days celebrating love",
+            "February observances",
+            "Saints days",
+            "Winter holidays"
+        ],
+        "e":false,
+        "t":"Valentines_day"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Famous_daves"
+    },
+    {
+        "s":[
+            "n.person",
+            "n.state",
+            "n.time"
+        ],
+        "c":[
+            "Days",
+            "January"
+        ],
+        "e":false,
+        "t":"Jan_11"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"FYS"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"The_Unicorns"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "e":false,
+        "t":"Ayman_Mohyeldin"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Muzik"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "e":false,
+        "t":"Lil_ronnie"
+    },
+    {
+        "s":[
+            "n.artifact",
+            "n.attribute",
+            "n.body",
+            "n.cognition",
+            "n.food",
+            "n.group",
+            "n.location",
+            "n.person",
+            "n.state",
+            "v.change",
+            "v.cognition",
+            "v.communication",
+            "v.contact",
+            "v.motion",
+            "v.social"
+        ],
+        "c":[
+            "Areas",
+            "Barking",
+            "Districts",
+            "Major centres",
+            "Market towns",
+            "OpenDomesday",
+            "Use British English from August 2015"
+        ],
+        "e":false,
+        "t":"Barking"
+    },
+    {
+        "s":[
+            "n.person",
+            "n.state",
+            "n.time"
+        ],
+        "c":[
+            "Days",
+            "February"
+        ],
+        "e":false,
+        "t":"12th_February"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "e":false,
+        "t":"The_BPA"
+    },
+    {
+        "s":[
+            "n.artifact",
+            "n.communication"
+        ],
+        "e":false,
+        "t":"Sister_Lovers"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.person"
+        ],
+        "e":false,
+        "t":"Your_Valentine"
+    },
+    {
+        "s":[
+            "n.attribute",
+            "n.cognition",
+            "n.group",
+            "n.phenomenon"
+        ],
+        "c":[
+            "Concepts",
+            "Developmental biology",
+            "Ethology",
+            "Physical attractiveness",
+            "Social psychology"
+        ],
+        "e":false,
+        "t":"Cutie"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.person"
+        ],
+        "e":false,
+        "t":"Lil_wayne"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.person"
+        ],
+        "e":false,
+        "t":"Nicki_minaj"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.communication",
+            "n.group",
+            "n.location",
+            "n.person",
+            "n.state",
+            "n.time",
+            "v.contact",
+            "v.motion",
+            "v.social"
+        ],
+        "c":[
+            "Days",
+            "March"
+        ],
+        "e":false,
+        "t":"March_30"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Steelers"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Be_Love"
+    },
+    {
+        "s":[
+            "n.cognition",
+            "n.communication",
+            "n.person",
+            "n.quantity",
+            "v.communication"
+        ],
+        "c":[
+            "English grammar",
+            "English words",
+            "Modern English personal pronouns",
+            "Second-person plural pronouns"
+        ],
+        "e":false,
+        "t":"Your"
+    },
+    {
+        "s":[
+            "n.artifact",
+            "n.group"
+        ],
+        "c":[
+            "Historically black universities and colleges",
+            "Universities and colleges"
+        ],
+        "e":false,
+        "t":"HBCU"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Zazzle"
+    },
+    {
+        "s":[
+            "n.event"
+        ],
+        "e":false,
+        "t":"Mls_cup"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Green_bay_packers"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "e":false,
+        "t":"Darrell_Williams"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Big_12"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Old_navy"
+    },
+    {
+        "s":[
+            "n.communication"
+        ],
+        "e":false,
+        "t":"Running_Wilde"
+    },
+    {
+        "s":[
+            "n.person",
+            "n.state",
+            "n.time"
+        ],
+        "c":[
+            "Days",
+            "December"
+        ],
+        "e":false,
+        "t":"December_28"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.person"
+        ],
+        "e":false,
+        "t":"Wesley_Snipes"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "e":false,
+        "t":"Nicki"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "e":false,
+        "t":"Jason_garrett"
+    },
+    {
+        "s":[
+            "n.artifact",
+            "n.communication"
+        ],
+        "e":false,
+        "t":"The_big_lebowski"
+    },
+    {
+        "s":[
+            "n.person",
+            "n.state",
+            "n.time"
+        ],
+        "c":[
+            "Days",
+            "November"
+        ],
+        "e":false,
+        "t":"November_24"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.cognition",
+            "n.communication",
+            "n.location",
+            "n.state",
+            "v.cognition",
+            "v.communication",
+            "v.competition",
+            "v.contact",
+            "v.creation",
+            "v.possession",
+            "v.social",
+            "v.stative"
+        ],
+        "c":[
+            "Ashburton, New Zealand",
+            "Populated places",
+            "Use New Zealand English from October 2014"
+        ],
+        "e":false,
+        "t":"Ashvegas"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"WYD"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "e":false,
+        "t":"Colt_Brennan"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"The_apollo"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Boise_state"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"St_louis"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Flow_93.5"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"The_Wanted"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"No_Saints"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Seahawks"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.food",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Kfc"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "e":false,
+        "t":"Derek"
+    },
+    {
+        "s":[
+            "n.communication"
+        ],
+        "e":false,
+        "t":"Sym-Bionic_Titan"
+    },
+    {
+        "s":[
+            "n.food"
+        ],
+        "e":false,
+        "t":"Chal"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.person"
+        ],
+        "e":false,
+        "t":"Onew"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.person"
+        ],
+        "e":false,
+        "t":"@ladygaga"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Youtube_channel"
+    },
+    {
+        "s":[
+            "n.time"
+        ],
+        "c":[
+            "Holy Week",
+            "Monday"
+        ],
+        "e":false,
+        "t":"Great_Monday"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Tin_lizzie"
+    },
+    {
+        "s":[
+            "n.artifact",
+            "n.person",
+            "n.plant",
+            "n.shape",
+            "v.change",
+            "v.competition",
+            "v.contact",
+            "v.motion"
+        ],
+        "c":[
+            "Iconography",
+            "Mythemes",
+            "Trees"
+        ],
+        "e":false,
+        "t":"The_Tree_of_Life"
+    },
+    {
+        "s":[
+            "n.person",
+            "n.state",
+            "n.time"
+        ],
+        "c":[
+            "April",
+            "Days"
+        ],
+        "e":false,
+        "t":"April_1st"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.animal",
+            "n.attribute",
+            "n.cognition",
+            "n.event",
+            "n.group",
+            "n.location",
+            "n.object",
+            "n.person",
+            "n.state",
+            "n.time",
+            "v.competition",
+            "v.social"
+        ],
+        "c":[
+            "Breast cancer",
+            "Cancer awareness",
+            "Commemorative months",
+            "Health campaigns",
+            "Medical activism",
+            "Observances",
+            "October observances",
+            "Public awareness campaigns",
+            "Public health education"
+        ],
+        "e":false,
+        "t":"Breast_cancer_awareness_month"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.communication",
+            "n.event",
+            "n.phenomena",
+            "n.phenomenon",
+            "n.state",
+            "v.competition",
+            "v.contact",
+            "v.stative",
+            "v.weather"
+        ],
+        "c":[
+            "Snow or ice weather phenomena",
+            "Storm",
+            "Weather warnings and advisories"
+        ],
+        "e":false,
+        "t":"Thundersnow"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.communication"
+        ],
+        "e":false,
+        "t":"Assassins_creed"
+    },
+    {
+        "s":[
+            "n.communication"
+        ],
+        "e":false,
+        "t":"Hannah_montana"
+    },
+    {
+        "s":[
+            "n.event"
+        ],
+        "e":false,
+        "t":"Fire_Prevention_Week"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "e":false,
+        "t":"Stephanie_Rogers"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.person"
+        ],
+        "e":false,
+        "t":"Matt_Brooker"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.communication"
+        ],
+        "e":false,
+        "t":"Starwars"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.location",
+            "n.time",
+            "v.motion"
+        ],
+        "c":[
+            "CS1 German-language sources (de)",
+            "CS1 Lithuanian-language sources (lt)",
+            "Depeche Mode concert tours",
+            "Use British English from September 2012",
+            "concert tours"
+        ],
+        "e":false,
+        "t":"Tour_2010"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"N.j."
+    },
+    {
+        "s":[
+            "n.cognition",
+            "n.groups",
+            "n.substance",
+            "v.cognition",
+            "v.competition"
+        ],
+        "c":[
+            "British trance music groups",
+            "Use British English from August 2015"
+        ],
+        "e":false,
+        "t":"Eyeopener"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.event",
+            "n.group"
+        ],
+        "e":false,
+        "t":"London_fashion_week"
+    },
+    {
+        "s":[
+            "n.group",
+            "n.location",
+            "n.person"
+        ],
+        "c":[
+            "Boroughs",
+            "Census towns",
+            "Cities",
+            "County Kilkenny",
+            "County towns",
+            "Kilkenny (city)",
+            "Towns and villages"
+        ],
+        "e":false,
+        "t":"Kilkenny"
+    },
+    {
+        "s":[
+            "n.States",
+            "n.act",
+            "n.cognition",
+            "n.communication",
+            "n.group",
+            "n.location",
+            "n.state",
+            "v.communication"
+        ],
+        "c":[
+            "",
+            "Arizona statutes",
+            "CS1 Spanish-language sources (es)",
+            "Illegal immigration to the United States",
+            "Immigration legislation",
+            "Race and law",
+            "United States immigration law"
+        ],
+        "e":false,
+        "t":"SB1070"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.cognition",
+            "n.communication",
+            "v.communication"
+        ],
+        "c":[
+            "Christian terminology",
+            "English phrases",
+            "Parting phrases",
+            "Parting traditions"
+        ],
+        "e":false,
+        "t":"God_bless"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.artifact",
+            "n.cognition",
+            "n.communication",
+            "v.change",
+            "v.cognition",
+            "v.communication",
+            "v.contact",
+            "v.creation",
+            "v.motion"
+        ],
+        "c":[
+            "Android (operating system) devices",
+            "HTC mobile phones",
+            "Mobile phones introduced",
+            "QWERTY mobile phones",
+            "Smartphones",
+            "Touchscreen mobile phones"
+        ],
+        "e":false,
+        "t":"HTC_Desire_Z"
+    },
+    {
+        "s":[
+            "n.person",
+            "n.state",
+            "n.time"
+        ],
+        "c":[
+            "Days",
+            "October"
+        ],
+        "e":false,
+        "t":"October_11"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Follow_friday"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "e":false,
+        "t":"Scooter_Braun"
+    },
+    {
+        "s":[
+            "n.artifact",
+            "n.attribute",
+            "n.body",
+            "n.cognition",
+            "n.group",
+            "v.change"
+        ],
+        "c":[
+            "Airports",
+            "Buildings and structures",
+            "CS1 Finnish-language sources (fi)",
+            "Ylivieska"
+        ],
+        "e":false,
+        "t":"Yli"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.person"
+        ],
+        "e":false,
+        "t":"Joaquin_Phoenix"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.person"
+        ],
+        "e":false,
+        "t":"Andy_kaufman"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "e":false,
+        "t":"Rachelle"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"30stm"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.attribute",
+            "n.cognition",
+            "n.communication",
+            "n.feeling",
+            "n.person",
+            "n.relation",
+            "n.state",
+            "v.change",
+            "v.competition",
+            "v.social",
+            "v.stative"
+        ],
+        "c":[
+            "",
+            "Anti-Azerbaijani sentiment",
+            "CS1 German-language sources (de)",
+            "CS1 Russian-language sources (ru)",
+            "CS1 Turkish-language sources (tr)",
+            "CS1 uses Russian-language script (ru)",
+            "Conflicts",
+            "Khojaly Massacre",
+            "Mass murder",
+            "Massacres",
+            "Murdered children",
+            "Nagorno-Karabakh War",
+            "War crimes"
+        ],
+        "e":false,
+        "t":"JFK_campaign"
+    },
+    {
+        "s":[
+            "n.group",
+            "n.location"
+        ],
+        "c":[
+            "Civil parishes",
+            "Towns and villages"
+        ],
+        "e":false,
+        "t":"Aintree"
+    },
+    {
+        "s":[
+
+        ],
+        "c":[
+            ""
+        ],
+        "e":false,
+        "t":"August_2010"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.cognition",
+            "n.group",
+            "n.state",
+            "n.time",
+            "v.change"
+        ],
+        "c":[
+            "Cultural festivals",
+            "Greek culture",
+            "Greek-American culture"
+        ],
+        "e":false,
+        "t":"Greek_festival"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.artifact",
+            "n.cognition",
+            "n.communication",
+            "n.event",
+            "n.group",
+            "n.location",
+            "n.person",
+            "n.process",
+            "n.quantity",
+            "n.state",
+            "n.time",
+            "v.body",
+            "v.change",
+            "v.cognition",
+            "v.communication",
+            "v.competition",
+            "v.consumption",
+            "v.contact",
+            "v.creation",
+            "v.motion",
+            "v.perception",
+            "v.social",
+            "v.weather"
+        ],
+        "c":[
+            "2000s crime films",
+            "2000s romantic comedy films",
+            "American criminal comedy films",
+            "American films",
+            "American romantic comedy films",
+            "Columbia Pictures films",
+            "English-language films",
+            "Films directed by Martin Brest",
+            "Films set",
+            "Films shot",
+            "Gangster films",
+            "Mafia comedies",
+            "Revolution Studios films",
+            "films"
+        ],
+        "e":false,
+        "t":"Gigli"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.person"
+        ],
+        "e":false,
+        "t":"Lindsay_lohan"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "e":false,
+        "t":"Benitez"
+    },
+    {
+        "s":[
+            "n.communication"
+        ],
+        "e":false,
+        "t":"Showbiz_Tonight"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Gigaom"
+    },
+    {
+        "s":[
+            "n.communication"
+        ],
+        "e":false,
+        "t":"Hdcp"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Ufc"
+    },
+    {
+        "s":[
+            "n.attribute",
+            "n.person",
+            "n.time",
+            "v.change"
+        ],
+        "c":[
+            "Information Age",
+            "News aggregators"
+        ],
+        "e":false,
+        "t":"Newsfeed"
+    },
+    {
+        "s":[
+            "n.artifact",
+            "n.attribute",
+            "n.cognition",
+            "n.communication",
+            "n.event",
+            "n.group",
+            "n.person",
+            "n.plant",
+            "n.plants",
+            "v.cognition",
+            "v.consumption",
+            "v.contact",
+            "v.creation",
+            "v.possession",
+            "v.social",
+            "v.stative"
+        ],
+        "c":[
+            "Dietary supplements",
+            "Dioecious plants",
+            "Fruit",
+            "Medicinal plants",
+            "Momordica",
+            "Nature Conservation Act rare biota",
+            "Plants used"
+        ],
+        "e":false,
+        "t":"Gac"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "e":false,
+        "t":"Betsey_Johnson"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.communication"
+        ],
+        "e":false,
+        "t":"SD2"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.animal",
+            "n.artifact",
+            "n.cognition",
+            "n.communication",
+            "n.event",
+            "n.group",
+            "n.person",
+            "n.process",
+            "n.quantity",
+            "n.state",
+            "n.time",
+            "v.body",
+            "v.change",
+            "v.cognition",
+            "v.communication",
+            "v.competition",
+            "v.consumption",
+            "v.contact",
+            "v.creation",
+            "v.motion",
+            "v.perception",
+            "v.social",
+            "v.weather"
+        ],
+        "c":[
+            "2010s comedy horror films",
+            "3D films",
+            "American 3D films",
+            "American comedy horror films",
+            "American films",
+            "Dimension Films films",
+            "English-language films",
+            "Films about piranhas",
+            "Films directed by Alexandre Aja",
+            "Films set",
+            "Films shot",
+            "Films using computer-generated imagery",
+            "Horror film remakes",
+            "Natural horror films",
+            "Reboot films",
+            "Splatter films",
+            "The Weinstein Company films",
+            "films",
+            "horror films"
+        ],
+        "e":false,
+        "t":"Piranha_3d"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.animal",
+            "n.cognition",
+            "n.communication",
+            "v.cognition",
+            "v.communication",
+            "v.competition",
+            "v.social",
+            "v.stative"
+        ],
+        "c":[
+            "Standardized tests",
+            "introductions"
+        ],
+        "e":false,
+        "t":"SAT_Writing"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.cognition",
+            "n.communication",
+            "n.event",
+            "n.person",
+            "n.state",
+            "n.time",
+            "v.stative"
+        ],
+        "c":[
+            "April observances",
+            "Catholic liturgy",
+            "Christian festivals and holy days",
+            "Christian terminology",
+            "Crucifixion",
+            "Eastern Christian liturgy",
+            "Eastern Orthodox liturgical days",
+            "Friday",
+            "Holy Week",
+            "March observances",
+            "Moveable holidays (Easter date based)",
+            "State holidays"
+        ],
+        "e":false,
+        "t":"Great_Friday"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Kings_of_leon"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "e":false,
+        "t":"Belanger"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.communication"
+        ],
+        "e":false,
+        "t":"Halo_reach"
+    },
+    {
+        "s":[
+            "n.person",
+            "n.state",
+            "n.time"
+        ],
+        "c":[
+            "Days",
+            "September"
+        ],
+        "e":false,
+        "t":"September_18"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Kc_and_the_sunshine_band"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "e":false,
+        "t":"Steve"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.cognition",
+            "n.communication",
+            "v.communication"
+        ],
+        "c":[
+            "Aramaic words and phrases",
+            "Chabad-Lubavitch texts",
+            "Hasidic literature",
+            "Jewish mystical texts",
+            "Jewish philosophical and ethical texts",
+            "Kabbalistic words and phrases",
+            "Shneur Zalman"
+        ],
+        "e":false,
+        "t":"Tanya"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"JPN"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Rei"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.artifact",
+            "n.cognition",
+            "n.communication",
+            "n.food",
+            "n.substance",
+            "v.communication",
+            "v.contact",
+            "v.social"
+        ],
+        "c":[
+            "Brand name confectionery",
+            "Cadbury Adams brands",
+            "Mondel\u0113z brands",
+            "introductions"
+        ],
+        "e":false,
+        "t":"Sour_patch_kids"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"H-E-B_Plus"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "e":false,
+        "t":"Steve_King"
+    },
+    {
+        "s":[
+            "n.event"
+        ],
+        "e":false,
+        "t":"Obamacare"
+    },
+    {
+        "s":[
+            "n.artifact",
+            "n.cognition",
+            "n.communication",
+            "n.group",
+            "n.person",
+            "n.state",
+            "n.time",
+            "v.cognition",
+            "v.communication"
+        ],
+        "c":[
+            "Constitution days",
+            "Incomplete lists from August 2008",
+            "Types"
+        ],
+        "e":false,
+        "t":"Constitution_Day"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.attribute",
+            "n.cognition",
+            "n.communication",
+            "n.group",
+            "n.location",
+            "n.person",
+            "n.state",
+            "v.cognition",
+            "v.communication",
+            "v.competition",
+            "v.contact",
+            "v.creation",
+            "v.motion",
+            "v.perception",
+            "v.social"
+        ],
+        "c":[
+            "CS1 German-language sources (de)",
+            "Ecclesiastical titles",
+            "Episcopacy",
+            "Holy See",
+            "Popes",
+            "Religious leadership roles"
+        ],
+        "e":false,
+        "t":"The_pope"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "e":false,
+        "t":"Brett_favre"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "e":false,
+        "t":"Eduardo"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.person"
+        ],
+        "e":false,
+        "t":"Nick_Jonas"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Tmz"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.communication"
+        ],
+        "e":false,
+        "t":"K-on"
+    },
+    {
+        "s":[
+            "n.artifact",
+            "n.communication"
+        ],
+        "e":false,
+        "t":"Oh_Lord"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.artifact",
+            "n.attribute",
+            "n.cognition",
+            "n.communication",
+            "n.event",
+            "n.group",
+            "n.person",
+            "n.process",
+            "n.state",
+            "n.time",
+            "v.body",
+            "v.change",
+            "v.cognition",
+            "v.communication",
+            "v.competition",
+            "v.contact",
+            "v.creation",
+            "v.motion"
+        ],
+        "c":[
+            "American films",
+            "American horror films",
+            "Blumhouse Productions films",
+            "Demons",
+            "English-language films",
+            "Films directed by Tod Williams",
+            "Films produced by Jason Blum",
+            "Films set",
+            "Found footage films",
+            "Paramount Pictures films",
+            "Paranormal Activity",
+            "Prequel films",
+            "films",
+            "horror films"
+        ],
+        "e":false,
+        "t":"Paranormal_Activity_2"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "e":false,
+        "t":"Christine_O'Donnell"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"The_Drama"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Three_days_grace"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.person"
+        ],
+        "e":false,
+        "t":"Kid_cudi"
+    },
+    {
+        "s":[
+            "n.person",
+            "n.state",
+            "n.time"
+        ],
+        "c":[
+            "Days",
+            "September"
+        ],
+        "e":false,
+        "t":"September_1"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.communication",
+            "n.person"
+        ],
+        "e":false,
+        "t":"Marcus_Bentley"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"College_Republican"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "e":false,
+        "t":"Fabi"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "e":false,
+        "t":"Murkowski"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.cognition",
+            "n.communication",
+            "n.group"
+        ],
+        "c":[
+            "Dismissal",
+            "Evidence law"
+        ],
+        "e":false,
+        "t":"Friday_news_dump"
+    },
+    {
+        "s":[
+            "n.cognition",
+            "n.groups",
+            "n.person",
+            "n.substance",
+            "v.cognition",
+            "v.competition"
+        ],
+        "c":[
+            "Doo-wop groups",
+            "Jubilee Records artists",
+            "Savoy Records artists",
+            "Top Rank Records artists"
+        ],
+        "e":false,
+        "t":"The_Ravens"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "e":false,
+        "t":"Ray_rice"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Linkin_park"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.person"
+        ],
+        "e":false,
+        "t":"Hope_Larson"
+    },
+    {
+        "s":[
+            "n.cognition",
+            "n.communication",
+            "n.person",
+            "v.creation",
+            "v.emotion",
+            "v.motion"
+        ],
+        "c":[
+            "Ghosts",
+            "Supernatural legends",
+            "Undead"
+        ],
+        "e":false,
+        "t":"Ghostly"
+    },
+    {
+        "s":[
+            "n.attribute",
+            "n.object",
+            "n.state",
+            "n.substance"
+        ],
+        "c":[
+            "Nebulae",
+            "Reflection nebulae"
+        ],
+        "e":false,
+        "t":"Reflection_nebula"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.communication",
+            "n.person"
+        ],
+        "e":false,
+        "t":"Warren_Ellis"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.person"
+        ],
+        "e":false,
+        "t":"Nigel_Cole"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.artifact",
+            "n.cognition",
+            "n.communication",
+            "n.event",
+            "n.group",
+            "n.object",
+            "n.person",
+            "n.phenomenon",
+            "n.process",
+            "n.time",
+            "v.body",
+            "v.change",
+            "v.cognition",
+            "v.communication",
+            "v.competition",
+            "v.contact",
+            "v.creation",
+            "v.motion"
+        ],
+        "c":[
+            "2010s drama films",
+            "British drama films",
+            "British films",
+            "Dagenham",
+            "English-language films",
+            "Film scores by David Arnold",
+            "Films about the labor movement",
+            "Films about women",
+            "Films set",
+            "Ford",
+            "Paramount Pictures films",
+            "Sony Pictures Classics films",
+            "films"
+        ],
+        "e":false,
+        "t":"Made_in_Dagenham"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.animal",
+            "n.attribute",
+            "n.cognition",
+            "n.event",
+            "n.group",
+            "n.location",
+            "n.object",
+            "n.person",
+            "n.state",
+            "v.competition",
+            "v.social"
+        ],
+        "c":[
+            "Breast cancer",
+            "Cancer awareness",
+            "Health campaigns",
+            "Medical activism",
+            "Patient advocacy",
+            "Public health education"
+        ],
+        "e":false,
+        "t":"Breast_cancer_awareness"
+    },
+    {
+        "s":[
+            "n.artifact",
+            "n.cognition",
+            "n.communication",
+            "n.possession",
+            "n.quantity"
+        ],
+        "c":[
+            "GSM standard"
+        ],
+        "e":false,
+        "t":"UDH"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.artifact",
+            "n.cognition",
+            "n.communication",
+            "n.event",
+            "n.time"
+        ],
+        "c":[
+            "Advent",
+            "Christmas",
+            "Christmas traditions",
+            "German inventions",
+            "History"
+        ],
+        "e":false,
+        "t":"Advent_calendar"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.artifact",
+            "n.cognition",
+            "n.event",
+            "n.location",
+            "n.object",
+            "n.phenomenon",
+            "n.substance",
+            "v.contact",
+            "v.perception"
+        ],
+        "c":[
+            "Earth",
+            "Gravimetry",
+            "Gravitation"
+        ],
+        "e":false,
+        "t":"Little_g"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.cognition",
+            "n.communication",
+            "n.group",
+            "n.person",
+            "n.time"
+        ],
+        "c":[
+            "\"Related ethnic groups\" needing confirmation",
+            "California Mission Indians",
+            "History",
+            "Native American tribes",
+            "Yokuts"
+        ],
+        "e":false,
+        "t":"Chukchansi"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.person"
+        ],
+        "e":false,
+        "t":"Dierks_Bentley"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Grand_ole_opry"
+    },
+    {
+        "s":[
+            "n.artifact",
+            "n.communication"
+        ],
+        "e":false,
+        "t":"Thank_You_Lord"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Techcrunch"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.artifact",
+            "n.group",
+            "n.location",
+            "n.state"
+        ],
+        "c":[
+            "Georgetown (Washington, D.C.)",
+            "Roads",
+            "Streets"
+        ],
+        "e":false,
+        "t":"Wisconsin_Ave"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Subway_Sandwiches"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Starbucks"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.artifact",
+            "n.cognition",
+            "n.communication",
+            "n.event",
+            "n.group",
+            "n.person",
+            "n.process",
+            "n.quantity",
+            "n.state",
+            "n.time",
+            "v.body",
+            "v.change",
+            "v.cognition",
+            "v.communication",
+            "v.competition",
+            "v.consumption",
+            "v.contact",
+            "v.creation",
+            "v.motion",
+            "v.perception",
+            "v.social",
+            "v.weather"
+        ],
+        "c":[
+            "1990s LGBT-related films",
+            "1990s romantic comedy films",
+            "American LGBT-related films",
+            "American films",
+            "American romantic comedy films",
+            "English-language films",
+            "Films about educators",
+            "Films directed by Frank Oz",
+            "Films produced by Scott Rudin",
+            "Films set",
+            "Films shot",
+            "LGBT-related comedy films",
+            "Paramount Pictures films",
+            "films"
+        ],
+        "e":false,
+        "t":"In_and_out"
+    },
+    {
+        "s":[
+
+        ],
+        "c":[
+            "",
+            "CS1 Catalan-language sources (ca)"
+        ],
+        "e":false,
+        "t":"December_2009"
+    },
+    {
+        "s":[
+            "n.location"
+        ],
+        "c":[
+            "Suburbs"
+        ],
+        "e":false,
+        "t":"Camps_bay"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.person"
+        ],
+        "e":false,
+        "t":"From_Hell"
+    },
+    {
+        "s":[
+            "n.communication"
+        ],
+        "e":false,
+        "t":"Will_and_grace"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "e":false,
+        "t":"Gerry"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Lexus"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Geelong"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Burger_king"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"New_Centre"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Kingston_upon_Hull"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.cognition",
+            "n.communication",
+            "n.location",
+            "n.state",
+            "v.cognition",
+            "v.communication",
+            "v.competition",
+            "v.contact",
+            "v.creation",
+            "v.possession",
+            "v.social",
+            "v.stative"
+        ],
+        "c":[
+            "Populated places"
+        ],
+        "e":false,
+        "t":"Paradero"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Clarkson_University"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Wenatchee"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.artifact",
+            "n.attribute",
+            "n.body",
+            "n.cognition",
+            "n.communication",
+            "n.event",
+            "n.group",
+            "n.location",
+            "n.object",
+            "n.person",
+            "n.process",
+            "n.quantity",
+            "n.shape",
+            "n.state",
+            "v.body",
+            "v.cognition",
+            "v.communication",
+            "v.consumption",
+            "v.contact",
+            "v.motion",
+            "v.possession",
+            "v.social",
+            "v.stative",
+            "v.weather"
+        ],
+        "c":[
+            "Borders",
+            "CS1 maint: Explicit use",
+            "Columbia River",
+            "Columbia River Gorge",
+            "Drainage basins",
+            "Geobox usage tracking for river type",
+            "International rivers",
+            "Landforms",
+            "Rivers",
+            "Rivers and streams"
+        ],
+        "e":false,
+        "t":"The_Columbia_river"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "e":false,
+        "t":"McClelland"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"L'Espalier"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.attribute",
+            "n.possession",
+            "v.stative"
+        ],
+        "c":[
+            "Automobile costs",
+            "Automobile maintenance"
+        ],
+        "e":false,
+        "t":"Car_wash"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "e":false,
+        "t":"Gretchen"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "e":false,
+        "t":"Natasha"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Walmart"
+    },
+    {
+        "s":[
+            "n.group"
+        ],
+        "e":false,
+        "t":"Pepco"
+    },
+    {
+        "s":[
+            "n.communication"
+        ],
+        "e":false,
+        "t":"Roll_up"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.artifact",
+            "n.cognition",
+            "n.communication",
+            "n.group",
+            "n.process"
+        ],
+        "c":[
+            "Contract law",
+            "Equitable defenses",
+            "Intention",
+            "Legal doctrines and principles"
+        ],
+        "e":false,
+        "t":"Bonafide"
+    },
+    {
+        "s":[
+            "n.artifact",
+            "n.group",
+            "n.location",
+            "n.state"
+        ],
+        "c":[
+            "Emerald Necklace",
+            "Jamaica Plain, Boston",
+            "Parkways",
+            "Streets"
+        ],
+        "e":false,
+        "t":"Jamaica_Way"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.attribute",
+            "n.communication",
+            "n.event",
+            "n.state",
+            "n.time",
+            "v.body",
+            "v.cognition",
+            "v.competition",
+            "v.consumption",
+            "v.contact",
+            "v.creation",
+            "v.motion",
+            "v.social",
+            "v.stative"
+        ],
+        "c":[
+            "English Renaissance plays",
+            "Use British English from January 2013",
+            "plays"
+        ],
+        "e":false,
+        "t":"The_Ball"
+    },
+    {
+        "s":[
+            "n.artifact",
+            "n.communication"
+        ],
+        "c":[
+            "Short stories by Ivan Bunin",
+            "short stories"
+        ],
+        "e":false,
+        "t":"In_August"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "e":false,
+        "t":"Closs"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.artifact",
+            "n.communication",
+            "n.group",
+            "n.location",
+            "n.person",
+            "v.social"
+        ],
+        "c":[
+            "Central Delhi district",
+            "Cities and towns",
+            "District subdivisions",
+            "Neighbourhoods"
+        ],
+        "e":false,
+        "t":"Karol_Bagh"
+    },
+    {
+        "s":[
+            "n.artifact",
+            "n.communication",
+            "n.object",
+            "n.substance",
+            "v.change",
+            "v.cognition",
+            "v.communication",
+            "v.contact",
+            "v.creation",
+            "v.motion"
+        ],
+        "c":[
+            "1990s automobiles",
+            "2000s automobiles",
+            "BMW vehicles",
+            "Motor vehicles manufactured",
+            "Rear-wheel-drive vehicles",
+            "Roadsters",
+            "Touring cars",
+            "Vehicles introduced"
+        ],
+        "e":false,
+        "t":"Bmw_z3"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.cognition",
+            "n.communication",
+            "n.group",
+            "n.location",
+            "n.person",
+            "n.state",
+            "v.cognition",
+            "v.communication",
+            "v.competition",
+            "v.contact",
+            "v.creation",
+            "v.possession",
+            "v.social",
+            "v.stative"
+        ],
+        "c":[
+            "Darlington (borough)",
+            "Places",
+            "Railway towns",
+            "Towns",
+            "Use British English from September 2013"
+        ],
+        "e":false,
+        "t":"Darlington"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "e":false,
+        "t":"Kathy"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Walgreens"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.artifact",
+            "n.communication",
+            "n.group",
+            "n.location",
+            "v.change",
+            "v.cognition",
+            "v.creation",
+            "v.social"
+        ],
+        "c":[
+            "Grade II listed buildings",
+            "Theatres"
+        ],
+        "e":false,
+        "t":"The_Neptune"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.artifact",
+            "n.attribute",
+            "n.communication",
+            "n.location",
+            "v.communication",
+            "v.motion",
+            "v.social"
+        ],
+        "c":[
+            "Lists",
+            "Military roads"
+        ],
+        "e":false,
+        "t":"Military_road"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.cognition",
+            "n.communication",
+            "n.person",
+            "n.relation",
+            "n.relations"
+        ],
+        "c":[
+            "Bilateral relations",
+            "China\u2013India relations",
+            "Use Indian English from June 2013"
+        ],
+        "e":false,
+        "t":"India_and_china"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"The_Adelphi"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.artifact",
+            "n.attribute",
+            "n.cognition",
+            "n.communication",
+            "n.group",
+            "n.location",
+            "n.person",
+            "n.phenomenon",
+            "n.possession",
+            "n.quantity",
+            "v.cognition",
+            "v.communication",
+            "v.creation",
+            "v.perception",
+            "v.social"
+        ],
+        "c":[
+            "Historic districts",
+            "Historic districts on the National Register",
+            "Neoclassical architecture",
+            "Saratoga Springs, New York",
+            "U.S. Route 9",
+            "Visitor attractions"
+        ],
+        "e":false,
+        "t":"Downtown_Saratoga_Springs"
+    },
+    {
+        "s":[
+            "n.food",
+            "n.group",
+            "n.person",
+            "n.time",
+            "v.cognition",
+            "v.social"
+        ],
+        "c":[
+            "Date",
+            "English footballers",
+            "Everton F.C. players",
+            "The Football League players"
+        ],
+        "e":false,
+        "t":"R._Morris"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.attribute",
+            "n.cognition",
+            "n.event",
+            "n.group",
+            "n.location",
+            "n.state",
+            "v.change"
+        ],
+        "c":[
+            "CS1 Japanese-language sources (ja)",
+            "Chinatowns",
+            "Chinese culture",
+            "Chinese diaspora",
+            "Ethnic enclaves"
+        ],
+        "e":false,
+        "t":"Chinatown"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.animal",
+            "n.artifact",
+            "n.person",
+            "v.contact",
+            "v.creation"
+        ],
+        "c":[
+            "Paintings by Edward Hopper",
+            "paintings"
+        ],
+        "e":false,
+        "t":"Early_Sunday_Morning"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.artifact",
+            "n.cognition",
+            "n.communication",
+            "n.group",
+            "n.possession",
+            "n.state",
+            "n.time",
+            "v.cognition",
+            "v.communication"
+        ],
+        "c":[
+            "Business law",
+            "Business terms",
+            "Contract law",
+            "Landlord\u2013tenant law",
+            "Legal documents",
+            "Property law"
+        ],
+        "e":false,
+        "t":"Leasing"
+    },
+    {
+        "s":[
+            "n.artifact",
+            "n.location"
+        ],
+        "c":[
+            "Day spas"
+        ],
+        "e":false,
+        "t":"Medical_spa"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Trader_Joe"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Whole_foods"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.attribute",
+            "n.cognition",
+            "n.group",
+            "n.location",
+            "n.quantity",
+            "v.social"
+        ],
+        "c":[
+            "Central business districts",
+            "Economy",
+            "Neighborhoods"
+        ],
+        "e":false,
+        "t":"Downtown_San_Jose"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Mimmy"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Hot_topic"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.animal",
+            "n.artifact",
+            "n.event",
+            "n.group",
+            "n.location",
+            "n.object",
+            "n.possession",
+            "v.body",
+            "v.change",
+            "v.cognition",
+            "v.communication",
+            "v.competition",
+            "v.contact",
+            "v.creation",
+            "v.motion",
+            "v.possession",
+            "v.social",
+            "v.stative"
+        ],
+        "c":[
+            "Amtrak routes",
+            "Central Michigan",
+            "Higher-speed rail",
+            "Named passenger trains",
+            "Passenger rail transportation",
+            "Railway services introduced",
+            "Transportation",
+            "Western Michigan"
+        ],
+        "e":false,
+        "t":"The_Blue_Water"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.artifact",
+            "n.location",
+            "n.possession",
+            "n.shape",
+            "v.communication",
+            "v.contact",
+            "v.possession",
+            "v.social",
+            "v.stative"
+        ],
+        "c":[
+            "Borders",
+            "Customs duties",
+            "Duty-free shops",
+            "Shops",
+            "Taxation"
+        ],
+        "e":false,
+        "t":"Duty_free"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Thumpstar"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Comcast"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.communication",
+            "v.communication"
+        ],
+        "c":[
+            "English phrases",
+            "Profanity"
+        ],
+        "e":false,
+        "t":"Pardon_my_french"
+    },
+    {
+        "s":[
+
+        ],
+        "c":[
+            ""
+        ],
+        "e":false,
+        "t":"700"
+    },
+    {
+        "s":[
+
+        ],
+        "c":[
+            "Motorsport"
+        ],
+        "e":false,
+        "t":"Powersports"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "e":false,
+        "t":"Lagrange"
+    },
+    {
+        "s":[
+            "n.group",
+            "n.location",
+            "v.communication"
+        ],
+        "c":[
+            "Communes"
+        ],
+        "e":false,
+        "t":"Luxe"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Avvo"
+    },
+    {
+        "s":[
+            "n.group",
+            "n.person"
+        ],
+        "c":[
+            "Buddhism and women",
+            "Disciples"
+        ],
+        "e":false,
+        "t":"Visakha"
+    },
+    {
+        "s":[
+            "n.artifact",
+            "n.state",
+            "n.substance",
+            "v.communication",
+            "v.competition"
+        ],
+        "c":[
+            "Industrial gases"
+        ],
+        "e":false,
+        "t":"Industrial_gases"
+    },
+    {
+        "s":[
+            "n.group"
+        ],
+        "e":false,
+        "t":"Pvt._Ltd."
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Google_maps"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Directv"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.person"
+        ],
+        "c":[
+            "E-books",
+            "Free web browsers"
+        ],
+        "e":false,
+        "t":"Plucker"
+    },
+    {
+        "s":[
+            "n.artifact",
+            "n.cognition",
+            "n.communication",
+            "n.substance",
+            "v.communication",
+            "v.contact",
+            "v.social"
+        ],
+        "c":[
+            "Campbell Soup Company brands"
+        ],
+        "e":false,
+        "t":"Prego"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.artifact",
+            "n.attribute",
+            "n.body",
+            "n.cognition",
+            "n.communication",
+            "n.event",
+            "n.group",
+            "n.location",
+            "n.object",
+            "n.person",
+            "n.possession",
+            "n.quantity",
+            "n.state",
+            "v.change",
+            "v.cognition",
+            "v.contact",
+            "v.creation",
+            "v.motion",
+            "v.social",
+            "v.stative"
+        ],
+        "c":[
+            "Environmental issues with population",
+            "Green Belts",
+            "Housing",
+            "Land management",
+            "Local government",
+            "Protected areas",
+            "Real estate",
+            "Regional parks",
+            "Sustainable urban planning",
+            "Urban studies and planning terminology",
+            "Zoning"
+        ],
+        "e":false,
+        "t":"Greenwalt"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"NCFA"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "e":false,
+        "t":"Dave_Terrell"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Noida"
+    },
+    {
+        "s":[
+            "n.body",
+            "n.group",
+            "n.location",
+            "n.person"
+        ],
+        "c":[
+            "Cities and towns",
+            "Municipal corporations",
+            "Use Indian English from November 2014"
+        ],
+        "e":false,
+        "t":"Gurgaon"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Alta_Moda"
+    },
+    {
+        "s":[
+            "n.person",
+            "n.state",
+            "n.time"
+        ],
+        "c":[
+            "Days",
+            "January"
+        ],
+        "e":false,
+        "t":"January_15th"
+    },
+    {
+        "s":[
+            "n.group",
+            "n.location",
+            "n.object",
+            "v.motion"
+        ],
+        "c":[
+            "Beaches",
+            "Neighbourhoods"
+        ],
+        "e":false,
+        "t":"Ipanema"
+    },
+    {
+        "s":[
+            "n.group",
+            "n.location"
+        ],
+        "c":[
+            "CS1 Polish-language sources (pl)",
+            "Villages"
+        ],
+        "e":false,
+        "t":"Kwik"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.artifact",
+            "n.attribute",
+            "n.communication",
+            "n.group",
+            "n.object",
+            "n.possession",
+            "n.shape",
+            "v.cognition",
+            "v.communication",
+            "v.contact",
+            "v.creation",
+            "v.motion",
+            "v.perception",
+            "v.social"
+        ],
+        "c":[
+            "Dupont Circle",
+            "Historic districts on the National Register",
+            "Road tunnels",
+            "Squares, plazas, and circles",
+            "Tunnels"
+        ],
+        "e":false,
+        "t":"Dupont_circle"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Nordstrom"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"The_Garment_District"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "e":false,
+        "t":"Hoa"
+    },
+    {
+        "s":[
+            "n.artifact",
+            "n.communication",
+            "n.object",
+            "n.substance",
+            "v.change",
+            "v.cognition",
+            "v.communication",
+            "v.contact",
+            "v.creation",
+            "v.motion"
+        ],
+        "c":[
+            "2000s automobiles",
+            "2010s automobiles",
+            "All-wheel-drive vehicles",
+            "Land Rover vehicles",
+            "Luxury sport utility vehicles",
+            "Sport utility vehicles",
+            "Vehicles introduced"
+        ],
+        "e":false,
+        "t":"Range_Rover_Sport"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "e":false,
+        "t":"Ahmed"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"God_forbid"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.artifact",
+            "n.body",
+            "n.cognition",
+            "n.food",
+            "n.person",
+            "n.quantity",
+            "v.change",
+            "v.consumption"
+        ],
+        "c":[
+            "National dishes",
+            "Noodle dishes",
+            "Street food",
+            "Thai noodles"
+        ],
+        "e":false,
+        "t":"Pad_thai"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "e":false,
+        "t":"Steven"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Qwest"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Ukrops"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Jiffy_lube"
+    },
+    {
+        "s":[
+            "n.animal",
+            "n.artifact",
+            "n.cognition",
+            "n.group",
+            "n.location",
+            "n.object",
+            "n.substance",
+            "v.contact",
+            "v.perception"
+        ],
+        "c":[
+            "Earth",
+            "World"
+        ],
+        "e":false,
+        "t":"The_world"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "e":false,
+        "t":"Nigel"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Us_news"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Carnegie_mellon"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Rutgers"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.artifact",
+            "n.cognition",
+            "n.object",
+            "v.competition",
+            "v.contact",
+            "v.motion"
+        ],
+        "c":[
+            "Forts",
+            "Saint-Malo Islands",
+            "Tidal islands",
+            "Vauban fortifications"
+        ],
+        "e":false,
+        "t":"Petit_Be"
+    },
+    {
+        "s":[
+            "n.artifact",
+            "n.communication"
+        ],
+        "e":false,
+        "t":"Stop_Making_Sense"
+    },
+    {
+        "s":[
+            "n.artifact",
+            "n.communication",
+            "n.location"
+        ],
+        "c":[
+            "Cinemas and movie theaters",
+            "Northwest District, Portland, Oregon",
+            "Theatres"
+        ],
+        "e":false,
+        "t":"Cinema_21"
+    },
+    {
+        "s":[
+            "n.person",
+            "n.state",
+            "n.time"
+        ],
+        "c":[
+            "Days",
+            "November"
+        ],
+        "e":false,
+        "t":"November_7"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.cognition",
+            "n.communication",
+            "n.food",
+            "n.state",
+            "n.substance",
+            "v.communication"
+        ],
+        "c":[
+            "Coffee preparation",
+            "Italian beverages",
+            "Italian words and phrases"
+        ],
+        "e":false,
+        "t":"Caffe"
+    },
+    {
+        "s":[
+            "n.artifact",
+            "n.cognition",
+            "n.groups",
+            "n.substance",
+            "v.cognition",
+            "v.competition"
+        ],
+        "c":[
+            "Italian restaurants",
+            "Restaurant groups"
+        ],
+        "e":false,
+        "t":"Bella_Italia"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.attribute",
+            "n.cognition",
+            "n.communication",
+            "n.group",
+            "n.location",
+            "n.person",
+            "n.phenomenon",
+            "n.quantity",
+            "n.state",
+            "v.cognition",
+            "v.communication",
+            "v.competition",
+            "v.contact",
+            "v.creation",
+            "v.motion",
+            "v.possession",
+            "v.social",
+            "v.stative"
+        ],
+        "c":[
+            "Economy",
+            "La Jolla, San Diego",
+            "Neighborhoods",
+            "Populated coastal places",
+            "Seaside resorts",
+            "Spa towns",
+            "Visitor attractions"
+        ],
+        "e":false,
+        "t":"La_Jolla"
+    },
+    {
+        "s":[
+            "n.group"
+        ],
+        "e":false,
+        "t":"Jolla"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"The_CN_tower"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Advanced_auto_parts"
+    },
+    {
+        "s":[
+            "n.cognition",
+            "n.communication",
+            "n.person",
+            "n.quantity",
+            "v.communication"
+        ],
+        "c":[
+            "English grammar",
+            "English words",
+            "Modern English personal pronouns",
+            "Second-person plural pronouns"
+        ],
+        "e":false,
+        "t":"You_guys"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "e":false,
+        "t":"Mcmanus"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Alpharetta"
+    },
+    {
+        "s":[
+            "n.artifact",
+            "n.attribute",
+            "n.body",
+            "n.cognition",
+            "n.location",
+            "n.quantity",
+            "n.state"
+        ],
+        "c":[
+            "Atlanta metropolitan area",
+            "Metropolitan areas",
+            "Regions"
+        ],
+        "e":false,
+        "t":"Metro_Atlanta"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Guiness"
+    },
+    {
+        "s":[
+            "n.artifact",
+            "n.communication"
+        ],
+        "e":false,
+        "t":"In_the_West"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"PHX"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "e":false,
+        "t":"Samantha_Fox"
+    },
+    {
+        "s":[
+            "n.communication"
+        ],
+        "e":false,
+        "t":"Sherri"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Buddakan"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "e":false,
+        "t":"Steven_Starr"
+    },
+    {
+        "s":[
+            "n.artifact",
+            "n.attribute",
+            "n.body",
+            "n.cognition",
+            "n.group",
+            "n.substance"
+        ],
+        "c":[
+            "Public university systems",
+            "Universities and colleges",
+            "University"
+        ],
+        "e":false,
+        "t":"UW_system"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Texas_Roadhouse"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.communication",
+            "n.group",
+            "n.location",
+            "n.person",
+            "n.state",
+            "n.time",
+            "v.contact",
+            "v.motion",
+            "v.social"
+        ],
+        "c":[
+            "Days",
+            "March"
+        ],
+        "e":false,
+        "t":"March_6th"
+    },
+    {
+        "s":[
+            "n.person",
+            "n.state",
+            "n.time"
+        ],
+        "c":[
+            "Days",
+            "July"
+        ],
+        "e":false,
+        "t":"July_4th"
+    },
+    {
+        "s":[
+            "n.artifact",
+            "n.cognition",
+            "n.communication",
+            "n.event",
+            "n.group",
+            "n.object",
+            "n.possession",
+            "n.quantity",
+            "n.relation",
+            "n.substance",
+            "n.units",
+            "v.change",
+            "v.cognition",
+            "v.communication",
+            "v.contact",
+            "v.creation",
+            "v.motion"
+        ],
+        "c":[
+            "1970s automobiles",
+            "1980s automobiles",
+            "1990s automobiles",
+            "2000s automobiles",
+            "2010s automobiles",
+            "All-wheel-drive vehicles",
+            "BMW vehicle series",
+            "Cars having sold 5 million units",
+            "Cars introduced",
+            "Compact cars",
+            "Compact executive cars",
+            "Convertibles",
+            "Coupes",
+            "Euro NCAP large family cars",
+            "Hatchbacks",
+            "Rear-wheel-drive vehicles",
+            "Sedans",
+            "Sports sedans",
+            "Station wagons"
+        ],
+        "e":false,
+        "t":"BMW_330i"
+    },
+    {
+        "s":[
+            "n.person",
+            "n.state",
+            "n.time"
+        ],
+        "c":[
+            "August",
+            "Days"
+        ],
+        "e":false,
+        "t":"August_21st"
+    },
+    {
+        "s":[
+            "n.person",
+            "n.state",
+            "n.time"
+        ],
+        "c":[
+            "Days",
+            "September"
+        ],
+        "e":false,
+        "t":"September_10th"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"National_Home"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.artifact",
+            "n.attribute",
+            "n.location",
+            "n.locations",
+            "n.object",
+            "n.state",
+            "v.social"
+        ],
+        "c":[
+            "Districts",
+            "Islands",
+            "New Providence",
+            "Piracy",
+            "Pirate dens and locations"
+        ],
+        "e":false,
+        "t":"New_Providence"
+    },
+    {
+        "s":[
+            "n.body",
+            "n.cognition",
+            "n.location",
+            "n.quantity"
+        ],
+        "c":[
+            "Geography",
+            "Holderness",
+            "Natural regions",
+            "Use British English from September 2013"
+        ],
+        "e":false,
+        "t":"Holderness"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Every_Saturday"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Quiktrip"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Blue_Cross_\/_Blue_Shield"
+    },
+    {
+        "s":[
+            "n.artifact",
+            "n.communication",
+            "v.communication",
+            "v.creation"
+        ],
+        "c":[
+            "Bengali-language films",
+            "Indian films",
+            "Use Indian English from October 2015",
+            "films"
+        ],
+        "e":false,
+        "t":"Debi"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.attribute",
+            "n.cognition",
+            "n.entities",
+            "n.group",
+            "v.change",
+            "v.cognition",
+            "v.creation",
+            "v.social"
+        ],
+        "c":[
+            "Law firms",
+            "Legal entities",
+            "Legal organizations",
+            "Practice"
+        ],
+        "e":false,
+        "t":"Law_offices"
+    },
+    {
+        "s":[
+            "n.group",
+            "n.location",
+            "n.person"
+        ],
+        "c":[
+            "Cities and towns",
+            "Municipalities"
+        ],
+        "e":false,
+        "t":"Scordia"
+    },
+    {
+        "s":[
+            "n.artifact",
+            "n.communication",
+            "n.object",
+            "n.substance",
+            "v.change",
+            "v.cognition",
+            "v.communication",
+            "v.contact",
+            "v.creation",
+            "v.motion"
+        ],
+        "c":[
+            "1980s automobiles",
+            "1990s automobiles",
+            "2000s automobiles",
+            "2010s automobiles",
+            "All-wheel-drive vehicles",
+            "CS1 Thai-language sources (th)",
+            "CS1 uses Thai-language script (th)",
+            "Motor vehicles manufactured",
+            "Nissan vehicles",
+            "Off-road vehicles",
+            "Pickup trucks",
+            "Rear-wheel-drive vehicles",
+            "Vehicles introduced"
+        ],
+        "e":false,
+        "t":"Nissan_Frontier"
+    },
+    {
+        "s":[
+            "n.artifact",
+            "n.communication",
+            "n.object",
+            "n.substance",
+            "v.change",
+            "v.cognition",
+            "v.communication",
+            "v.contact",
+            "v.creation",
+            "v.motion"
+        ],
+        "c":[
+            "2000s automobiles",
+            "2010s automobiles",
+            "All-wheel-drive vehicles",
+            "Cars introduced",
+            "Crossover sport utility vehicles",
+            "Front-wheel-drive vehicles",
+            "Mid-size sport utility vehicles",
+            "Motor vehicles manufactured",
+            "Toyota vehicles"
+        ],
+        "e":false,
+        "t":"Toyota_Venza"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.artifact",
+            "n.attribute",
+            "n.body",
+            "n.cognition",
+            "n.communication",
+            "n.food",
+            "n.group",
+            "n.location",
+            "n.person",
+            "n.phenomenon",
+            "n.shape",
+            "n.spaces",
+            "n.time",
+            "v.change",
+            "v.cognition",
+            "v.motion",
+            "v.stative"
+        ],
+        "c":[
+            "Boxing venues",
+            "Buildings and structures",
+            "Exhibition and conference centres",
+            "Olympic boxing venues",
+            "Olympic fencing venues",
+            "Olympic judo venues",
+            "Olympic table tennis venues",
+            "Olympic taekwondo venues",
+            "Olympic weightlifting venues",
+            "Olympic wrestling venues",
+            "Privately owned public spaces",
+            "Sport",
+            "Summer Olympic venues",
+            "Summer Paralympic venues",
+            "Visitor attractions"
+        ],
+        "e":false,
+        "t":"Excel"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Collingswood"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Days_inn"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"The_Taj_Mahal"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.artifact",
+            "n.attribute",
+            "n.body",
+            "n.communication",
+            "n.event",
+            "n.object",
+            "n.quantity",
+            "n.shape",
+            "n.state",
+            "n.time",
+            "v.body",
+            "v.change",
+            "v.communication",
+            "v.contact",
+            "v.creation",
+            "v.motion",
+            "v.possession",
+            "v.social",
+            "v.stative"
+        ],
+        "c":[
+            "Allegheny Mountains",
+            "Landforms",
+            "Mountain passes",
+            "Ridges",
+            "Water gaps"
+        ],
+        "e":false,
+        "t":"Tussey_Mountain"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Ruth_Chris"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.artifact",
+            "n.attribute",
+            "n.body",
+            "n.cognition",
+            "n.communication",
+            "n.group",
+            "n.location",
+            "n.person",
+            "n.phenomenon",
+            "n.time",
+            "v.change"
+        ],
+        "c":[
+            "Buildings and structures",
+            "Festivals",
+            "Music",
+            "Music festivals",
+            "Music venues",
+            "Opera festivals",
+            "Stockbridge, Massachusetts",
+            "Visitor attractions"
+        ],
+        "e":false,
+        "t":"Tanglewood"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Bright_Futures"
+    },
+    {
+        "s":[
+            "n.quantity"
+        ],
+        "c":[
+            "Integers"
+        ],
+        "e":false,
+        "t":"21st"
+    },
+    {
+        "s":[
+            "n.cognition",
+            "n.communication",
+            "n.person",
+            "n.quantity",
+            "v.communication"
+        ],
+        "c":[
+            "English grammar",
+            "English words",
+            "Modern English personal pronouns",
+            "Second-person plural pronouns"
+        ],
+        "e":false,
+        "t":"You"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.attribute",
+            "n.group"
+        ],
+        "c":[
+            "Automotive industry"
+        ],
+        "e":false,
+        "t":"Automotives"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Dumb_Friends_League"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.animal",
+            "n.artifact",
+            "n.cognition",
+            "n.communication",
+            "n.location",
+            "n.state",
+            "v.cognition",
+            "v.communication",
+            "v.competition",
+            "v.social",
+            "v.stative"
+        ],
+        "c":[
+            "Electrical safety",
+            "Electrical tests",
+            "Occupational safety and health",
+            "Product testing",
+            "Safety engineering"
+        ],
+        "e":false,
+        "t":"PAT_Testing"
+    },
+    {
+        "s":[
+            "n.location",
+            "n.object",
+            "n.quantity"
+        ],
+        "c":[
+            "Dubrovnik",
+            "Mountains"
+        ],
+        "e":false,
+        "t":"Srd"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "e":false,
+        "t":"Sprecher"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "e":false,
+        "t":"Harlan"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "e":false,
+        "t":"Gustavo"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "e":false,
+        "t":"Guerra"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.artifact",
+            "n.cognition",
+            "n.event",
+            "n.group",
+            "n.location",
+            "n.object",
+            "n.person",
+            "n.phenomenon",
+            "n.possession",
+            "n.process",
+            "n.relation",
+            "n.state",
+            "n.substance",
+            "n.time",
+            "v.body",
+            "v.change",
+            "v.contact",
+            "v.motion",
+            "v.possession",
+            "v.stative"
+        ],
+        "c":[
+            "1st-century Christian martyrs",
+            "1st-century births",
+            "70s deaths",
+            "Biblical twins",
+            "Burials",
+            "Christian missionaries",
+            "Roman-era Jews",
+            "Saints from the Holy Land",
+            "Syriac Christianity",
+            "Thomas the Apostle",
+            "Year"
+        ],
+        "e":false,
+        "t":"St._Thomas_the_Apostle"
+    },
+    {
+        "s":[
+            "n.body",
+            "n.cognition",
+            "n.location",
+            "n.quantity",
+            "v.cognition",
+            "v.communication",
+            "v.social",
+            "v.stative"
+        ],
+        "c":[
+            "Regions",
+            "South Florida",
+            "World Digital Library related"
+        ],
+        "e":false,
+        "t":"South_Florida"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Zahav"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "e":false,
+        "t":"Stephanie"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Hobby_Lobby"
+    },
+    {
+        "s":[
+            "n.artifact",
+            "n.communication",
+            "n.group",
+            "n.possession",
+            "v.cognition",
+            "v.communication",
+            "v.social"
+        ],
+        "c":[
+            "Autobiographies",
+            "Books about Linux",
+            "English-language books",
+            "Free software culture and documents",
+            "HarperCollins books",
+            "books"
+        ],
+        "e":false,
+        "t":"Just_for_fun"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Hormel"
+    },
+    {
+        "s":[
+            "n.group"
+        ],
+        "e":false,
+        "t":"Scharffen_Berger"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Tcho"
+    },
+    {
+        "s":[
+            "n.artifact",
+            "n.communication",
+            "v.communication",
+            "v.creation"
+        ],
+        "c":[
+            "1930s musical films",
+            "American films",
+            "American musical films",
+            "English-language films",
+            "Films directed by Charles Reisner",
+            "Metro-Goldwyn-Mayer films",
+            "Screenplays by Philip Dunne",
+            "films"
+        ],
+        "e":false,
+        "t":"Student_Tour"
+    },
+    {
+        "s":[
+            "n.quantity"
+        ],
+        "c":[
+            "Integers"
+        ],
+        "e":false,
+        "t":"10th"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Canyon_Road"
+    },
+    {
+        "s":[
+            "n.artifact",
+            "n.cognition",
+            "n.communication",
+            "n.location",
+            "n.object",
+            "n.phenomenon",
+            "n.quantity",
+            "n.shape",
+            "n.state",
+            "n.substance",
+            "n.time",
+            "v.change",
+            "v.contact",
+            "v.perception",
+            "v.possession"
+        ],
+        "c":[
+            "Architectural elements",
+            "Glass",
+            "Windows"
+        ],
+        "e":false,
+        "t":"Glass_window"
+    },
+    {
+        "s":[
+            "n.communication"
+        ],
+        "e":false,
+        "t":"Seinfeld"
+    },
+    {
+        "s":[
+            "n.cognition",
+            "n.communication"
+        ],
+        "c":[
+            "English language"
+        ],
+        "e":false,
+        "t":"Broken_english"
+    },
+    {
+        "s":[
+            "n.time",
+            "v.stative"
+        ],
+        "c":[
+            "CS1 Swedish-language sources (sv)",
+            "Winter"
+        ],
+        "e":false,
+        "t":"In_Winter"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.artifact",
+            "n.cognition",
+            "n.communication",
+            "n.event",
+            "n.group",
+            "n.person",
+            "n.process",
+            "n.quantity",
+            "n.state",
+            "n.time",
+            "v.body",
+            "v.change",
+            "v.cognition",
+            "v.communication",
+            "v.competition",
+            "v.consumption",
+            "v.contact",
+            "v.creation",
+            "v.motion",
+            "v.perception",
+            "v.social",
+            "v.weather"
+        ],
+        "c":[
+            "2000s drama films",
+            "2000s science fiction films",
+            "20th Century Fox films",
+            "American films",
+            "American romantic drama films",
+            "American science fiction films",
+            "English-language films",
+            "Film scores by Clint Mansell",
+            "Films about conquistadors",
+            "Films directed by Darren Aronofsky",
+            "Films set",
+            "Films shot",
+            "Indigenous cinema",
+            "Inquisition",
+            "Nonlinear narrative films",
+            "Regency Enterprises films",
+            "Science fantasy films",
+            "Screenplays by Darren Aronofsky",
+            "StudioCanal films",
+            "Warner Bros. films",
+            "films"
+        ],
+        "e":false,
+        "t":"The_fountain"
+    },
+    {
+        "s":[
+            "n.person",
+            "n.state",
+            "n.time"
+        ],
+        "c":[
+            "Days",
+            "July"
+        ],
+        "e":false,
+        "t":"July_17"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.cognition",
+            "n.communication",
+            "n.group",
+            "n.motive"
+        ],
+        "c":[
+            "Health law",
+            "Medical ethics",
+            "Medical terminology"
+        ],
+        "e":false,
+        "t":"Health_care_proxy"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"KC_Chiefs"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"The_NY_Jets"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Red_sox"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"The_Phillies"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.artifact",
+            "n.cognition",
+            "n.event",
+            "n.group",
+            "n.person",
+            "n.process",
+            "n.time",
+            "v.body",
+            "v.change",
+            "v.cognition",
+            "v.communication",
+            "v.competition",
+            "v.contact",
+            "v.creation",
+            "v.motion"
+        ],
+        "c":[
+            "Plays by Aristophanes",
+            "Plays set",
+            "Political philosophy"
+        ],
+        "e":false,
+        "t":"The_Knights"
+    },
+    {
+        "s":[
+            "n.communication"
+        ],
+        "e":false,
+        "t":"House_of_joy"
+    },
+    {
+        "s":[
+            "n.food"
+        ],
+        "e":false,
+        "t":"Chinese_restaurant"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "e":false,
+        "t":"The_San"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "e":false,
+        "t":"Antonio"
+    },
+    {
+        "s":[
+            "n.food"
+        ],
+        "e":false,
+        "t":"Egg_drop_soup"
+    },
+    {
+        "s":[
+            "n.artifact",
+            "n.person",
+            "v.change",
+            "v.cognition",
+            "v.communication",
+            "v.contact",
+            "v.creation",
+            "v.motion"
+        ],
+        "c":[
+            "Apple Inc. hardware",
+            "CS1 Japanese-language sources (ja)",
+            "CS1 Spanish-language sources (es)",
+            "IOS (Apple)",
+            "IPad",
+            "Products introduced",
+            "Tablet computers",
+            "Touchscreen portable media players"
+        ],
+        "e":false,
+        "t":"Ipad"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "e":false,
+        "t":"Genesis_Be"
+    },
+    {
+        "s":[
+            "n.artifact",
+            "n.communication",
+            "n.object",
+            "n.substance",
+            "v.change",
+            "v.cognition",
+            "v.communication",
+            "v.contact",
+            "v.creation",
+            "v.motion"
+        ],
+        "c":[
+            "All-wheel-drive vehicles",
+            "Cars introduced",
+            "Executive cars",
+            "Full-size vehicles",
+            "Hyundai vehicles",
+            "Luxury vehicles",
+            "Rear-wheel-drive vehicles",
+            "Sedans"
+        ],
+        "e":false,
+        "t":"Hyundai_Genesis"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Wal_mart"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "e":false,
+        "t":"Jeff"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "e":false,
+        "t":"Eric"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "e":false,
+        "t":"Goonewardena"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.artifact",
+            "n.attribute",
+            "n.body",
+            "n.cognition",
+            "n.communication",
+            "n.group",
+            "n.location",
+            "n.person",
+            "n.state",
+            "v.cognition",
+            "v.communication",
+            "v.competition",
+            "v.contact",
+            "v.creation",
+            "v.possession",
+            "v.social",
+            "v.stative"
+        ],
+        "c":[
+            "Cities",
+            "Incorporated cities and towns",
+            "Populated coastal places",
+            "San Diego metropolitan area"
+        ],
+        "e":false,
+        "t":"Solana_Beach"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"American_Express"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Pizza_hut"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Ihop"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Panera"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"VCU"
+    },
+    {
+        "s":[
+            "n.cognition",
+            "n.location",
+            "v.social"
+        ],
+        "c":[
+            "Central business districts",
+            "Geography"
+        ],
+        "e":false,
+        "t":"Downtown_Richmond"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Canal_Walk"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"VCU_Medical_Center"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Kumon"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.communication",
+            "v.communication",
+            "v.creation"
+        ],
+        "c":[
+            "Advertising",
+            "Newspapers published"
+        ],
+        "e":false,
+        "t":"Pennysaver"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Michelin_star"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "e":false,
+        "t":"Mclean"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.communication",
+            "n.process",
+            "v.communication",
+            "v.creation"
+        ],
+        "c":[
+            "Concerts",
+            "Music performance"
+        ],
+        "e":false,
+        "t":"Conyers"
+    },
+    {
+        "s":[
+            "n.animal",
+            "n.artifact",
+            "n.attribute",
+            "n.body",
+            "n.cognition",
+            "n.communication",
+            "n.group",
+            "n.person",
+            "n.plant",
+            "v.change",
+            "v.cognition",
+            "v.communication",
+            "v.creation"
+        ],
+        "c":[
+            "American architectural styles",
+            "House styles",
+            "House types",
+            "Log buildings and structures"
+        ],
+        "e":false,
+        "t":"Log_homes"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.artifact",
+            "n.attribute",
+            "n.communication",
+            "n.group",
+            "n.possession",
+            "v.cognition",
+            "v.communication",
+            "v.creation",
+            "v.perception",
+            "v.social"
+        ],
+        "c":[
+            "Historic districts on the National Register",
+            "State highways",
+            "Transportation"
+        ],
+        "e":false,
+        "t":"Evergreen_Parkway"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Ferrari"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.artifact",
+            "v.communication",
+            "v.possession",
+            "v.social"
+        ],
+        "c":[
+            "Automotive repair shops"
+        ],
+        "e":false,
+        "t":"The_creative_workshop"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Tmobile"
+    },
+    {
+        "s":[
+            "n.quantity"
+        ],
+        "c":[
+            "Integers"
+        ],
+        "e":false,
+        "t":"17th"
+    },
+    {
+        "s":[
+            "n.quantity"
+        ],
+        "c":[
+            "Integers"
+        ],
+        "e":false,
+        "t":"16th"
+    },
+    {
+        "s":[
+            "n.quantity"
+        ],
+        "c":[
+            "Integers"
+        ],
+        "e":false,
+        "t":"15th"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.communication",
+            "v.change",
+            "v.possession"
+        ],
+        "c":[
+            "Internet marketing",
+            "Internet terminology",
+            "Search engine optimization",
+            "Web analytics"
+        ],
+        "e":false,
+        "t":"Seo"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.artifact",
+            "n.attribute",
+            "n.cognition",
+            "n.communication",
+            "n.group",
+            "n.phenomenon",
+            "n.quantity",
+            "n.state",
+            "v.change",
+            "v.communication",
+            "v.stative"
+        ],
+        "c":[
+            "CS1 Finnish-language sources (fi)",
+            "Integers",
+            "Luck",
+            "Numerology",
+            "Superstitions about numbers"
+        ],
+        "e":false,
+        "t":"7th"
+    },
+    {
+        "s":[
+            "n.artifact",
+            "n.location",
+            "n.object",
+            "n.state"
+        ],
+        "c":[
+            "CS1 Thai-language sources (th)",
+            "Islands",
+            "Phuket Province",
+            "Provinces"
+        ],
+        "e":false,
+        "t":"Phuket"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Rittenhouse_Square"
+    },
+    {
+        "s":[
+            "n.artifact",
+            "n.attribute",
+            "n.communication",
+            "n.location",
+            "n.possession",
+            "v.change",
+            "v.cognition",
+            "v.communication",
+            "v.competition",
+            "v.creation",
+            "v.perception",
+            "v.social"
+        ],
+        "c":[
+            "Hotel buildings completed",
+            "Hotel buildings on the National Register",
+            "Rittenhouse Square, Philadelphia"
+        ],
+        "e":false,
+        "t":"The_Warwick"
+    },
+    {
+        "s":[
+
+        ],
+        "c":[
+            ""
+        ],
+        "e":false,
+        "t":"99"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.artifact",
+            "n.cognition",
+            "n.communication",
+            "n.group",
+            "n.possession",
+            "v.cognition",
+            "v.communication"
+        ],
+        "c":[
+            "Academia",
+            "Educational assessment and evaluation",
+            "Rhetoric",
+            "Scientific documents",
+            "Theses"
+        ],
+        "e":false,
+        "t":"The_IRS"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.communication"
+        ],
+        "e":false,
+        "t":"The_Laundry"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Gare_du_nord"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.artifact",
+            "n.attribute",
+            "n.body",
+            "n.cognition",
+            "n.communication",
+            "n.event",
+            "n.group",
+            "n.location",
+            "n.shape",
+            "v.change",
+            "v.communication",
+            "v.competition",
+            "v.motion",
+            "v.social"
+        ],
+        "c":[
+            "Basilica churches",
+            "Byzantine Revival architecture",
+            "Domes",
+            "Eclectic architecture",
+            "Landmarks",
+            "Montmartre",
+            "Roman Catholic churches",
+            "Roman Catholic churches completed",
+            "Romanesque Revival churches"
+        ],
+        "e":false,
+        "t":"Sacre_coeur"
+    },
+    {
+        "s":[
+            "n.artifact",
+            "n.communication",
+            "n.object",
+            "n.possession",
+            "n.substance",
+            "v.change",
+            "v.cognition",
+            "v.communication",
+            "v.contact",
+            "v.creation",
+            "v.motion"
+        ],
+        "c":[
+            "1980s automobiles",
+            "1990s automobiles",
+            "2000s automobiles",
+            "2010s automobiles",
+            "Cars introduced",
+            "Euro NCAP roadster sports cars",
+            "Hardtop convertibles",
+            "Mazda vehicles",
+            "Rear-wheel-drive vehicles",
+            "Retro style automobiles",
+            "Roadsters",
+            "Sports cars"
+        ],
+        "e":false,
+        "t":"Miata"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Mazda"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "e":false,
+        "t":"Fiona"
+    },
+    {
+        "s":[
+            "n.food"
+        ],
+        "e":false,
+        "t":"New_york_pizza"
+    },
+    {
+        "s":[
+            "n.food"
+        ],
+        "e":false,
+        "t":"New_York_style_pizza"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.food",
+            "n.person",
+            "n.plant",
+            "n.time",
+            "v.motion"
+        ],
+        "c":[
+            "EngvarB from January 2016",
+            "Hindu sages",
+            "Titles and occupations"
+        ],
+        "e":false,
+        "t":"Rushi"
+    },
+    {
+        "s":[
+
+        ],
+        "c":[
+            ""
+        ],
+        "e":false,
+        "t":"April_2010"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.attribute",
+            "n.cognition",
+            "n.communication",
+            "n.group",
+            "v.cognition",
+            "v.communication",
+            "v.contact",
+            "v.creation",
+            "v.perception",
+            "v.stative"
+        ],
+        "c":[
+            "Educational technology projects",
+            "Educational websites",
+            "Online education",
+            "Online nonprofit organizations"
+        ],
+        "e":false,
+        "t":"Phet"
+    },
+    {
+        "s":[
+            "n.artifact",
+            "n.attribute",
+            "n.body",
+            "n.cognition",
+            "n.location",
+            "n.quantity",
+            "n.state"
+        ],
+        "c":[
+            "Megapolitan areas",
+            "Regions",
+            "Southern California"
+        ],
+        "e":false,
+        "t":"Southern_Californian"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Honda"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.person"
+        ],
+        "e":false,
+        "t":"Little_Farmer"
+    },
+    {
+        "s":[
+            "n.group",
+            "n.location"
+        ],
+        "c":[
+            "Civil parishes",
+            "Use British English from October 2013",
+            "Villages"
+        ],
+        "e":false,
+        "t":"Saltford"
+    },
+    {
+        "s":[
+            "n.location"
+        ],
+        "c":[
+            "Suburbs"
+        ],
+        "e":false,
+        "t":"Ghatkopar"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.artifact",
+            "n.cognition",
+            "n.communication",
+            "n.group",
+            "n.location",
+            "n.person",
+            "v.cognition",
+            "v.communication"
+        ],
+        "c":[
+            "Country subdivisions",
+            "Hindi words and phrases",
+            "Third-level administrative country subdivisions",
+            "Types",
+            "Urdu words and phrases"
+        ],
+        "e":false,
+        "t":"Mandal"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "e":false,
+        "t":"Eva_Marie"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Olive_Garden"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"United_air"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "e":false,
+        "t":"Marek"
+    },
+    {
+        "s":[
+            "n.cognition",
+            "n.communication"
+        ],
+        "c":[
+            "Buddhist philosophical concepts",
+            "Buddhist terminology"
+        ],
+        "e":false,
+        "t":"Bodhi"
+    },
+    {
+        "s":[
+            "n.artifact",
+            "n.communication"
+        ],
+        "e":false,
+        "t":"Sunday_Afternoon"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.artifact",
+            "n.communication",
+            "n.person",
+            "n.phenomenon",
+            "v.change",
+            "v.cognition",
+            "v.consumption",
+            "v.possession",
+            "v.social",
+            "v.stative"
+        ],
+        "c":[
+            "Companies based",
+            "Companies formerly listed on the Toronto Stock Exchange",
+            "Furniture retailers"
+        ],
+        "e":false,
+        "t":"The_Brick"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Ikea"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Supercuts"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Hellada"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "e":false,
+        "t":"Noonan"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Geeksquad"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.attribute",
+            "n.cognition",
+            "n.communication",
+            "n.group",
+            "n.quantity",
+            "n.state"
+        ],
+        "c":[
+            "Doctoral degrees",
+            "Education",
+            "Medical education"
+        ],
+        "e":false,
+        "t":"Drs."
+    },
+    {
+        "s":[
+            "n.act",
+            "n.artifact",
+            "n.attribute",
+            "n.cognition",
+            "n.group",
+            "n.person",
+            "n.time",
+            "v.change",
+            "v.contact",
+            "v.social"
+        ],
+        "c":[
+            "Healthcare occupations",
+            "Medical education",
+            "National Health Service"
+        ],
+        "e":false,
+        "t":"Trust_Doctor"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Kitchen_Aid"
+    },
+    {
+        "s":[
+            "n.cognition",
+            "n.communication",
+            "n.person",
+            "v.creation",
+            "v.possession"
+        ],
+        "c":[
+            "Cyrillic letters"
+        ],
+        "e":false,
+        "t":"Broad_On"
+    },
+    {
+        "s":[
+            "n.food"
+        ],
+        "e":false,
+        "t":"NYC_pizza"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.attribute",
+            "n.group"
+        ],
+        "c":[
+            "Food industry"
+        ],
+        "e":false,
+        "t":"Food_and_beverage"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.artifact",
+            "n.possession",
+            "v.body",
+            "v.cognition",
+            "v.communication",
+            "v.consumption",
+            "v.emotion",
+            "v.possession",
+            "v.social",
+            "v.stative"
+        ],
+        "c":[
+            "Automobile maintenance",
+            "Automotive repair shops",
+            "Companies based",
+            "Tires"
+        ],
+        "e":false,
+        "t":"Kal_Tire"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Hyatt"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "e":false,
+        "t":"Govind"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Novotel"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Edmark"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Bmw"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"La_hacienda"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"McDonald_Is"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.artifact",
+            "n.body",
+            "n.cognition",
+            "n.person",
+            "n.relation",
+            "v.cognition",
+            "v.contact",
+            "v.motion",
+            "v.stative"
+        ],
+        "c":[
+            "Bridges",
+            "CS1 French-language sources (fr)",
+            "Structural engineering"
+        ],
+        "e":false,
+        "t":"Bridies"
+    },
+    {
+        "s":[
+            "n.person",
+            "n.state",
+            "n.time"
+        ],
+        "c":[
+            "April",
+            "Days"
+        ],
+        "e":false,
+        "t":"April_15"
+    },
+    {
+        "s":[
+            "n.artifact",
+            "n.communication"
+        ],
+        "e":false,
+        "t":"Nowheresville"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "e":false,
+        "t":"Donair"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.artifact",
+            "n.cognition",
+            "n.communication",
+            "n.event",
+            "n.group",
+            "n.person",
+            "n.process",
+            "n.quantity",
+            "n.state",
+            "n.time",
+            "v.body",
+            "v.change",
+            "v.cognition",
+            "v.communication",
+            "v.competition",
+            "v.consumption",
+            "v.contact",
+            "v.creation",
+            "v.motion",
+            "v.perception",
+            "v.social",
+            "v.weather"
+        ],
+        "c":[
+            "1950s crime drama films",
+            "English-language films",
+            "Films set",
+            "Films shot",
+            "Metro-Goldwyn-Mayer films",
+            "films"
+        ],
+        "e":false,
+        "t":"The_Vintage"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.attribute",
+            "n.cognition",
+            "n.group",
+            "n.location",
+            "v.social"
+        ],
+        "c":[
+            "Clark County School District",
+            "Education",
+            "School districts"
+        ],
+        "e":false,
+        "t":"Clark_County_School_District"
+    },
+    {
+        "s":[
+            "n.Units",
+            "n.act",
+            "n.attribute",
+            "n.cognition",
+            "n.communication",
+            "n.group",
+            "n.object",
+            "n.quantity",
+            "n.relation",
+            "n.state",
+            "n.time",
+            "v.change",
+            "v.cognition",
+            "v.communication",
+            "v.social"
+        ],
+        "c":[
+            "Orders",
+            "Units",
+            "Years"
+        ],
+        "e":false,
+        "t":"The_year"
+    },
+    {
+        "s":[
+            "n.location"
+        ],
+        "c":[
+            "Suburbs"
+        ],
+        "e":false,
+        "t":"Dandenong"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "e":false,
+        "t":"Brendan"
+    },
+    {
+        "s":[
+            "n.food"
+        ],
+        "e":false,
+        "t":"NYC_style_pizza"
+    },
+    {
+        "s":[
+            "n.attribute",
+            "n.communication",
+            "v.change",
+            "v.cognition",
+            "v.creation"
+        ],
+        "c":[
+            "Kodak",
+            "Movie film formats"
+        ],
+        "e":false,
+        "t":"Super_8"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "e":false,
+        "t":"James_Bateman"
+    },
+    {
+        "s":[
+            "n.communication"
+        ],
+        "e":false,
+        "t":"Just_Like"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "e":false,
+        "t":"Lynda"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.event",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Super_bowl"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"The_library_of_congress"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"NCSU"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Asda"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Vodafone"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.animal",
+            "n.animals",
+            "n.artifact",
+            "n.cognition",
+            "n.communication",
+            "n.feeling",
+            "n.group",
+            "n.location",
+            "n.object",
+            "n.person",
+            "n.possession",
+            "n.state",
+            "v.body",
+            "v.change",
+            "v.cognition",
+            "v.communication",
+            "v.contact",
+            "v.creation",
+            "v.motion",
+            "v.perception",
+            "v.possession",
+            "v.social"
+        ],
+        "c":[
+            "1990s fads and trends",
+            "1990s toys",
+            "2000s toys",
+            "2010s toys",
+            "Beanie Babies",
+            "Children's websites",
+            "Economic bubbles",
+            "Products introduced",
+            "Stuffed toys",
+            "Toy animals",
+            "Toy collecting",
+            "Virtual pets",
+            "Virtual reality communities"
+        ],
+        "e":false,
+        "t":"Ty_Beanie_Babies"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.person"
+        ],
+        "e":false,
+        "t":"Dora_the_explorer"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"UV_Vodka"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "e":false,
+        "t":"The_Usa"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "e":false,
+        "t":"Rihanna"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Hotpoint"
+    },
+    {
+        "s":[
+            "n.communication"
+        ],
+        "e":false,
+        "t":"Bridalplasty"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.person"
+        ],
+        "e":false,
+        "t":"Blu_Cantrell"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.person"
+        ],
+        "e":false,
+        "t":"Hailee"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Optical_Express"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"V_Australia"
+    },
+    {
+        "s":[
+            "n.group",
+            "n.location"
+        ],
+        "c":[
+            "Villages"
+        ],
+        "e":false,
+        "t":"Hartwell"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Nbc"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.communication",
+            "n.person"
+        ],
+        "e":false,
+        "t":"Billy_Kane"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"The_WWE"
+    },
+    {
+        "s":[
+            "n.artifact",
+            "n.communication"
+        ],
+        "e":false,
+        "t":"Lost_in_the_Post"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.person"
+        ],
+        "e":false,
+        "t":"Charlie_sheen"
+    },
+    {
+        "s":[
+            "n.communication"
+        ],
+        "e":false,
+        "t":"Killa"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Ibanez"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.artifact",
+            "n.cognition",
+            "n.communication",
+            "n.group",
+            "n.location",
+            "n.object",
+            "n.person",
+            "n.phenomenon",
+            "n.state",
+            "n.substance",
+            "v.body",
+            "v.change",
+            "v.cognition",
+            "v.communication",
+            "v.competition"
+        ],
+        "c":[
+            "Citrates",
+            "Drugboxes which contain changes to verified fields",
+            "Drugboxes which contain changes to watched fields",
+            "Organochlorides",
+            "Phenol ethers",
+            "Selective estrogen receptor modulators",
+            "World Health Organization essential medicines"
+        ],
+        "e":false,
+        "t":"Serophene"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Odd_future"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"The_the"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.cognition",
+            "n.food",
+            "n.group",
+            "n.object",
+            "n.state",
+            "v.change",
+            "v.cognition",
+            "v.communication",
+            "v.consumption",
+            "v.contact",
+            "v.creation",
+            "v.motion"
+        ],
+        "c":[
+            "Alcopop",
+            "American alcoholic beverages",
+            "Caffeinated alcoholic drinks",
+            "Drinking culture",
+            "Energy drinks",
+            "Products introduced"
+        ],
+        "e":false,
+        "t":"Four_loko"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "e":false,
+        "t":"Berlusconi"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "e":false,
+        "t":"Silvio_Berlusconi"
+    },
+    {
+        "s":[
+            "n.person",
+            "n.plant",
+            "n.state",
+            "n.time"
+        ],
+        "c":[
+            "Days",
+            "May"
+        ],
+        "e":false,
+        "t":"May_19th"
+    },
+    {
+        "s":[
+            "n.cognition",
+            "n.communication",
+            "n.group",
+            "n.location",
+            "n.person",
+            "n.quantity"
+        ],
+        "c":[
+            "Geography",
+            "Neighborhoods",
+            "Plymouth, Massachusetts"
+        ],
+        "e":false,
+        "t":"Pinehills"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.artifact",
+            "n.communication",
+            "n.group",
+            "n.object",
+            "n.person",
+            "n.possession",
+            "v.body",
+            "v.cognition",
+            "v.communication",
+            "v.competition",
+            "v.contact",
+            "v.creation",
+            "v.motion",
+            "v.perception",
+            "v.possession",
+            "v.social",
+            "v.stative"
+        ],
+        "c":[
+            "19th-century American novels",
+            "Books with missing cover",
+            "British novels",
+            "Macmillan Publishers books",
+            "Novels by Henry James",
+            "Novels first published",
+            "Works originally published",
+            "novels"
+        ],
+        "e":false,
+        "t":"The_Europeans"
+    },
+    {
+        "s":[
+            "n.cognition",
+            "n.group",
+            "n.plant"
+        ],
+        "c":[
+            "Asteraceae genera",
+            "Bidens"
+        ],
+        "e":false,
+        "t":"Biebs"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.artifact",
+            "n.cognition",
+            "n.communication",
+            "n.event",
+            "n.group",
+            "n.person",
+            "n.time",
+            "v.cognition",
+            "v.communication"
+        ],
+        "c":[
+            "Agriculture",
+            "Autumn festivals",
+            "Harvest festivals",
+            "November observances",
+            "October observances",
+            "Thanksgiving",
+            "Types"
+        ],
+        "e":false,
+        "t":"Thanks_Giving"
+    },
+    {
+        "s":[
+
+        ],
+        "c":[
+            "",
+            "CS1 Portuguese-language sources (pt)"
+        ],
+        "e":false,
+        "t":"808"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.person"
+        ],
+        "e":false,
+        "t":"Lawrence_Welk"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Harvard_medical_school"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.artifact",
+            "n.cognition",
+            "n.communication",
+            "n.group",
+            "n.location",
+            "n.person",
+            "n.phenomenon",
+            "n.possession",
+            "n.quantity",
+            "n.shape",
+            "v.change",
+            "v.cognition",
+            "v.communication",
+            "v.contact",
+            "v.creation",
+            "v.motion",
+            "v.stative"
+        ],
+        "c":[
+            "MacBook",
+            "Macintosh computers by product line",
+            "Macintosh laptops",
+            "Products introduced",
+            "X86 Macintosh computers"
+        ],
+        "e":false,
+        "t":"Macbook"
+    },
+    {
+        "s":[
+            "n.communication"
+        ],
+        "e":false,
+        "t":"American_Woman"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.person"
+        ],
+        "e":false,
+        "t":"James_franco"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.communication",
+            "n.person"
+        ],
+        "e":false,
+        "t":"Jillian_michaels"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "e":false,
+        "t":"Jelena"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.artifact",
+            "n.cognition",
+            "n.communication",
+            "n.event",
+            "n.group",
+            "n.person",
+            "n.process",
+            "n.quantity",
+            "n.state",
+            "n.time",
+            "v.body",
+            "v.change",
+            "v.cognition",
+            "v.communication",
+            "v.competition",
+            "v.consumption",
+            "v.contact",
+            "v.creation",
+            "v.motion",
+            "v.perception",
+            "v.social",
+            "v.weather"
+        ],
+        "c":[
+            "2010s Western (genre) films",
+            "2010s drama films",
+            "American Western (genre) films",
+            "American films",
+            "English-language films",
+            "Films set",
+            "Films shot",
+            "films"
+        ],
+        "e":false,
+        "t":"The_Timber"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.artifact",
+            "n.cognition"
+        ],
+        "c":[
+            "Computer memory",
+            "Emerging technologies",
+            "Non-volatile memory"
+        ],
+        "e":false,
+        "t":"Sonos"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.person"
+        ],
+        "e":false,
+        "t":"Bruno_mars"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.communication"
+        ],
+        "c":[
+            "",
+            "Government procurement",
+            "Protectionism",
+            "United States federal commerce legislation",
+            "United States federal transportation legislation"
+        ],
+        "e":false,
+        "t":"Buy_America"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Gatwick_airport"
+    },
+    {
+        "s":[
+            "n.communication"
+        ],
+        "e":false,
+        "t":"Teen_titans"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.communication"
+        ],
+        "e":false,
+        "t":"PS0"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.communication"
+        ],
+        "e":false,
+        "t":"Xbox"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "e":false,
+        "t":"The_Bison"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"SDSU"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Snes"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Pc_magazine"
+    },
+    {
+        "s":[
+            "n.communication"
+        ],
+        "c":[
+            "British websites",
+            "Reward websites"
+        ],
+        "e":false,
+        "t":"Quidco"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.artifact",
+            "n.cognition",
+            "n.communication",
+            "n.group",
+            "n.person",
+            "n.possession",
+            "v.cognition",
+            "v.social"
+        ],
+        "c":[
+            "Books",
+            "Books published posthumously",
+            "Ethics books",
+            "Machiavellianism",
+            "Medieval philosophical literature",
+            "Military strategy books",
+            "Political science books",
+            "Works by Niccol\u00f2 Machiavelli",
+            "books"
+        ],
+        "e":false,
+        "t":"The_Prince"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Bbc4"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "e":false,
+        "t":"Yves_Behar"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.cognition",
+            "n.communication",
+            "n.group",
+            "n.location",
+            "n.state",
+            "v.cognition",
+            "v.communication",
+            "v.competition",
+            "v.contact",
+            "v.creation",
+            "v.possession",
+            "v.social",
+            "v.stative"
+        ],
+        "c":[
+            "Municipalities",
+            "Populated places"
+        ],
+        "e":false,
+        "t":"Villarreal"
+    },
+    {
+        "s":[
+            "n.artifact",
+            "n.group",
+            "v.contact",
+            "v.social"
+        ],
+        "c":[
+            "CS1 Greek-language sources (el)",
+            "CS1 uses Greek-language script (el)",
+            "Multi-sport clubs",
+            "Panathinaikos A.O."
+        ],
+        "e":false,
+        "t":"Panathinaikos"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "e":false,
+        "t":"Victor_Munoz"
+    },
+    {
+        "s":[
+            "n.cognition"
+        ],
+        "c":[
+            "Jewish philosophy"
+        ],
+        "e":false,
+        "t":"Jewish_philosophy"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "e":false,
+        "t":"Griner"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Super_junior"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "e":false,
+        "t":"The_Lord"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "e":false,
+        "t":"Kaylee"
+    },
+    {
+        "s":[
+            "n.animal",
+            "n.artifact",
+            "n.group",
+            "n.location",
+            "n.person",
+            "n.state",
+            "n.time"
+        ],
+        "c":[
+            "Childhood",
+            "Men",
+            "Terms for males"
+        ],
+        "e":false,
+        "t":"Boohoo"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.attribute",
+            "n.cognition",
+            "n.communication",
+            "n.possession",
+            "n.time",
+            "v.cognition",
+            "v.possession"
+        ],
+        "c":[
+            "Ontology",
+            "Perception",
+            "Philosophical terminology",
+            "Value"
+        ],
+        "e":false,
+        "t":"Everything"
+    },
+    {
+        "s":[
+            "n.attribute",
+            "n.cognition",
+            "n.communication",
+            "n.person",
+            "n.state",
+            "v.change",
+            "v.cognition",
+            "v.communication",
+            "v.contact",
+            "v.creation",
+            "v.motion"
+        ],
+        "c":[
+            "Fictional characters introduced",
+            "Fictional cowboys and cowgirls",
+            "Philip Morris",
+            "Tobacco advertising characters"
+        ],
+        "e":false,
+        "t":"The_Marlboro_Man"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.phenomenon",
+            "n.time",
+            "v.change",
+            "v.perception"
+        ],
+        "c":[
+            "Atlantic hurricane season",
+            "Category 5 Atlantic hurricanes",
+            "George W. Bush administration controversies",
+            "Hurricane Katrina",
+            "Hurricanes",
+            "Retired Atlantic hurricanes"
+        ],
+        "e":false,
+        "t":"Hurricane_katrina"
+    },
+    {
+        "s":[
+            "n.artifact",
+            "n.communication"
+        ],
+        "e":false,
+        "t":"Jesus_is_Alive"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Microsoft"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "e":false,
+        "t":"Darren"
+    },
+    {
+        "s":[
+            "n.artifact",
+            "n.communication",
+            "n.object",
+            "n.substance"
+        ],
+        "c":[
+            "Shuttle-derived space launch vehicles"
+        ],
+        "e":false,
+        "t":"Direct"
+    },
+    {
+        "s":[
+            "n.artifact",
+            "n.cognition",
+            "n.communication",
+            "n.group",
+            "n.person",
+            "v.body",
+            "v.cognition",
+            "v.communication",
+            "v.contact",
+            "v.creation",
+            "v.stative"
+        ],
+        "c":[
+            "Catch dog breeds",
+            "Dog breeds originating",
+            "Dog fighting breeds",
+            "Dog types"
+        ],
+        "e":false,
+        "t":"Pitbull"
+    },
+    {
+        "s":[
+            "n.artifact",
+            "n.communication"
+        ],
+        "e":false,
+        "t":"Stay-C"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Cadillac"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Btvision"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Citylink"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Paypal"
+    },
+    {
+        "s":[
+            "n.event",
+            "n.person"
+        ],
+        "e":false,
+        "t":"Seamus_Heaney"
+    },
+    {
+        "s":[
+            "n.attribute",
+            "n.communication",
+            "n.person",
+            "v.communication",
+            "v.motion",
+            "v.social"
+        ],
+        "c":[
+            "Lists",
+            "The X Factor (UK TV series) contestants",
+            "Use British English from July 2013"
+        ],
+        "e":false,
+        "t":"Sami_Brookes"
+    },
+    {
+        "s":[
+            "n.communication"
+        ],
+        "e":false,
+        "t":"DigitalRev"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Uni_Baggage"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.person"
+        ],
+        "e":false,
+        "t":"Ian_Somerhalder"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Littlewoods"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Warped_tour"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.artifact",
+            "n.cognition",
+            "n.group",
+            "n.location",
+            "n.quantity",
+            "n.state",
+            "v.cognition",
+            "v.stative"
+        ],
+        "c":[
+            "Centralized computing",
+            "Laboratories",
+            "Rooms"
+        ],
+        "e":false,
+        "t":"Media_lab"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Nikon"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.artifact",
+            "n.attribute",
+            "n.cognition",
+            "n.communication",
+            "n.group",
+            "n.location",
+            "n.person",
+            "v.change",
+            "v.contact",
+            "v.motion",
+            "v.social"
+        ],
+        "c":[
+            "Bletchley Park",
+            "Military intelligence",
+            "Secret Intelligence Service",
+            "Signals intelligence"
+        ],
+        "e":false,
+        "t":"Ultra"
+    },
+    {
+        "s":[
+            "n.group"
+        ],
+        "e":false,
+        "t":"Eventbrite"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "e":false,
+        "t":"Marion_Williams"
+    },
+    {
+        "s":[
+            "n.artifact",
+            "n.attribute",
+            "n.body",
+            "n.cognition",
+            "n.groups",
+            "n.location",
+            "n.state",
+            "n.substance",
+            "v.cognition",
+            "v.competition"
+        ],
+        "c":[
+            "Musical groups from the San Francisco Bay Area",
+            "West Coast hip hop groups"
+        ],
+        "e":false,
+        "t":"The_Frontline"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.artifact",
+            "n.cognition",
+            "n.communication",
+            "n.group",
+            "n.person",
+            "v.cognition",
+            "v.communication"
+        ],
+        "c":[
+            "American inventions",
+            "Astronomical observatories",
+            "Space observatories",
+            "Telescope types",
+            "Unmanned spacecraft"
+        ],
+        "e":false,
+        "t":"Space_telescopes"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Washington_state"
+    },
+    {
+        "s":[
+            "n.cognition",
+            "n.group"
+        ],
+        "c":[
+            "Hinduism",
+            "Indian religions",
+            "Use Indian English from October 2014"
+        ],
+        "e":false,
+        "t":"Hindu_religion"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "e":false,
+        "t":"Chris"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "e":false,
+        "t":"Lyod"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.person"
+        ],
+        "e":false,
+        "t":"2pac"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.communication"
+        ],
+        "e":false,
+        "t":"Words_with_friends"
+    },
+    {
+        "s":[
+            "n.act",
+            "n.artifact",
+            "n.cognition",
+            "n.communication",
+            "n.group",
+            "n.plant",
+            "v.change",
+            "v.cognition",
+            "v.communication",
+            "v.contact",
+            "v.creation",
+            "v.motion"
+        ],
+        "c":[
+            "Android (operating system) devices",
+            "Mobile phones introduced",
+            "Samsung Galaxy",
+            "Samsung mobile phones"
+        ],
+        "e":false,
+        "t":"Samsung_Galaxy_mini"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "e":false,
+        "t":"Doyle"
+    },
+    {
+        "s":[
+            "n.person"
+        ],
+        "e":false,
+        "t":"Horstmann"
+    },
+    {
+        "s":[
+            "n.cognition"
+        ],
+        "c":[
+            "Salat"
+        ],
+        "e":false,
+        "t":"Asr"
+    },
+    {
+        "s":[
+            "n.person",
+            "n.state",
+            "n.time"
+        ],
+        "c":[
+            "Days",
+            "January"
+        ],
+        "e":false,
+        "t":"January_16"
+    },
+    {
+        "s":[
+            "n.communication",
+            "n.group"
+        ],
+        "e":false,
+        "t":"Oxford_Mail"
+    },
+    {
+        "s":[
+            "n.communication"
+        ],
+        "e":false,
+        "t":"True_blood"
+    }
+]
