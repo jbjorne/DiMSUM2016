@@ -3,6 +3,10 @@ University of Turku in SemEval 2016 Task 10: DiMSUM
 
 This code implements the experiments of the University of Turku IT Department for [SemEval 2016 Task 10](http://dimsum16.github.io/), Detecting Minimal Semantic Units and their Meanings (DiMSUM).
 
+Experiment Results
+------------------
+Our submitted DiMSUM task results can be found under `data/results`. The three packages correspond to the three conditions of the DiMSUM task.
+
 Required Libraries and Data
 ---------------------------
 
@@ -12,10 +16,10 @@ The dependencies are listed in `requirements.txt`. Except for scikit-learn, othe
 ### Data files
 All required data files, a copy of the DiMSUM corpus and our submitted results can be found in the `data` directory.
 
-> NOTE: You cannot run the entries for tasks 2 and 3 unless you get the [YELP academic dataset](https://www.yelp.com/academic_dataset).
+> NOTE: You cannot run the entries for tasks 2 and 3 unless you get the [YELP academic dataset](https://www.yelp.com/academic_dataset). To get the dataset apply for a permission. Once you have the permission, download the dataset 
 
 * `dimsum-data-1.5`: A copy of the [DiMSUM 2016 shared task data](https://github.com/dimsum16/dimsum-data/releases/tag/1.5).
-* `wikipedia`: Data files derived from the English Wikipedia, used in our experiments 2 and 3.
+* `wikipedia`: Data files derived from the English Wikipedia, used in our entry for the open condition.
 * `yelp`: A placeholder for the YELP data files. To access the YELP academic dataset request a license from the [YELP website](https://www.yelp.com/academic_dataset)
 * `results`: Our submitted results for the DiMSUM challenge and the official evaluation results from the organizers.
 
