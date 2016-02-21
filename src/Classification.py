@@ -157,7 +157,7 @@ class Classification(object):
         
     def _crossValidate(self, y_train, X_train, refit=False):
         # Run the grid search
-        print "Cross-validating for", self.numFolds, "folds"
+        print "Cross-validating" # for", self.numFolds, "folds"
         print "Args", self.classifierArgs
         cv = LeaveOneLabelOut(self._getTrainGroups())
         #cv = StratifiedKFold(y_train, n_folds=self.numFolds, shuffle=True, random_state=1) #self.getCV(y_train, self.meta.meta, numFolds=self.numFolds)
